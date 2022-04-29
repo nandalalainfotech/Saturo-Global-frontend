@@ -34,6 +34,9 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { SidemenuDashboardComponent } from './sidemenu-dashboard/sidemenu-dashboard.component';
+import { LigandComponent } from './ligand/ligand.component';
+import { TargetComponent } from './target/target.component';
+import { AssayComponent } from './assay/assay.component';
 // import { GoJsChartComponent } from './body/go-js-chart/go-js-chart.component';
 
 
@@ -63,6 +66,9 @@ import { SidemenuDashboardComponent } from './sidemenu-dashboard/sidemenu-dashbo
         ReviewComponent,
         TablesComponent,
         SidemenuDashboardComponent,
+        LigandComponent,
+        TargetComponent,
+        AssayComponent,
         // RadarChartComponent,
         // ModernChartComponent,
         //  GoJsChartComponent

@@ -24,6 +24,18 @@ const routes: Routes = [
         path: 'app-setting',
         loadChildren: () => import("./setting/setting.module").then(m => m.SettingModule)
       },
+      {
+        path: 'app-ligand',
+        loadChildren: () => import("./ligand/ligand.module").then(m => m.LigandModule)
+      },
+      {
+        path: 'app-target',
+        loadChildren: () => import("./target/target.module").then(m => m.TargetModule)
+      },
+      {
+        path: 'app-assay',
+        loadChildren: () => import("./assay/assay.module").then(m => m.AssayModule)
+      },
     ]
   }
 ];

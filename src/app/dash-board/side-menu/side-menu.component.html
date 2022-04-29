@@ -195,10 +195,13 @@
                             </li> -->
                             <!-- --------------------Machines End----------------------- -->
 
-                            <li id="dropdown" title="Dashboard">
-                                <a data-toggle="collapse" href="#Dashboard" [ngClass]="parentMenuString == 'Dashboard' ? 'is-active' : ''">
-                                    <i class="fas fa-tachometer-alt" [ngClass]="parentMenuString == 'Dashboard' ? 'is-active' : 'is-inactive'"></i>
-                                    <span [ngClass]="parentMenuString == 'Dashboard' ? 'is-active' : ''">Dashboard</span>
+                            <!-- <li id="dropdown" title="Dashboard">
+                                <a data-toggle="collapse" href="#Dashboard"
+                                    [ngClass]="parentMenuString == 'Dashboard' ? 'is-active' : ''">
+                                    <i class="fas fa-tachometer-alt"
+                                        [ngClass]="parentMenuString == 'Dashboard' ? 'is-active' : 'is-inactive'"></i>
+                                    <span
+                                        [ngClass]="parentMenuString == 'Dashboard' ? 'is-active' : ''">Dashboard</span>
 
                                     <span class="caret"></span>
                                 </a>
@@ -206,7 +209,10 @@
                                 <div id="Dashboard" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li routerLink="./app-sidemenu-dashboard/app-accounts-dashboard" title="Accounts" class="web" [ngClass]="childMenuString == 'Accounts' ? 'is-active' : ''" (click)="onMenuChildClick('Dashboard', 'Accounts')">
+                                            <li routerLink="./app-sidemenu-dashboard/app-accounts-dashboard"
+                                                title="Accounts" class="web"
+                                                [ngClass]="childMenuString == 'Accounts' ? 'is-active' : ''"
+                                                (click)="onMenuChildClick('Dashboard', 'Accounts')">
                                                 <span><i class="fa fa-user"
                                                         [ngClass]="childMenuString == 'Accounts' ? 'is-active' : ''"></i></span>
                                                 <a data-toggle="collapse"><span
@@ -214,14 +220,19 @@
                                             </li>
 
 
-                                            <li routerLink="./app-sidemenu-dashboard/app-crm-dashboard" title="CRM" class="web" [ngClass]="childMenuString == 'CRM' ? 'is-active' : ''" (click)="onMenuChildClick('Dashboard', 'CRM')">
+                                            <li routerLink="./app-sidemenu-dashboard/app-crm-dashboard" title="CRM"
+                                                class="web" [ngClass]="childMenuString == 'CRM' ? 'is-active' : ''"
+                                                (click)="onMenuChildClick('Dashboard', 'CRM')">
                                                 <span><i class="fa fa-file-text"
                                                         [ngClass]="childMenuString == 'CRM' ? 'is-active' : ''"></i></span>
                                                 <a data-toggle="collapse"><span
                                                         [ngClass]="childMenuString == 'CRM' ? 'is-active' : ''">CRM</span></a>
                                             </li>
 
-                                            <li routerLink="./app-sidemenu-dashboard/app-employee-dashboard" title="Employee" class="web" [ngClass]="childMenuString == 'Employee' ? 'is-active' : ''" (click)="onMenuChildClick('Dashboard', 'Employee')">
+                                            <li routerLink="./app-sidemenu-dashboard/app-employee-dashboard"
+                                                title="Employee" class="web"
+                                                [ngClass]="childMenuString == 'Employee' ? 'is-active' : ''"
+                                                (click)="onMenuChildClick('Dashboard', 'Employee')">
                                                 <span><i class="fa fa-sitemap"
                                                         [ngClass]="childMenuString == 'Employee' ? 'is-active' : ''"></i></span>
                                                 <a data-toggle="collapse"><span
@@ -229,7 +240,10 @@
                                             </li>
 
 
-                                            <li routerLink="./app-sidemenu-dashboard/app-purchase-dashboard" title="Purchase" class="web" [ngClass]="childMenuString == 'Purchase' ? 'is-active' : ''" (click)="onMenuChildClick('Dashboard', 'Purchase')">
+                                            <li routerLink="./app-sidemenu-dashboard/app-purchase-dashboard"
+                                                title="Purchase" class="web"
+                                                [ngClass]="childMenuString == 'Purchase' ? 'is-active' : ''"
+                                                (click)="onMenuChildClick('Dashboard', 'Purchase')">
                                                 <span><i class="fa fa-shopping-bag"
                                                         [ngClass]="childMenuString == 'Purchase' ? 'is-active' : ''"></i></span>
                                                 <a data-toggle="collapse"><span
@@ -237,7 +251,9 @@
                                             </li>
 
 
-                                            <li routerLink="./app-sidemenu-dashboard/app-sales-dashboard" title="Sales" class="web" [ngClass]="childMenuString == 'Sales' ? 'is-active' : ''" (click)="onMenuChildClick('Dashboard', 'Sales')">
+                                            <li routerLink="./app-sidemenu-dashboard/app-sales-dashboard" title="Sales"
+                                                class="web" [ngClass]="childMenuString == 'Sales' ? 'is-active' : ''"
+                                                (click)="onMenuChildClick('Dashboard', 'Sales')">
                                                 <span><i class="fa fa-tags"
                                                         [ngClass]="childMenuString == 'Sales' ? 'is-active' : ''"></i></span>
                                                 <a data-toggle="collapse"><span
@@ -249,13 +265,178 @@
                             </li>
 
                             <li id="dropdown" title="Manufacturing">
-                                <a data-toggle="collapse" href="#Manufacturing" [ngClass]="parentMenuString == 'Manufacturing' ? 'is-active' : ''">
-                                    <i class="fa fa-industry" [ngClass]="parentMenuString == 'Manufacturing' ? 'is-active' : 'is-inactive'"></i>
-                                    <span [ngClass]="parentMenuString == 'Manufacturing' ? 'is-active' : ''">Manufacturing</span>
+                                <a data-toggle="collapse" href="#Manufacturing"
+                                    [ngClass]="parentMenuString == 'Manufacturing' ? 'is-active' : ''">
+                                    <i class="fa fa-industry"
+                                        [ngClass]="parentMenuString == 'Manufacturing' ? 'is-active' : 'is-inactive'"></i>
+                                    <span
+                                        [ngClass]="parentMenuString == 'Manufacturing' ? 'is-active' : ''">Manufacturing</span>
 
                                     <span class="caret"></span>
                                 </a>
                                 <div id="Manufacturing" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li routerLink="./app-manufacturing/app-product-order-details/app-prod-order"
+                                                title="Production" class="web"
+                                                [ngClass]="childMenuString == 'Production' ? 'is-active' : ''"
+                                                (click)="onMenuChildClick('Manufacturing', 'Production')">
+                                                <span><i class="fa fa-cogs"
+                                                        [ngClass]="childMenuString == 'Production' ? 'is-active' : ''"></i></span>
+                                                <a data-toggle="collapse"><span
+                                                        [ngClass]="childMenuString == 'Production' ? 'is-active' : ''">Production</span></a>
+                                            </li>
+                                            <li title="Production" [matMenuTriggerFor]="Production" class="mobile">
+                                                <span><i class="fa fa-cogs"></i></span>
+                                            </li>
+                                            <mat-menu #Production="matMenu" #menu="matMenu" backdropClass="product">
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-product-order-details/app-prod-order">
+                                                    Production Order</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-product-order-details/app-product-plan">
+                                                    Product Planning Tool</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-product-order-details/app-product-stock">
+                                                    Product Stock Entry</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-product-order-details/app-product-timest">
+                                                    Product TimeSheet</li>
+
+                                            </mat-menu>
+                                            <li title="Bill of Materials"
+                                                routerLink="./app-manufacturing/app-bom-details/app-material"
+                                                class="web"
+                                                [ngClass]="childMenuString == 'Bill of Materials' ? 'is-active' : ''"
+                                                (click)="onMenuChildClick('Manufacturing', 'Bill of Materials')">
+                                                <span><i class="fa fa-credit-card-alt"
+                                                        [ngClass]="childMenuString == 'Bill of Materials' ? 'is-active' : ''"></i></span>
+                                                <a><span
+                                                        [ngClass]="childMenuString == 'Bill of Materials' ? 'is-active' : ''">Bill
+                                                        of Materials</span> </a>
+                                            </li>
+                                            <li title="Bill of Materials" [matMenuTriggerFor]="Materials"
+                                                class="mobile">
+                                                <span><i class="fa fa-credit-card-alt"></i></span>
+                                            </li>
+                                            <mat-menu #Materials="matMenu" #menu="matMenu" backdropClass="bommaterial">
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-bom-details/app-material">
+                                                    Bill of Materials</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-bom-details/app-item-status">
+                                                    Item Status</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-bom-details/app-work-station">
+                                                    Work Station</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-bom-details/app-operation">
+                                                    BOM Operation</li>
+                                            </mat-menu>
+
+                                            <li title="Tools" routerLink="./app-manufacturing/app-manu-tools/app-tools"
+                                                class="web"
+                                                (click)="onMenuChildClick('Manufacturing', 'Manufacturing-Tools')"
+                                                [ngClass]="childMenuString == 'Manufacturing-Tools' ? 'is-active' : ''">
+                                                <span><i class="fa fa-wrench"
+                                                        [ngClass]="childMenuString == 'Manufacturing-Tools' ? 'is-active' : ''"></i></span>
+                                                <a><span
+                                                        [ngClass]="childMenuString == 'Manufacturing-Tools' ? 'is-active' : ''">Tools</span></a>
+                                            </li>
+                                            <li title="Tools" [matMenuTriggerFor]="Tools" class="mobile">
+                                                <span><i class="fa fa-wrench"></i></span>
+                                            </li>
+                                            <mat-menu #Tools="matMenu" #menu="matMenu" backdropClass="manutools">
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-manu-tools/app-tools">
+                                                    Tools</li>
+                                            </mat-menu>
+
+                                            <li title="SetUp" routerLink="./app-manufacturing/app-manu-setup/app-setup"
+                                                class="web"
+                                                (click)="onMenuChildClick('Manufacturing', 'Manufacturing-SetUp')"
+                                                [ngClass]="childMenuString == 'Manufacturing-SetUp' ? 'is-active' : ''">
+                                                <span><i class="fa fa-cog"
+                                                        [ngClass]="childMenuString == 'Manufacturing-SetUp' ? 'is-active' : ''"></i></span>
+                                                <a><span
+                                                        [ngClass]="childMenuString == 'Manufacturing-SetUp' ? 'is-active' : ''">SetUp</span></a>
+                                            </li>
+                                            <li title="SetUp" [matMenuTriggerFor]="SetUp" class="mobile">
+                                                <span><i class="fa fa-cog"></i></span>
+                                            </li>
+                                            <mat-menu #SetUp="matMenu" #menu="matMenu" backdropClass="setup">
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-manu-setup/app-setup">
+                                                    Setup</li>
+                                            </mat-menu>
+
+                                            <li title="Reports"
+                                                routerLink="./app-manufacturing/app-product-reportdetails/app-open-order"
+                                                class="web"
+                                                (click)="onMenuChildClick('Manufacturing', 'Manufacturing-Reports')"
+                                                [ngClass]="childMenuString == 'Manufacturing-Reports' ? 'is-active' : ''">
+                                                <span><i class="fa fa-bar-chart-o"
+                                                        [ngClass]="childMenuString == 'Manufacturing-Reports' ? 'is-active' : ''"></i></span>
+                                                <a><span
+                                                        [ngClass]="childMenuString == 'Manufacturing-Reports' ? 'is-active' : ''">Reports</span>
+                                                </a>
+                                            </li>
+                                            <li title="Reports" class="mobile" [matMenuTriggerFor]="Reports">
+                                                <span><i class="fa fa-bar-chart-o"></i></span>
+                                            </li>
+                                            <mat-menu #Reports="matMenu" #menu="matMenu" backdropClass="report">
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-product-reportdetails/app-open-order">
+                                                    Open Production Order</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-product-reportdetails/app-progress-order">
+                                                    Production Order in Progress</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-product-reportdetails/app-complete-order">
+                                                    Completed Production order</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-product-reportdetails/app-bom-type">
+                                                    BOM Type</li>
+                                                <li mat-menu-item
+                                                    routerLink="./app-manufacturing/app-product-reportdetails/app-issue-item">
+                                                    Issued Item</li>
+                                            </mat-menu>
+                                            <li title="Help" routerLink="./app-manufacturing/app-manu-help"
+                                                (click)="onMenuChildClick('Manufacturing', 'Manufacturing-Help')"
+                                                [ngClass]="childMenuString == 'Manufacturing-Help' ? 'is-active' : ''">
+                                                <span><i class="fa fa-question-circle-o"
+                                                        [ngClass]="childMenuString == 'Manufacturing-Help' ? 'is-active' : ''"></i></span>
+                                                <a><span
+                                                        [ngClass]="childMenuString == 'Manufacturing-Help' ? 'is-active' : ''">Help</span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <li id="dropdown" title="Ligand">
+                                <a data-toggle="collapse" routerLink="./app-ligand" href="#Ligand"
+                                    [ngClass]="parentMenuString == 'Ligand' ? 'is-active' : ''">
+                                    <i class="fa fa-info-circle"
+                                        [ngClass]="parentMenuString == 'Ligand' ? 'is-active' : 'is-inactive'"></i>
+                                    <span [ngClass]="parentMenuString == 'Ligand' ? 'is-active' : ''">Ligand</span>
+
+                                    <!-- <span class="caret"></span> -->
+                                </a>
+                                <!-- <div id="Manufacturing" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
                                             <li routerLink="./app-manufacturing/app-product-order-details/app-prod-order" title="Production" class="web" [ngClass]="childMenuString == 'Production' ? 'is-active' : ''" (click)="onMenuChildClick('Manufacturing', 'Production')">
@@ -354,12 +535,35 @@
                                                         [ngClass]="childMenuString == 'Manufacturing-Help' ? 'is-active' : ''"></i></span>
                                                 <a><span
                                                         [ngClass]="childMenuString == 'Manufacturing-Help' ? 'is-active' : ''">Help</span></a>
-                                            </li>
-                                        </ul>
+                                            </li> -->
+                                <!-- </ul>
                                     </div>
-                                </div>
+                                </div> -->
                             </li>
-                            <!--  <li id="dropdown" title="Accounts">
+
+                            <li id="dropdown" title="Assay">
+                                <a routerLink="./app-assay" data-toggle="collapse" href="#Assay"
+                                    [ngClass]="parentMenuString == 'Assay' ? 'is-active' : ''">
+                                    <i class="fa fa-search"
+                                        [ngClass]="parentMenuString == 'Assay' ? 'is-active' : 'is-inactive'"></i>
+                                    <span [ngClass]="parentMenuString == 'Assay' ? 'is-active' : ''">Assay</span>
+
+                                    <!-- <span class="caret"></span> -->
+                                </a>
+                            </li>
+                            
+                            <li id="dropdown" title="Target">
+                                <a routerLink="./app-target" data-toggle="collapse" href="#Target"
+                                    [ngClass]="parentMenuString == 'Target' ? 'is-active' : ''">
+                                    <i class="fa fa-bullseye"
+                                        [ngClass]="parentMenuString == 'Target' ? 'is-active' : 'is-inactive'"></i>
+                                    <span [ngClass]="parentMenuString == 'Target' ? 'is-active' : ''">Target</span>
+
+                                    <!-- <span class="caret"></span> -->
+                                </a>
+
+
+                                <!--  <li id="dropdown" title="Accounts">
                                 <a data-toggle="collapse" href="#Accounts"
                                     [ngClass]="parentMenuString == 'Accounts' ? 'is-active' : ''">
                                     <i class="fa fa-user"

@@ -33,10 +33,10 @@
                             <select formControlName="rolename" class="form-control" name="rolenamelist" id="rolenamelist" [ngClass]="{ 'is-invalid': submitted && f.rolename.errors }">
                                 <option value="" hidden> - Select the role - </option>
                                 <option value="null"> - Select the role - </option>
-                                <option> Super Admin </option>
+                                <!-- <option> Super Admin </option> -->
                                 <option> Admin </option>
-                                <option> Guest </option>
                                 <option> User </option>
+                                <option> Renewer </option>
                             </select>
                             <div *ngIf="submitted && f.rolename.errors" class="invalid-feedback">
                                 <div *ngIf="f.rolename.errors.required">Role Name is required</div>
@@ -50,8 +50,8 @@
                             <select formControlName="status" class="form-control" name="rolenamelist" id="rolenamelist" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
                                 <option value="" hidden> - Select the status - </option>
                                 <option value="null"> - Select the status - </option>
-                                <option> Y </option>
-                                <option> N </option>
+                                <option> Active </option>
+                                <option> InActive </option>
                             </select>
                             <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
                                 <div *ngIf="f.status.errors.required">Status is required</div>
