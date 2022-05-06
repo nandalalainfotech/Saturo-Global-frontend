@@ -1,0 +1,24 @@
+<ng-stepper #cdkStepper [linear]="true">
+    <cdk-step >
+        <ng-template cdkStepLabel>
+            <div class="step-bullet">1</div>
+            <div class="step-title">Ligand<span class="required">*</span></div>
+        </ng-template>
+        <app-ligand></app-ligand>
+    </cdk-step>
+    <cdk-step>
+        <ng-template cdkStepLabel>
+            <div class="step-bullet">2</div>
+            <div class="step-title">Assay <span class="required">*</span></div>
+        </ng-template>
+        <app-assay></app-assay>
+    </cdk-step>
+    <cdk-step>
+        <ng-template cdkStepLabel>
+            <div class="step-bullet">3</div>
+            <div class="step-title">Measurement <span class="required">*</span></div>
+        </ng-template>
+        <app-measurement></app-measurement>
+    </cdk-step>
+    
+</ng-stepper>

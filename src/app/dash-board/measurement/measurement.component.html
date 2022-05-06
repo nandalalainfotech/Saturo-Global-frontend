@@ -1,0 +1,420 @@
+<fieldset class="scheduler-border">
+    <legend class="scheduler-border">Measurement</legend>
+    <div class="formData">
+        <form [formGroup]="MeasurementForm" (ngSubmit)="onMeasurementClick($event, MeasurementForm)" autocomplete="off" novalidate #formRef="ngForm">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="dataLocator" for="series" cssClass="required">Data-locator</label>
+                        <input class="form-control" name="dataLocator" formControlName="dataLocator"
+                            [ngClass]="{ 'is-invalid': submitted && f.dataLocator.errors }">
+                        <div *ngIf="submitted && f.dataLocator.errors" class="invalid-feedback">
+                            <div *ngIf="f.dataLocator.errors.required">Value is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="category" for="category" cssClass="required">Category</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="category" formControlName="category"
+                            [ngClass]="{ 'is-invalid': submitted && f.category.errors }">
+                            <option value="" hidden> - Select -Category - </option>
+                            <option> PAC </option>
+                            <option> ADME </option>
+                            <option> TOX </option>
+                            <option> PAC-ADME </option>
+                            <option> PAC-TOX </option>
+                            <option> ADME-TOX </option>
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                        {{system.description}}
+                    </option> -->
+                        </select>
+                        <div *ngIf="submitted && f.category.errors" class="invalid-feedback">
+                            <div *ngIf="f.category.errors.required">Category is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="function" for="function" cssClass="required">Category</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="function" formControlName="function"
+                            [ngClass]="{ 'is-invalid': submitted && f.function.errors }">
+                            <option value="" hidden> - Select -functions - </option>
+                            <option> Allergy inhibitor </option>
+                            <option> Amebicide </option>
+                            <option> Analgesic </option>
+                            <option> Anesthetic </option>
+                            <option> Anthelmintic </option>
+                            <option> Anti-aging agent </option>
+                            <option> Anti-AIDS agent </option>
+                            <option> Anti-Alzheimer agent </option>
+                            <option> Antiangiogenic agent </option>
+                            <option> Antiasthmatic agent </option>
+                            <option> Antiatherosclerotic </option>
+                            <option> Antibacterial agent </option>
+                            <option> Antibiotic </option>
+                            <option> Anticoagulation agent </option>
+                            <option> Anticonvulsant </option>
+                            <option> Anticoronaviral agent </option>
+                            <option> Antidiabetic agent </option>
+                            <option> Anti-hemorrhoidal agent </option>
+                            <option> Antihypotensive agent </option>
+                            <option> Anti-inflammatory agent </option>
+                            <option> Anti-ischemic agent </option>
+                            <option> Antimalarial </option>
+                            <option> Antimicrobial agent </option>
+                            <option> Antioxidant </option>
+                            <option> Antitumor agent </option>
+                            <option> Antiviral agent </option>
+                            <option> Cardioprotective agent </option>
+                            <option> Cytoprotective agent </option>
+                            <option> Fungicide </option>
+                            <option> Gastroprotective agent </option>
+                            <option> Hepatoprotective agent </option>
+                            <option> Immuno-modulator </option>
+                            <option> Immuno-stimulator </option>
+                            <option> Inhibitor </option>
+                            <option> Nephroprotective agent </option>
+                            <option> Neuroprotective agent </option>
+                            <option> Parasiticide </option>
+                            <option> Photosensitizer </option>
+                            <option> Protozoacide </option>
+                            <option> Radiosensitizer </option>
+                            <option> Sensitizer </option>
+                            <option> Stimulator </option>
+                            <option> Vasodilator </option>
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                        {{system.description}}
+                    </option> -->
+                        </select>
+                        <div *ngIf="submitted && f.function.errors" class="invalid-feedback">
+                            <div *ngIf="f.function.errors.required">Function is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="parameter" for="parameter" cssClass="required">Parameter</label>
+                        <input class="form-control" name="parameter" formControlName="parameter"
+                            [ngClass]="{ 'is-invalid': submitted && f.parameter.errors }">
+                        <div *ngIf="submitted && f.parameter.errors" class="invalid-feedback">
+                            <div *ngIf="f.parameter.errors.required">Parameter is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="parameterDetail" for="parameterDetail" cssClass="required">Parameter-detail</label>
+                        <input class="form-control" name="parameterDetail" formControlName="parameterDetail"
+                            [ngClass]="{ 'is-invalid': submitted && f.parameterDetail.errors }">
+                        <div *ngIf="submitted && f.parameterDetail.errors" class="invalid-feedback">
+                            <div *ngIf="f.parameterDetail.errors.required">Parameter Detail is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="singleValue" for="singleValue"
+                            cssClass="required">Original-value(Single-value)</label>
+                        <input class="form-control" name="singleValue" formControlName="singleValue"
+                            [ngClass]="{ 'is-invalid': submitted && f.singleValue.errors }">
+                        <div *ngIf="submitted && f.singleValue.errors" class="invalid-feedback">
+                            <div *ngIf="f.singleValue.errors.required">Single Value is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="unit" for="unit" cssClass="required">Unit</label>
+                        <input class="form-control" name="unit" formControlName="unit"
+                            [ngClass]="{ 'is-invalid': submitted && f.unit.errors }">
+                        <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
+                            <div *ngIf="f.unit.errors.required">Unit is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="originalPrefix" for="originalPrefix" cssClass="required">Original-prefix</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="originalPrefix" formControlName="originalPrefix"
+                            [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                            <option value="" hidden> - Select -Original-Prefix - </option>
+                            <option> = </option>
+                            <option> > </option>
+                            <option> < </option>
+                            <option> ≤ </option>
+                            <option> ≥ </option>
+                            <option> ~ </option>
+                            <option> - </option>
+                            <option> ≈ </option>
+                            <option> >= </option>
+                            <option> <= </option>
+                            <option> >~ </option>
+                            <option> <~ </option>
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                        {{system.description}}
+                    </option> -->
+                        </select>
+                        <div *ngIf="submitted && f.originalPrefix.errors" class="invalid-feedback">
+                            <div *ngIf="f.originalPrefix.errors.required">Original-Prefix is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="highEndValue" for="highEndValue"
+                            cssClass="required">Original-value(High-end-value)</label>
+                        <input class="form-control" name="highEndValue" formControlName="highEndValue"
+                            [ngClass]="{ 'is-invalid': submitted && f.highEndValue.errors }">
+                        <div *ngIf="submitted && f.highEndValue.errors" class="invalid-feedback">
+                            <div *ngIf="f.highEndValue.errors.required">Original Value is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="lowEndValue" for="lowEndValue"
+                            cssClass="required">Original-value(Low-end-value)</label>
+                        <input class="form-control" name="lowEndValue" formControlName="lowEndValue"
+                            [ngClass]="{ 'is-invalid': submitted && f.lowEndValue.errors }">
+                        <div *ngIf="submitted && f.lowEndValue.errors" class="invalid-feedback">
+                            <div *ngIf="f.lowEndValue.errors.required">Original Value is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="units" for="units" cssClass="required">Unit</label>
+                        <input class="form-control" name="units" formControlName="units"
+                            [ngClass]="{ 'is-invalid': submitted && f.units.errors }">
+                        <div *ngIf="submitted && f.units.errors" class="invalid-feedback">
+                            <div *ngIf="f.units.errors.required">Unit is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="nonNumeric" for="nonNumeric"
+                            cssClass="required">Original-value(Non-numeric-value)</label>
+                        <input class="form-control" name="nonNumeric" formControlName="nonNumeric"
+                            [ngClass]="{ 'is-invalid': submitted && f.nonNumeric.errors }">
+                        <div *ngIf="submitted && f.nonNumeric.errors" class="invalid-feedback">
+                            <div *ngIf="f.nonNumeric.errors.required">Non-numeric value is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="remark" for="remark" cssClass="required">Remarks</label>
+                        <textarea class="form-control" name="remark" formControlName="remark"
+                            [ngClass]="{ 'is-invalid': submitted && f.remark.errors }"></textarea>
+                        <div *ngIf="submitted && f.remark.errors" class="invalid-feedback">
+                            <div *ngIf="f.remark.errors.required">Remark is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Biological system</legend>
+
+                <div class="row">
+
+                    
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="type" for="type" cssClass="required">Type</label>
+                            <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                            <select class="form-control" name="type" formControlName="type"
+                                [ngClass]="{ 'is-invalid': submitted && f.type.errors }">
+                                <option value="" hidden> - Select -types - </option>
+                                <option> in vitro </option>
+                                <option> in vivo </option>
+                                <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                            {{system.description}}
+                        </option> -->
+                            </select>
+                            <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                                <div *ngIf="f.type.errors.required">Types is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="cell" for="cell" cssClass="required">Cell</label>
+                            <input class="form-control" name="cell" formControlName="cell"
+                                [ngClass]="{ 'is-invalid': submitted && f.cell.errors }">
+                            <div *ngIf="submitted && f.cell.errors" class="invalid-feedback">
+                                <div *ngIf="f.cell.errors.required">Cell is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="cellDetail" for="cellDetail" cssClass="required">Cell-detail</label>
+                            <input class="form-control" name="cellDetail" formControlName="cellDetail"
+                                [ngClass]="{ 'is-invalid': submitted && f.cellDetail.errors }">
+                            <div *ngIf="submitted && f.cellDetail.errors" class="invalid-feedback">
+                                <div *ngIf="f.cellDetail.errors.required">Cell-detail is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="organ" for="organ" cssClass="required">Organ</label>
+                            <input class="form-control" name="organ" formControlName="organ"
+                                [ngClass]="{ 'is-invalid': submitted && f.organ.errors }">
+                            <div *ngIf="submitted && f.organ.errors" class="invalid-feedback">
+                                <div *ngIf="f.organ.errors.required">Organ is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="organDetail" for="organDetail" cssClass="required">Organ-detail</label>
+                            <input class="form-control" name="organDetail" formControlName="organDetail"
+                                [ngClass]="{ 'is-invalid': submitted && f.organDetail.errors }">
+                            <div *ngIf="submitted && f.organDetail.errors" class="invalid-feedback">
+                                <div *ngIf="f.organDetail.errors.required">Organ-detail is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="species" for="species" cssClass="required">Species</label>
+                            <input class="form-control" name="organDetail" formControlName="species"
+                                [ngClass]="{ 'is-invalid': submitted && f.species.errors }">
+                            <div *ngIf="submitted && f.species.errors" class="invalid-feedback">
+                                <div *ngIf="f.species.errors.required">Species is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="speciesDetail" for="speciesDetail" cssClass="required">Species-detail</label>
+                            <input class="form-control" name="speciesDetail" formControlName="speciesDetail"
+                                [ngClass]="{ 'is-invalid': submitted && f.speciesDetail.errors }">
+                            <div *ngIf="submitted && f.speciesDetail.errors" class="invalid-feedback">
+                                <div *ngIf="f.speciesDetail.errors.required">Species-detail is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="gender" for="gender" cssClass="required">Gender</label>
+                            <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                            <select class="form-control" name="gender" formControlName="gender"
+                                [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                <option value="" hidden> - Select -Gender - </option>
+                                <option> Male </option>
+                                <option> female </option>
+                                <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option> -->
+                            </select>
+                            <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                <div *ngIf="f.gender.errors.required">Gender is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="ageGroup" for="ageGroup" cssClass="required">Age-group</label>
+                            <input class="form-control" name="ageGroup" formControlName="ageGroup"
+                                [ngClass]="{ 'is-invalid': submitted && f.ageGroup.errors }">
+                            <div *ngIf="submitted && f.ageGroup.errors" class="invalid-feedback">
+                                <div *ngIf="f.ageGroup.errors.required">Age-Group is Required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+
+
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="form-group">
+                        <button class="btn btn-primary previous" cdkStepperPrevious>Previous</button>
+                        <button type="submit" class="btn btn-primary submit" cdkStepperNext>Submit</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-12">
+                <!-- <div class="form-group">
+                    <button type="button" class="btn btn-primary submit" style="margin-right: 45px;" (click)="onGeneratePdfReport()">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>Export Pdf
+                    </button>
+                    <button type="button" class="btn btn-warning reset" (click)="onGenerateExcelReport()">
+                        <i class="fa fa-file-excel-o" aria-hidden="true"></i>Export Excel
+                    </button>
+                </div> -->
+            </div>
+        </div>
+
+        <legend class="scheduler-border">Measurement</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>

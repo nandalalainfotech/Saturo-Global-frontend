@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LigandRoutingModule } from './ligand-routing.module';
+import { MeasurementRoutingModule } from './measurement-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 
@@ -10,10 +10,10 @@ import { AgGridModule } from 'ag-grid-angular';
   declarations: [],
   imports: [
     CommonModule,
-    LigandRoutingModule,
+    MeasurementRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
   ]
 })
-export class LigandModule { }
+export class MeasurementModule { }

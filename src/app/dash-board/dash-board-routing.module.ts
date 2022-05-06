@@ -8,10 +8,7 @@ const routes: Routes = [
     path: "",
     component: DashBoardComponent,
     children: [
-      {
-        path: "",
-        component: BodyComponent,
-      },
+      
       {
         path:'app-sidemenu-dashboard',
         loadChildren:() => import("./sidemenu-dashboard/sidemenu-dashboard.module").then(m => m.SidemenuDashboardModule)
@@ -36,6 +33,15 @@ const routes: Routes = [
         path: 'app-assay',
         loadChildren: () => import("./assay/assay.module").then(m => m.AssayModule)
       },
+      {
+        path: 'app-measurement',
+        loadChildren: () => import("./measurement/measurement.module").then(m => m.MeasurementModule)
+      },
+      {
+        path: 'app-stepper',
+        loadChildren: () => import("./stepper/stepper.module").then(m => m.StepperModule)
+      },
+     
     ]
   }
 ];

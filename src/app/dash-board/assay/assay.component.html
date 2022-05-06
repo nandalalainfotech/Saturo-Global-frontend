@@ -1,15 +1,15 @@
 <fieldset class="scheduler-border">
     <legend class="scheduler-border">Assay</legend>
     <div class="formData">
-        <form>
+        <form [formGroup]="AssayForm" (ngSubmit)="onAssayClick($event, AssayForm)">
             <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Ligand-Version</label>
+                        <label path="ligandVersion" for="ligandVersion" cssClass="required">Ligand-Version</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
-                        <select class="form-control" name="empName" formControlName="empName">
+                        <select class="form-control" name="ligandVersion" formControlName="ligandVersion"
+                            [ngClass]="{ 'is-invalid': submitted && f.ligandVersion.errors }">
                             <option value="" hidden> - Select Ligand-Version - </option>
-                            <option value="null"> - Select Ligand-Version - </option>
                             <option> 1 </option>
                             <option> 2 </option>
                             <option> 3 </option>
@@ -19,430 +19,361 @@
                                 {{system.description}}
                             </option> -->
                         </select>
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                            </div> -->
+                        <div *ngIf="submitted && f.ligandVersion.errors" class="invalid-feedback">
+                            <div *ngIf="f.ligandVersion.errors.required">Ligand Version is Required</div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <input type="hidden" class="form-control" path="prtId" />
-                        <label path="empName" for="series" cssClass="required">Ordinal</label>
-                        <input class="form-control" type="text" path="empName" />
-                        <!-- <select class="form-control" name="empName" formControlName="empName" [ngClass]="{ 'is-invalid': submitted && f.empName.errors }">
-                            <option value="" hidden> - Select Employee - </option>
-                            <option value="null"> - Select Employee - </option>
-                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                        <label path="Ordinal" for="series" cssClass="required">Ordinal</label>
+                        <input type="number" class="form-control" name="Ordinal" formControlName="Ordinal"
+                            [ngClass]="{ 'is-invalid': submitted && f.Ordinal.errors }">
+                        <div *ngIf="submitted && f.Ordinal.errors" class="invalid-feedback">
+                            <div *ngIf="f.Ordinal.errors.required">Ordinal is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="Collectionid" for="series" cssClass="required">Collection-id</label>
+                        <input class="form-control" name="Collectionid" formControlName="Collectionid"
+                            [ngClass]="{ 'is-invalid': submitted && f.Collectionid.errors }">
+                        <div *ngIf="submitted && f.Collectionid.errors" class="invalid-feedback">
+                            <div *ngIf="f.Collectionid.errors.required">ID is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="AssayType" for="AssayType" cssClass="required">Assay-type</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="AssayType" formControlName="AssayType"
+                            [ngClass]="{ 'is-invalid': submitted && f.AssayType.errors }">
+                            <option value="" hidden> - Select Assay-Types - </option>
+                            <option> Binding </option>
+                            <option> Functional </option>
+                            <option> Non-clinical trial ADME </option>
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
-                            </option>
+                            </option> -->
                         </select>
-                        <div *ngIf="submitted && f.empName.errors" class="invalid-feedback">
-                            <div *ngIf="f.empName.errors.required">Employee is Required</div>
-                        </div> -->
+                        <div *ngIf="submitted && f.AssayType.errors" class="invalid-feedback">
+                            <div *ngIf="f.AssayType.errors.required">Assay-Type is Required</div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-xs-3 col-sm-3 ">
+
+
+
+                <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="status" for="series" cssClass="required">Collection-id</label>
-                        <input class="form-control" type="text" path="status" />
-                        <!-- <select class="form-control" name="status" id="ProdOrderStatus" formControlName="status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
-                            <option value="" hidden> - Select Order Status - </option>
-                            <option value="null"> - Select Order Status - </option>
-                            <option *ngFor="let system of systemproperties" [value]="system.description">
+                        <label path="Toxicity" for="Toxicity" cssClass="required">Toxicity-type</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="Toxicity" formControlName="Toxicity"
+                            [ngClass]="{ 'is-invalid': submitted && f.Toxicity.errors }">
+                            <option value="" hidden> - Select Toxicity-Types - </option>
+                            <option> Carcinogenicity </option>
+                            <option> Cardiotoxicity </option>
+                            <option> Cytotoxicity </option>
+                            <option> Dose-limiting toxicity </option>
+                            <option> Ecotoxicity </option>
+                            <option> Embryotoxicity </option>
+                            <option> Endocrine disruption </option>
+                            <option> Gastrointestinal toxicity </option>
+                            <option> Genotoxicity </option>
+                            <option> Hematotoxicity </option>
+                            <option> Hepatotoxicity </option>
+                            <option> Immunotoxicity </option>
+                            <option> Inhalation toxicity </option>
+                            <option> Mutagenicity </option>
+                            <option> Myelotoxicity </option>
+                            <option> Myotoxicity </option>
+                            <option> Nephrotoxicity </option>
+                            <option> Neurotoxicity </option>
+                            <option> Ocular toxicity </option>
+                            <option> Ototoxicity </option>
+                            <option> Pulmonary toxicity </option>
+                            <option> Reproductive toxicity </option>
+                            <option> Skin toxicity </option>
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
-                            </option>
+                            </option> -->
                         </select>
-                        <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-                            <div *ngIf="f.status.errors.required">Order Status is Required</div>
-                        </div> -->
+                        <div *ngIf="submitted && f.Toxicity.errors" class="invalid-feedback">
+                            <div *ngIf="f.Toxicity.errors.required">Toxicity-Type is Required</div>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="tsName" for="tsName" cssClass="required">Assay-type</label>
-                        <input class="form-control" path="tsName" name="tsName" formControlName="tsName" />
-                        <!-- <div *ngIf="submitted && f.tsName.errors" class="invalid-feedback">
-                            <div *ngIf="f.tsName.errors.required">TimeSheet is Required</div>
-                        </div> -->
+                        <label path="Adverse" for="series" cssClass="required">Adverse-effect</label>
+                        <input class="form-control" name="Adverse" formControlName="Adverse"
+                            [ngClass]="{ 'is-invalid': submitted && f.Adverse.errors }">
+                        <div *ngIf="submitted && f.Adverse.errors" class="invalid-feedback">
+                            <div *ngIf="f.Adverse.errors.required">ID is Required</div>
+                        </div>
                     </div>
                 </div>
+
+
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="empCompany" for="empCompany" cssClass="required">Toxicity-type</label>
-                        <input class="form-control" type="text" path="empCompany" name="empCompany" />
-                        <!-- <select class="form-control" id="empCompanylist" name="empCompany" formControlName="empCompany" [ngClass]="{ 'is-invalid': submitted && f.empCompany.errors }">
-                            <option value="" hidden> - Select Company - </option>
-                            <option value="null"> - Select Company - </option>
-                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                        <label path="Route" for="Route" cssClass="required">Route-of-administration</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="Route" formControlName="Route"
+                            [ngClass]="{ 'is-invalid': submitted && f.Route.errors }">
+                            <option value="" hidden> - Select Route-Types - </option>
+                            <option> Auricular </option>
+                            <option> Otic </option>
+                            <option> Buccal </option>
+                            <option> Epidural </option>
+                            <option> Intra-arterial </option>
+                            <option> Intra-articular </option>
+                            <option> Intracardiac </option>
+                            <option> Intracerebroventricular </option>
+                            <option> Intraductal </option>
+                            <option> Intrafollicular </option>
+                            <option> Intragastric </option>
+                            <option> Intralesional </option>
+                            <option> Intramuscular </option>
+                            <option> Intramammary </option>
+                            <option> Immersion </option>
+                            <option> Infiltration </option>
+                            <option> Respiratory </option>
+                            <option> Inhalation </option>
+                            <option> Intraperitoneal </option>
+                            <option> Intrasinal </option>
+                            <option> Intrasynovial </option>
+                            <option> Intrathecal </option>
+                            <option> Intrathecal </option>
+                            <option> Intratesticular </option>
+                            <option> Intrauterine </option>
+                            <option> Intravenous </option>
+                            <option> Intravesical </option>
+                            <option> Nasal </option>
+                            <option> Nasogastric </option>
+                            <option> Ophthalmic </option>
+                            <option> Parenteral </option>
+                            <option> Perineural </option>
+                            <option> Oral </option>
+                            <option> Gavaged </option>
+                            <option> Intragastric gavage </option>
+                            <option> Intragastric gavage </option>
+                            <option> Peroral </option>
+                            <option> Vaginal </option>
+                            <option> Rectal </option>
+                            <option> Subcutaneous </option>
+                            <option> Subcutaneous implant </option>
+                            <option> Sublingual </option>
+                            <option> Topical </option>
+                            <option> Topical-pour on </option>
+                            <option> Transdermal </option>
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
-                            </option>
+                            </option> -->
                         </select>
-                        <div *ngIf="submitted && f.empCompany.errors" class="invalid-feedback">
-                            <div *ngIf="f.empCompany.errors.required">Company is Required</div>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Adverse-effect</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Route-of-administration</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Ligand-Dose</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Unit</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                        <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                    </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Administration-regimen</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Procedure</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Target-uri</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Condition type</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Condition material</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                            </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Condition material-id</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                            </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">prefix</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                            </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">value</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                            </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">unit</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                    <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Data-locator</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                    <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Category</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                    <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Function</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                    <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Parameter</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                        <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                    </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Parameter-detail</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                        <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                    </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Original-prefix</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                        <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                    </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Original-value</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                        <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                    </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Unit</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Original-prefix</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Original-value</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Original-value</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                            <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                        </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Unit</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                            </div> -->
+                        <div *ngIf="submitted && f.Route.errors" class="invalid-feedback">
+                            <div *ngIf="f.Route.errors.required">Route-Type is Required</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Original-value</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                            </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Remarks</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                            </div> -->
+                        <label path="Ligand" for="series" cssClass="required">Ligand-Dose</label>
+                        <input class="form-control" name="Ligand" formControlName="Ligand"
+                            [ngClass]="{ 'is-invalid': submitted && f.Ligand.errors }">
+                        <div *ngIf="submitted && f.Ligand.errors" class="invalid-feedback">
+                            <div *ngIf="f.Ligand.errors.required">Ligand dose is Required</div>
+                        </div>
                     </div>
                 </div>
 
 
-
-
-
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">
-                            Type</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                            </div> -->
+                        <label path="Unit" for="Unit" cssClass="required">Unit</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="Unit" formControlName="Unit"
+                            [ngClass]="{ 'is-invalid': submitted && f.Unit.errors }">
+                            <option value="" hidden> - Select Unit-Types - </option>
+                            <option> 1 </option>
+                            <option> 2 </option>
+                            <option> 3 </option>
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option> -->
+                        </select>
+                        <div *ngIf="submitted && f.Unit.errors" class="invalid-feedback">
+                            <div *ngIf="f.Unit.errors.required">Unit-Type is Required</div>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="row">
+
+
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Cell</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                                </div> -->
+                        <label path="Liganddose" for="series" cssClass="required">Ligand-Dose</label>
+                        <input class="form-control" name="Liganddose" formControlName="Ligand"
+                            [ngClass]="{ 'is-invalid': submitted && f.Liganddose.errors }">
+                        <div *ngIf="submitted && f.Liganddose.errors" class="invalid-feedback">
+                            <div *ngIf="f.Liganddose.errors.required">Ligand dose is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="Liganddoses" for="series" cssClass="required">Ligand-Dose</label>
+                        <input class="form-control" name="Liganddoses" formControlName="Liganddoses"
+                            [ngClass]="{ 'is-invalid': submitted && f.Liganddoses.errors }">
+                        <div *ngIf="submitted && f.Liganddoses.errors" class="invalid-feedback">
+                            <div *ngIf="f.Liganddoses.errors.required">Ligand dose is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="Units" for="Units" cssClass="required">Unit</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="Units" formControlName="Units"
+                            [ngClass]="{ 'is-invalid': submitted && f.Units.errors }">
+                            <option value="" hidden> - Select Units-Types - </option>
+                            <option> 1 </option>
+                            <option> 2 </option>
+                            <option> 3 </option>
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option> -->
+                        </select>
+                        <div *ngIf="submitted && f.Units.errors" class="invalid-feedback">
+                            <div *ngIf="f.Units.errors.required">Unit-Type is Required</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Cell-detail</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                                </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Organ</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                                </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">
-                            Organ-detail</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                                </div> -->
+                        <label path="Administration" for="series" cssClass="required">Administration-regimen</label>
+                        <input class="form-control" name="Administration" formControlName="Administration"
+                            [ngClass]="{ 'is-invalid': submitted && f.Administration.errors }">
+                        <div *ngIf="submitted && f.Administration.errors" class="invalid-feedback">
+                            <div *ngIf="f.Administration.errors.required">Administration-regimen dose is Required</div>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="row">
+
+
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Species</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                        <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                                    </div> -->
+                        <label path="Procedure" for="series" cssClass="required">Procedure</label>
+                        <input class="form-control" name="Procedure" formControlName="Procedure"
+                            [ngClass]="{ 'is-invalid': submitted && f.Procedure.errors }">
+                        <div *ngIf="submitted && f.Procedure.errors" class="invalid-feedback">
+                            <div *ngIf="f.Procedure.errors.required">Procedure is Required</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Species-detail</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                        <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                                    </div> -->
+                        <label path="Target" for="series" cssClass="required">Target-uri</label>
+                        <input class="form-control" name="Unit" formControlName="Target"
+                            [ngClass]="{ 'is-invalid': submitted && f.Target.errors }">
+                        <div *ngIf="submitted && f.Target.errors" class="invalid-feedback">
+                            <div *ngIf="f.Target.errors.required">Uri is Required</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">Gender</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                        <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                                    </div> -->
+                        <label path="Conditiontype" for="series" cssClass="required">Condition type</label>
+                        <input class="form-control" name="Conditiontype" formControlName="Conditiontype"
+                            [ngClass]="{ 'is-invalid': Conditiontype && f.Administration.errors }">
+                        <div *ngIf="submitted && f.Conditiontype.errors" class="invalid-feedback">
+                            <div *ngIf="f.Conditiontype.errors.required">Condition type is Required</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="twhrs" for="twhrs" cssClass="required">
-                            Age-group</label>
-                        <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" />
-                        <!-- <div *ngIf="submitted && f.twhrs.errors" class="invalid-feedback">
-                                                        <div *ngIf="f.twhrs.errors.required">Total Working Hours is Required</div>
-                                                    </div> -->
+                        <label path="Conditionmaterial" for="series" cssClass="required">Condition material</label>
+                        <input class="form-control" name="Conditionmaterial" formControlName="Conditionmaterial"
+                            [ngClass]="{ 'is-invalid': submitted && f.Conditionmaterial.errors }">
+                        <div *ngIf="submitted && f.Conditionmaterial.errors" class="invalid-feedback">
+                            <div *ngIf="f.Conditionmaterial.errors.required">Condition material is Required</div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="Conditionmaterialid" for="series" cssClass="required">Condition material-id</label>
+                        <input class="form-control" name="Conditionmaterialid" formControlName="Conditionmaterialid"
+                            [ngClass]="{ 'is-invalid': submitted && f.Conditionmaterialid.errors }">
+                        <div *ngIf="submitted && f.Conditionmaterialid.errors" class="invalid-feedback">
+                            <div *ngIf="f.Conditionmaterialid.errors.required">ID is Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="value" for="series" cssClass="required">value</label>
+                        <input class="form-control" name="value" formControlName="value"
+                            [ngClass]="{ 'is-invalid': Conditiontype && f.value.errors }">
+                        <div *ngIf="submitted && f.value.errors" class="invalid-feedback">
+                            <div *ngIf="f.value.errors.required">Value is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="united" for="united" cssClass="required">Unit</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="united" formControlName="Units"
+                            [ngClass]="{ 'is-invalid': submitted && f.united.errors }">
+                            <option value="" hidden> - Select Units-Types - </option>
+                            <option> 1 </option>
+                            <option> 2 </option>
+                            <option> 3 </option>
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option> -->
+                        </select>
+                        <div *ngIf="submitted && f.united.errors" class="invalid-feedback">
+                            <div *ngIf="f.united.errors.required">Unit-Type is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-sm-12 ">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary submit">Submit</button>
-                        <button type="button" class="btn btn-warning reset">Clear</button>
+                    <div class="form-group buttons">
+                        <button class="btn btn-primary previous" cdkStepperPrevious>Previous</button>
+                        <button type="submit" class="btn btn-primary submit" >Submit</button>
+                        <button type="submit" class="btn btn-primary" style="margin-left: 750px;" cdkStepperNext>next</button>
+                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
                     </div>
                 </div>
             </div>
@@ -466,7 +397,8 @@
         </div>
 
         <legend class="scheduler-border">Assay</legend>
-        <!-- <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [enableFilter]="true" [enableSorting]="true" [pagination]="true" [showToolPanel]="true" [frameworkComponents]="frameworkComponents">
-        </ag-grid-angular> -->
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [pagination]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
     </fieldset>
 </div>
