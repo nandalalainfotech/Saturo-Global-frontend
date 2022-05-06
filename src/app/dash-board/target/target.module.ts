@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TargetRoutingModule } from './target-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -13,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    AgGridModule.withComponents([]),
+
 
   ]
 })

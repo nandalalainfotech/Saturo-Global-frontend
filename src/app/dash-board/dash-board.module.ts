@@ -37,6 +37,11 @@ import { SidemenuDashboardComponent } from './sidemenu-dashboard/sidemenu-dashbo
 import { LigandComponent } from './ligand/ligand.component';
 import { TargetComponent } from './target/target.component';
 import { AssayComponent } from './assay/assay.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { MeasurementComponent } from './measurement/measurement.component';
+import { StepperComponent } from './stepper/stepper.component';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { NgStepperModule } from 'angular-ng-stepper';
 // import { GoJsChartComponent } from './body/go-js-chart/go-js-chart.component';
 
 
@@ -69,6 +74,8 @@ import { AssayComponent } from './assay/assay.component';
         LigandComponent,
         TargetComponent,
         AssayComponent,
+        MeasurementComponent,
+        StepperComponent,
         // RadarChartComponent,
         // ModernChartComponent,
         //  GoJsChartComponent
@@ -92,7 +99,7 @@ import { AssayComponent } from './assay/assay.component';
         ProgressbarModule.forRoot(),
         RoundProgressModule,
         TranslateModule.forRoot(),
-
+        AgGridModule.withComponents([]),
         MatMenuModule,
         CommonModule,
         FormsModule,
@@ -102,7 +109,9 @@ import { AssayComponent } from './assay/assay.component';
         MatSidenavModule,
         MatTabsModule,
         ColorPickerModule,
-        DashboardRoutingModule
+        DashboardRoutingModule,
+        CdkStepperModule,
+        NgStepperModule
     ],
     providers: [DataSharedService, appSettingManager, UserManager],
     exports: [NgbCollapseModule],

@@ -1,3 +1,4 @@
+import { CdkStepperModule } from '@angular/cdk/stepper';
 import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -6,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AgGridModule } from 'ag-grid-angular';
+import { NgStepperModule } from 'angular-ng-stepper';
 import { GojsAngularModule } from 'gojs-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,7 +49,9 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 		AgGridModule.withComponents([]),
 		NgbCollapseModule,
 		UserRegistrationModule,
-		GojsAngularModule
+		GojsAngularModule,
+		CdkStepperModule,
+        NgStepperModule
 	],
 	exports: [PopupComponent, NgbCollapseModule],
 	providers: [AuthManager, CalloutService, DataSharedService,BaseService, UserManager,
