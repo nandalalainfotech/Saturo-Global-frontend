@@ -124,30 +124,6 @@
                     </div>
                 </div>
 
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="singleValue" for="singleValue"
-                            cssClass="required">Original-value(Single-value)</label>
-                        <input class="form-control" name="singleValue" formControlName="singleValue"
-                            [ngClass]="{ 'is-invalid': submitted && f.singleValue.errors }">
-                        <div *ngIf="submitted && f.singleValue.errors" class="invalid-feedback">
-                            <div *ngIf="f.singleValue.errors.required">Single Value is Required</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="unit" for="unit" cssClass="required">Unit</label>
-                        <input class="form-control" name="unit" formControlName="unit"
-                            [ngClass]="{ 'is-invalid': submitted && f.unit.errors }">
-                        <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
-                            <div *ngIf="f.unit.errors.required">Unit is Required</div>
-                        </div>
-                    </div>
-                </div>
-
-
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
@@ -177,6 +153,33 @@
                         </div>
                     </div>
                 </div>
+
+               
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="unit" for="unit" cssClass="required">Unit</label>
+                        <input class="form-control" name="unit" formControlName="unit"
+                            [ngClass]="{ 'is-invalid': submitted && f.unit.errors }">
+                        <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
+                            <div *ngIf="f.unit.errors.required">Unit is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="singleValue" for="singleValue"
+                            cssClass="required">Original-value(Single-value)</label>
+                        <input class="form-control" name="singleValue" formControlName="singleValue"
+                            [ngClass]="{ 'is-invalid': submitted && f.singleValue.errors }">
+                        <div *ngIf="submitted && f.singleValue.errors" class="invalid-feedback">
+                            <div *ngIf="f.singleValue.errors.required">Single Value is Required</div>
+                        </div>
+                    </div>
+                </div>
+                
 
             </div>
 
