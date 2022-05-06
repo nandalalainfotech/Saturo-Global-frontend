@@ -18,11 +18,11 @@ export class LigandComponent implements OnInit {
   frameworkComponents: any;
   submitted = false;
 
-  TanNumber: number | any;
-  LigandUri: number | any;
-  LigandVersion: number | any;
+  tanNumber: number | any;
+  ligandUri: number | any;
+  ligandVersion: number | any;
   ligandStatus: string = "";
-  LigandType: string = "";
+  ligandType: string = "";
   collectionName: number | any;
   collection: string = "";
   collectionId: number | any;
@@ -31,6 +31,14 @@ export class LigandComponent implements OnInit {
   sourceType: string = "";
   citation: number | any;
   diseaseName: string = "";
+  ligandVersion1: number | any;
+  target: number | any;
+  targetVersion: number | any;
+  collectionId1: number | any;
+  original: number | any;
+  acronym: number | any;
+  organism: number | any;
+  variant: number | any;
 
   hexToRgb: any;
   rgbToHex: any;
@@ -73,11 +81,11 @@ export class LigandComponent implements OnInit {
 
     this.LigandForm = this.formBuilder.group({
 
-      TanNumber: ['', Validators.required],
-      LigandUri: ['', Validators.required],
-      LigandVersion: ['', Validators.required],
+      tanNumber: ['', Validators.required],
+      ligandUri: ['', Validators.required],
+      ligandVersion: ['', Validators.required],
       ligandStatus: [''],
-      LigandType: ['', Validators.required],
+      ligandType: ['', Validators.required],
       collection: [''],
       collectionName: ['', Validators.required],
       collectionId: ['', Validators.required],
@@ -86,6 +94,14 @@ export class LigandComponent implements OnInit {
       sourceType: ['', Validators.required],
       citation: ['', Validators.required],
       diseaseName: ['', Validators.required],
+      ligandVersion1: ['', Validators.required],
+      target: ['', Validators.required],
+      targetVersion: ['', Validators.required],
+      collectionId1: ['', Validators.required],
+      original: ['', Validators.required],
+      acronym: ['', Validators.required],
+      organism: ['', Validators.required],
+      variant: ['', Validators.required],
     });
 
 
@@ -117,7 +133,7 @@ export class LigandComponent implements OnInit {
     this.gridOptions.columnDefs = [
       {
         headerName: 'TAN Number',
-        field: 'TanNumber',
+        field: 'tanNumber',
         width: 200,
         flex: 1,
         sortable: true,
@@ -249,6 +265,98 @@ export class LigandComponent implements OnInit {
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
+      },
+      {
+				headerName: 'Ligand Version',
+				field: 'ligandVersion',
+				width: 200,
+				flex: 1,
+				sortable: true,
+				filter: true,
+				resizable: true,
+				suppressSizeToFit: true,
+			},
+			{
+				headerName: 'Target-Uri',
+				field: 'Target',
+				width: 200,
+				flex: 1,
+				sortable: true,
+				filter: true,
+				resizable: true,
+				suppressSizeToFit: true,
+
+			},
+			{
+				headerName: 'Target-Version',
+				field: 'TargetVersion',
+				width: 200,
+				flex: 1,
+				sortable: true,
+				filter: true,
+				resizable: true,
+				suppressSizeToFit: true,
+			},
+			{
+				headerName: 'Target-Status',
+				field: 'TargetStatus',
+				width: 200,
+				flex: 1,
+				sortable: true,
+				filter: true,
+				resizable: true,
+				suppressSizeToFit: true,
+      },
+      {
+				headerName: 'Collection-ID',
+				field: 'CollectionId',
+				width: 200,
+				flex: 1,
+				sortable: true,
+				filter: true,
+				resizable: true,
+				suppressSizeToFit: true,
+			},
+			{
+				headerName: 'Target-Name',
+				field: 'Original',
+				width: 200,
+				flex: 1,
+				sortable: true,
+				filter: true,
+				resizable: true,
+				suppressSizeToFit: true,
+
+			},
+			{
+				headerName: 'Acronym',
+				field: 'Acronym',
+				width: 200,
+				flex: 1,
+				sortable: true,
+				filter: true,
+				resizable: true,
+				suppressSizeToFit: true,
+			},
+			{
+				headerName: 'Organism-Source',
+				field: 'Organism',
+				width: 200,
+				flex: 1,
+				sortable: true,
+				filter: true,
+				resizable: true,
+				suppressSizeToFit: true,
+      },
+      {
+				headerName: 'Variant',
+				field: 'Variant',
+				width: 200,
+				flex: 1,
+				sortable: true,
+				filter: true,
+				resizable: true,
+				suppressSizeToFit: true,
       }
     ];
   }

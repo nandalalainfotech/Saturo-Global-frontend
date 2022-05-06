@@ -17,15 +17,14 @@ export class AssayComponent implements OnInit {
     frameworkComponents: any;
     submitted = false;
     ligandVersion: number | any;
-    Ordinal: number | any;
-    Collectionid: string | any;
-    AssayType: string = "";
-    Toxicity: string = "";
-    Adverse: string = "";
-    Route: string = "";
-    Ligand: number | any;
-    Liganddose: number | any;
-    Liganddoses: number | any;
+    ordinal: number | any;
+    collectionId: string | any;
+    assayType: string = "";
+    toxiCity: string = "";
+    route: string = "";
+    ligandSvalue: number | any;
+    LigandHvalue: number | any;
+    LigandLvalue: number | any;
     Units: string = "";
     Unit: string = "";
     Administration: string = "";
@@ -72,15 +71,14 @@ export class AssayComponent implements OnInit {
 
         this.AssayForm = this.formBuilder.group({
             ligandVersion: ['', Validators.required],
-            Ordinal: ['', Validators.required],
-            Collectionid: ['', Validators.required],
-            AssayType: ['', Validators.required],
-            Toxicity: ['', Validators.required],
-            Adverse: ['', Validators.required],
-            Route: ['', Validators.required],
-            Ligand: ['', Validators.required],
-            Liganddose: ['', Validators.required],
-            Liganddoses: ['', Validators.required],
+            ordinal: ['', Validators.required],
+            collectionId: ['', Validators.required],
+            assayType: ['', Validators.required],
+            toxiCity: ['', Validators.required],
+            route: ['', Validators.required],
+            ligandSvalue: ['', Validators.required],
+            LigandHvalue: ['', Validators.required],
+            LigandLvalue: ['', Validators.required],
             Unit: ['', Validators.required],
             Units: ['', Validators.required],
             Administration: ['', Validators.required],
@@ -192,17 +190,7 @@ export class AssayComponent implements OnInit {
                 
                 suppressSizeToFit: true
             },
-            {
-                headerName: 'Adverse-effect',
-                field: 'Adverse',
-                width: 200,
-                flex: 1,
-                sortable: true,
-                filter: true,
-                resizable: true,
-                
-                suppressSizeToFit: true
-            },
+            
             {
                 headerName: 'Route-of-administration',
                 field: 'Route',
