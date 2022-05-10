@@ -11,7 +11,11 @@ import { ConformationComponent } from 'src/app/shared/conformation/conformation.
 import { IconRendererComponent } from 'src/app/shared/services/renderercomponent/icon-renderer-component';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
 import { LigandManager } from 'src/app/shared/services/restcontroller/bizservice/ligandManager.service';
+import { LigandTypeManager } from 'src/app/shared/services/restcontroller/bizservice/ligandType.service';
+import { LigandVersionManager } from 'src/app/shared/services/restcontroller/bizservice/ligandVersion.service';
 import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Ligand001wb';
+import { Ligandtype001mb } from 'src/app/shared/services/restcontroller/entities/Ligandtype001mb';
+import { Ligandversion001mb } from 'src/app/shared/services/restcontroller/entities/Ligandversion001mb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
 import { Utils } from 'src/app/shared/utils/utils';
 
@@ -40,7 +44,7 @@ export class LigandComponent implements OnInit {
   sourceType: string = "";
   citation: number | any;
   diseaseName: string = "";
-  ligandVersion1: number | any;
+
   target: number | any;
   targetVersion: number | any;
   targetStatus: string = "";
@@ -49,12 +53,14 @@ export class LigandComponent implements OnInit {
   acronym: number | any;
   organism: number | any;
   variant: number | any;
-  insertUser: string = ""; 
+  insertUser: string = "";
   insertDatetime: Date | any;
   updatedUser: string = "";
   updatedDatetime: Date | any;
-  ligand : Ligand001wb[] = [];
-  
+  ligand: Ligand001wb[] = [];
+  ligandVersions: Ligandversion001mb[] = [];
+  ligandtypes: Ligandtype001mb [] = [];
+
   hexToRgb: any;
   rgbToHex: any;
 
@@ -71,6 +77,8 @@ export class LigandComponent implements OnInit {
     private calloutService: CalloutService,
     private modalService: NgbModal,
     private ligandManager: LigandManager,
+    private ligandVersionManager: LigandVersionManager,
+    private ligandTypeManager: LigandTypeManager,
   ) {
 
     this.frameworkComponents = {
@@ -81,6 +89,16 @@ export class LigandComponent implements OnInit {
   ngOnInit(): void {
 
 
+    this.ligandVersionManager.allligandVersion().subscribe(response => {
+      this.ligandVersions = deserialize<Ligandversion001mb[]>(Ligandversion001mb, response);
+
+    });
+
+    this.ligandTypeManager.allligandType().subscribe(response => {
+      this.ligandtypes = deserialize<Ligandtype001mb[]>(Ligandtype001mb, response);
+      
+    });
+
     this.createDataGrid001();
 
     this.LigandForm = this.formBuilder.group({
@@ -88,6 +106,7 @@ export class LigandComponent implements OnInit {
       tanNumber: ['', Validators.required],
       ligandUri: ['', Validators.required],
       ligandVersionSlno: ['', Validators.required],
+      ligandVersions:[''],
       ligandStatus: [''],
       ligandTypeSlno: ['', Validators.required],
       collection: [''],
@@ -95,13 +114,12 @@ export class LigandComponent implements OnInit {
       collectionId: ['', Validators.required],
       ligandDetail: ['', Validators.required],
       locator: ['', Validators.required],
-      sourceType: ['', Validators.required],
+      sourceType: ['',],
       citation: ['', Validators.required],
       diseaseName: ['', Validators.required],
-      ligandVersion1: ['', Validators.required],
       target: ['', Validators.required],
       targetVersion: ['', Validators.required],
-      targetStatus: ['', Validators.required],
+      targetStatus: ['',],
       collectionId1: ['', Validators.required],
       original: ['', Validators.required],
       acronym: ['', Validators.required],
@@ -151,6 +169,19 @@ export class LigandComponent implements OnInit {
     this.gridOptions.animateRows = true;
     this.gridOptions.columnDefs = [
       {
+        headerName: 'Sl-No',
+        field: 'ligandId',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        headerCheckboxSelection: true,
+        headerCheckboxSelectionFilteredOnly: true,
+        checkboxSelection: true,
+        suppressSizeToFit: true,
+      },
+      {
         headerName: 'TAN Number',
         field: 'tanNumber',
         width: 200,
@@ -176,13 +207,13 @@ export class LigandComponent implements OnInit {
       },
       {
         headerName: 'Ligand-Version',
-        field: 'ligandVersionSlno',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
+        valueGetter: this.setVersion.bind(this)
       },
       {
         headerName: 'Ligand-status',
@@ -206,13 +237,13 @@ export class LigandComponent implements OnInit {
       },
       {
         headerName: 'Ligand-Type',
-        field: 'ligandTypeSlno',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
+        valueGetter: this.setType.bind(this)
 
       },
       {
@@ -286,96 +317,96 @@ export class LigandComponent implements OnInit {
         suppressSizeToFit: true,
       },
       {
-				headerName: 'Ligand Version',
-				field: 'ligandVersion1',
-				width: 200,
-				flex: 1,
-				sortable: true,
-				filter: true,
-				resizable: true,
-				suppressSizeToFit: true,
-			},
-			{
-				headerName: 'Target-Uri',
-				field: 'target',
-				width: 200,
-				flex: 1,
-				sortable: true,
-				filter: true,
-				resizable: true,
-				suppressSizeToFit: true,
-
-			},
-			{
-				headerName: 'Target-Version',
-				field: 'targetVersion',
-				width: 200,
-				flex: 1,
-				sortable: true,
-				filter: true,
-				resizable: true,
-				suppressSizeToFit: true,
-			},
-			{
-				headerName: 'Target-Status',
-				field: 'targetStatus',
-				width: 200,
-				flex: 1,
-				sortable: true,
-				filter: true,
-				resizable: true,
-				suppressSizeToFit: true,
+        headerName: 'Ligand Version',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+        valueGetter: this.setVersion.bind(this)
       },
       {
-				headerName: 'Collection-ID',
-				field: 'collectionId1',
-				width: 200,
-				flex: 1,
-				sortable: true,
-				filter: true,
-				resizable: true,
-				suppressSizeToFit: true,
-			},
-			{
-				headerName: 'Target-Name',
-				field: 'original',
-				width: 200,
-				flex: 1,
-				sortable: true,
-				filter: true,
-				resizable: true,
-				suppressSizeToFit: true,
+        headerName: 'Target-Uri',
+        field: 'target',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
 
-			},
-			{
-				headerName: 'Acronym',
-				field: 'acronym',
-				width: 200,
-				flex: 1,
-				sortable: true,
-				filter: true,
-				resizable: true,
-				suppressSizeToFit: true,
-			},
-			{
-				headerName: 'Organism-Source',
-				field: 'organism',
-				width: 200,
-				flex: 1,
-				sortable: true,
-				filter: true,
-				resizable: true,
-				suppressSizeToFit: true,
       },
       {
-				headerName: 'Variant',
-				field: 'variant',
-				width: 200,
-				flex: 1,
-				sortable: true,
-				filter: true,
-				resizable: true,
-				suppressSizeToFit: true,
+        headerName: 'Target-Version',
+        field: 'targetVersion',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Target-Status',
+        field: 'targetStatus',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Collection-ID',
+        field: 'collectionId1',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Target-Name',
+        field: 'original',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+
+      },
+      {
+        headerName: 'Acronym',
+        field: 'acronym',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Organism-Source',
+        field: 'organism',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Variant',
+        field: 'variant',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
       },
       {
         headerName: 'Edit',
@@ -416,13 +447,21 @@ export class LigandComponent implements OnInit {
     ];
   }
 
+  setVersion(params: any): string {
+    return params.data.ligandVersionSlno2 ? params.data.ligandVersionSlno2.ligandVersion : null;
+  }
+
+  setType(params: any): string {
+    return params.data.ligandTypeSlno2 ? params.data.ligandTypeSlno2.ligandtype : null;
+  }
+
 
   onEditButtonClick(params: any) {
     this.ligandId = params.data.ligandId;
     this.insertUser = params.data.insertUser;
     this.insertDatetime = params.data.insertDatetime;
     this.LigandForm.patchValue({
-      'ligandId': params.data.ligandId,
+
       'tanNumber': params.data.tanNumber,
       'ligandUri': params.data.ligandUri,
       'ligandVersionSlno': params.data.ligandVersionSlno,
@@ -492,7 +531,6 @@ export class LigandComponent implements OnInit {
       return;
     }
     let ligand001wb = new Ligand001wb();
-    ligand001wb.ligandId = this.f.ligandId.value ? this.f.ligandId.value : "";
     ligand001wb.tanNumber = this.f.tanNumber.value ? this.f.tanNumber.value : "";
     ligand001wb.ligandUri = this.f.ligandUri.value ? this.f.ligandUri.value : "";
     ligand001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
@@ -508,12 +546,13 @@ export class LigandComponent implements OnInit {
     ligand001wb.diseaseName = this.f.diseaseName.value ? this.f.diseaseName.value : "";
     ligand001wb.target = this.f.target.value ? this.f.target.value : "";
     ligand001wb.targetStatus = this.f.targetStatus.value ? this.f.targetStatus.value : "";
+    ligand001wb.targetVersion = this.f.targetVersion.value ? this.f.targetVersion.value : "";
     ligand001wb.collectionId1 = this.f.collectionId1.value ? this.f.collectionId1.value : "";
     ligand001wb.original = this.f.original.value ? this.f.original.value : "";
     ligand001wb.acronym = this.f.acronym.value ? this.f.acronym.value : "";
     ligand001wb.organism = this.f.organism.value ? this.f.organism.value : "";
     ligand001wb.variant = this.f.variant.value ? this.f.variant.value : "";
-   
+
     if (this.ligandId) {
       ligand001wb.ligandId = this.ligandId;
       ligand001wb.insertUser = this.insertUser;
@@ -542,11 +581,26 @@ export class LigandComponent implements OnInit {
 
   }
 
+
+  onLigandVersionClick() {
+    this.LigandForm.get('ligandVersionSlno').valueChanges.subscribe((value: any) => {
+      for (let ligandVer of this.ligandVersions) {
+        if (ligandVer.id == value) {
+          this.LigandForm.patchValue({
+            'ligandVersions': ligandVer.ligandVersion,
+
+          });
+          break;
+        }
+      }
+    });
+  }
+
   onReset() {
     this.submitted = false;
     this.LigandForm.reset();
   }
 
- 
+
 
 }

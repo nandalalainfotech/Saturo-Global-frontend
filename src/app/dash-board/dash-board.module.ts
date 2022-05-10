@@ -19,6 +19,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { appSettingManager } from '../shared/services/restcontroller/bizservice/app-settings.service';
 import { LigandManager } from '../shared/services/restcontroller/bizservice/ligandManager.service';
+import { LigandTypeManager } from '../shared/services/restcontroller/bizservice/ligandType.service';
+import { LigandVersionManager } from '../shared/services/restcontroller/bizservice/ligandVersion.service';
 import { UserManager } from '../shared/services/restcontroller/bizservice/user.service';
 import { DataSharedService } from '../shared/services/services/datashared.service';
 import { AssayComponent } from './assay/assay.component';
@@ -87,7 +89,7 @@ import { TargetComponent } from './target/target.component';
         CdkStepperModule,
         NgStepperModule
     ],
-    providers: [DataSharedService, appSettingManager, UserManager, LigandManager],
+    providers: [DataSharedService, appSettingManager, UserManager, LigandManager, LigandVersionManager,LigandTypeManager],
     exports: [NgbCollapseModule],
 })
 export class DashboardModule { }

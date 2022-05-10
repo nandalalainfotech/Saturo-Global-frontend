@@ -21,6 +21,11 @@ import { BreadcrumbModule } from '../breadcrumb/breadcrumb.module';
 import { MasterComponent } from './master.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
+import { LigandVersionManager } from 'src/app/shared/services/restcontroller/bizservice/ligandVersion.service';
+import { LigandTypeManager } from 'src/app/shared/services/restcontroller/bizservice/ligandType.service';
+import { AssayTypeManager } from 'src/app/shared/services/restcontroller/bizservice/assayType.service';
+import { ToxicityManager } from 'src/app/shared/services/restcontroller/bizservice/toxiCity.service';
+import { RouteofAdminManager } from 'src/app/shared/services/restcontroller/bizservice/routeOfAdministration.service';
 
 
 
@@ -48,6 +53,7 @@ import { AgGridModule } from 'ag-grid-angular';
     FormsModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
-  ]
+  ],
+  providers: [LigandVersionManager,LigandTypeManager,AssayTypeManager,ToxicityManager,RouteofAdminManager]
 })
 export class MasterModule { }
