@@ -2,9 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
+import { deserialize } from 'serializer.ts/Serializer';
+import { AuditComponent } from 'src/app/shared/audit/audit.component';
+import { ConformationComponent } from 'src/app/shared/conformation/conformation.component';
+import { IconRendererComponent } from 'src/app/shared/services/renderercomponent/icon-renderer-component';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
+import { LigandManager } from 'src/app/shared/services/restcontroller/bizservice/ligandManager.service';
+import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Ligand001wb';
+import { CalloutService } from 'src/app/shared/services/services/callout.service';
 import { Utils } from 'src/app/shared/utils/utils';
 
 @Component({
@@ -18,11 +26,12 @@ export class LigandComponent implements OnInit {
   frameworkComponents: any;
   submitted = false;
 
+  ligandId: number | any;
   tanNumber: number | any;
   ligandUri: number | any;
-  ligandVersion: number | any;
+  ligandVersionSlno: number | any;
   ligandStatus: string = "";
-  ligandType: string = "";
+  ligandTypeSlno: string = "";
   collectionName: number | any;
   collection: string = "";
   collectionId: number | any;
@@ -34,12 +43,18 @@ export class LigandComponent implements OnInit {
   ligandVersion1: number | any;
   target: number | any;
   targetVersion: number | any;
+  targetStatus: string = "";
   collectionId1: number | any;
   original: number | any;
   acronym: number | any;
   organism: number | any;
   variant: number | any;
-
+  insertUser: string = ""; 
+  insertDatetime: Date | any;
+  updatedUser: string = "";
+  updatedDatetime: Date | any;
+  ligand : Ligand001wb[] = [];
+  
   hexToRgb: any;
   rgbToHex: any;
 
@@ -53,25 +68,14 @@ export class LigandComponent implements OnInit {
   constructor(
     private authManager: AuthManager,
     private formBuilder: FormBuilder,
-    private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute,
+    private calloutService: CalloutService,
+    private modalService: NgbModal,
+    private ligandManager: LigandManager,
   ) {
 
-    const rowData = this.getJSON().subscribe(data => {
-      console.log(data);
-      if (data.length > 0) {
-        console.log(this.rowData, "data")
-        this.gridOptions?.api?.setRowData(data);
-      }
-      else {
-        this.gridOptions?.api?.setRowData([]);
-      }
-    });
-  }
-
-  public getJSON(): Observable<any> {
-    return this.http.get("./assets/json/ligand.json");
+    this.frameworkComponents = {
+      iconRenderer: IconRendererComponent
+    }
   }
 
   ngOnInit(): void {
@@ -83,9 +87,9 @@ export class LigandComponent implements OnInit {
 
       tanNumber: ['', Validators.required],
       ligandUri: ['', Validators.required],
-      ligandVersion: ['', Validators.required],
+      ligandVersionSlno: ['', Validators.required],
       ligandStatus: [''],
-      ligandType: ['', Validators.required],
+      ligandTypeSlno: ['', Validators.required],
       collection: [''],
       collectionName: ['', Validators.required],
       collectionId: ['', Validators.required],
@@ -97,6 +101,7 @@ export class LigandComponent implements OnInit {
       ligandVersion1: ['', Validators.required],
       target: ['', Validators.required],
       targetVersion: ['', Validators.required],
+      targetStatus: ['', Validators.required],
       collectionId1: ['', Validators.required],
       original: ['', Validators.required],
       acronym: ['', Validators.required],
@@ -105,6 +110,7 @@ export class LigandComponent implements OnInit {
     });
 
 
+    this.loadData();
 
     this.authManager.currentUserSubject.subscribe((object: any) => {
       let rgb = Utils.hexToRgb(object.theme);
@@ -120,6 +126,19 @@ export class LigandComponent implements OnInit {
 
   }
 
+  loadData() {
+    this.ligandManager.allligand().subscribe(response => {
+      this.ligand = deserialize<Ligand001wb[]>(Ligand001wb, response);
+      if (this.ligand.length > 0) {
+        this.gridOptions?.api?.setRowData(this.ligand);
+      } else {
+        this.gridOptions?.api?.setRowData([]);
+      }
+    });
+  }
+
+
+  get f() { return this.LigandForm.controls; }
 
   createDataGrid001(): void {
     this.gridOptions = {
@@ -146,7 +165,7 @@ export class LigandComponent implements OnInit {
       },
       {
         headerName: 'Ligand-Uri',
-        field: 'LigandUri',
+        field: 'ligandUri',
         width: 200,
         flex: 1,
         sortable: true,
@@ -157,7 +176,7 @@ export class LigandComponent implements OnInit {
       },
       {
         headerName: 'Ligand-Version',
-        field: 'LigandVersion',
+        field: 'ligandVersionSlno',
         width: 200,
         flex: 1,
         sortable: true,
@@ -187,7 +206,7 @@ export class LigandComponent implements OnInit {
       },
       {
         headerName: 'Ligand-Type',
-        field: 'LigandType',
+        field: 'ligandTypeSlno',
         width: 200,
         flex: 1,
         sortable: true,
@@ -268,7 +287,7 @@ export class LigandComponent implements OnInit {
       },
       {
 				headerName: 'Ligand Version',
-				field: 'ligandVersion',
+				field: 'ligandVersion1',
 				width: 200,
 				flex: 1,
 				sortable: true,
@@ -278,7 +297,7 @@ export class LigandComponent implements OnInit {
 			},
 			{
 				headerName: 'Target-Uri',
-				field: 'Target',
+				field: 'target',
 				width: 200,
 				flex: 1,
 				sortable: true,
@@ -289,7 +308,7 @@ export class LigandComponent implements OnInit {
 			},
 			{
 				headerName: 'Target-Version',
-				field: 'TargetVersion',
+				field: 'targetVersion',
 				width: 200,
 				flex: 1,
 				sortable: true,
@@ -299,7 +318,7 @@ export class LigandComponent implements OnInit {
 			},
 			{
 				headerName: 'Target-Status',
-				field: 'TargetStatus',
+				field: 'targetStatus',
 				width: 200,
 				flex: 1,
 				sortable: true,
@@ -309,7 +328,7 @@ export class LigandComponent implements OnInit {
       },
       {
 				headerName: 'Collection-ID',
-				field: 'CollectionId',
+				field: 'collectionId1',
 				width: 200,
 				flex: 1,
 				sortable: true,
@@ -319,7 +338,7 @@ export class LigandComponent implements OnInit {
 			},
 			{
 				headerName: 'Target-Name',
-				field: 'Original',
+				field: 'original',
 				width: 200,
 				flex: 1,
 				sortable: true,
@@ -330,7 +349,7 @@ export class LigandComponent implements OnInit {
 			},
 			{
 				headerName: 'Acronym',
-				field: 'Acronym',
+				field: 'acronym',
 				width: 200,
 				flex: 1,
 				sortable: true,
@@ -340,7 +359,7 @@ export class LigandComponent implements OnInit {
 			},
 			{
 				headerName: 'Organism-Source',
-				field: 'Organism',
+				field: 'organism',
 				width: 200,
 				flex: 1,
 				sortable: true,
@@ -350,20 +369,110 @@ export class LigandComponent implements OnInit {
       },
       {
 				headerName: 'Variant',
-				field: 'Variant',
+				field: 'variant',
 				width: 200,
 				flex: 1,
 				sortable: true,
 				filter: true,
 				resizable: true,
 				suppressSizeToFit: true,
-      }
+      },
+      {
+        headerName: 'Edit',
+        cellRenderer: 'iconRenderer',
+        width: 80,
+        flex: 1,
+        suppressSizeToFit: true,
+        cellStyle: { textAlign: 'center' },
+        cellRendererParams: {
+          onClick: this.onEditButtonClick.bind(this),
+          label: 'Edit'
+        },
+      },
+      {
+        headerName: 'Delete',
+        cellRenderer: 'iconRenderer',
+        width: 85,
+        flex: 1,
+        suppressSizeToFit: true,
+        cellStyle: { textAlign: 'center' },
+        cellRendererParams: {
+          onClick: this.onDeleteButtonClick.bind(this),
+          label: 'Delete'
+        },
+      },
+      {
+        headerName: 'Audit',
+        cellRenderer: 'iconRenderer',
+        width: 80,
+        flex: 1,
+        suppressSizeToFit: true,
+        cellStyle: { textAlign: 'center' },
+        cellRendererParams: {
+          onClick: this.onAuditButtonClick.bind(this),
+          label: 'Audit'
+        },
+      },
     ];
   }
 
 
+  onEditButtonClick(params: any) {
+    this.ligandId = params.data.ligandId;
+    this.insertUser = params.data.insertUser;
+    this.insertDatetime = params.data.insertDatetime;
+    this.LigandForm.patchValue({
+      'ligandId': params.data.ligandId,
+      'tanNumber': params.data.tanNumber,
+      'ligandUri': params.data.ligandUri,
+      'ligandVersionSlno': params.data.ligandVersionSlno,
+      'ligandStatus': params.data.ligandStatus,
+      'collection': params.data.collection,
+      'ligandTypeSlno': params.data.ligandTypeSlno,
+      'ligandDetail': params.data.ligandDetail,
+      'collectionName': params.data.collectionName,
+      'collectionId': params.data.collectionId,
+      'locator': params.data.locator,
+      'sourceType': params.data.sourceType,
+      'citation': params.data.citation,
+      'diseaseName': params.data.diseaseName,
+      'target': params.data.target,
+      'targetVersion': params.data.targetVersion,
+      'targetStatus': params.data.targetStatus,
+      'collectionId1': params.data.collectionId1,
+      'original': params.data.original,
+      'acronym': params.data.acronym,
+      'organism': params.data.organism,
+      'variant': params.data.variant,
+    });
+  }
 
-  get f() { return this.LigandForm.controls; }
+  onDeleteButtonClick(params: any) {
+    const modalRef = this.modalService.open(ConformationComponent);
+    modalRef.componentInstance.details = "Ligand";
+    modalRef.result.then((data) => {
+      if (data == "Yes") {
+        this.ligandManager.liganddelete(params.data.slNo).subscribe((response) => {
+          for (let i = 0; i < this.ligand.length; i++) {
+            if (this.ligand[i].ligandId == params.data.ligandId) {
+              this.ligand?.splice(i, 1);
+              break;
+            }
+          }
+          const selectedRows = params.api.getSelectedRows();
+          params.api.applyTransaction({ remove: selectedRows });
+          this.gridOptions.api.deselectAll();
+          this.calloutService.showSuccess("Ligand Removed Successfully");
+        });
+      }
+    })
+  }
+
+  onAuditButtonClick(params: any) {
+    const modalRef = this.modalService.open(AuditComponent);
+    modalRef.componentInstance.title = "Ligand";
+    modalRef.componentInstance.details = params.data;
+  }
 
 
   private markFormGroupTouched(formGroup: FormGroup) {
@@ -382,7 +491,53 @@ export class LigandComponent implements OnInit {
     if (this.LigandForm.invalid) {
       return;
     }
-
+    let ligand001wb = new Ligand001wb();
+    ligand001wb.ligandId = this.f.ligandId.value ? this.f.ligandId.value : "";
+    ligand001wb.tanNumber = this.f.tanNumber.value ? this.f.tanNumber.value : "";
+    ligand001wb.ligandUri = this.f.ligandUri.value ? this.f.ligandUri.value : "";
+    ligand001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
+    ligand001wb.ligandStatus = this.f.ligandStatus.value ? this.f.ligandStatus.value : "";
+    ligand001wb.collection = this.f.collection.value ? this.f.collection.value : "";
+    ligand001wb.ligandTypeSlno = this.f.ligandTypeSlno.value ? this.f.ligandTypeSlno.value : "";
+    ligand001wb.ligandDetail = this.f.ligandDetail.value ? this.f.ligandDetail.value : "";
+    ligand001wb.collectionName = this.f.collectionName.value ? this.f.collectionName.value : "";
+    ligand001wb.collectionId = this.f.locator.value ? this.f.collectionId.value : "";
+    ligand001wb.locator = this.f.ligandStatus.value ? this.f.locator.value : "";
+    ligand001wb.sourceType = this.f.sourceType.value ? this.f.sourceType.value : "";
+    ligand001wb.citation = this.f.citation.value ? this.f.citation.value : "";
+    ligand001wb.diseaseName = this.f.diseaseName.value ? this.f.diseaseName.value : "";
+    ligand001wb.target = this.f.target.value ? this.f.target.value : "";
+    ligand001wb.targetStatus = this.f.targetStatus.value ? this.f.targetStatus.value : "";
+    ligand001wb.collectionId1 = this.f.collectionId1.value ? this.f.collectionId1.value : "";
+    ligand001wb.original = this.f.original.value ? this.f.original.value : "";
+    ligand001wb.acronym = this.f.acronym.value ? this.f.acronym.value : "";
+    ligand001wb.organism = this.f.organism.value ? this.f.organism.value : "";
+    ligand001wb.variant = this.f.variant.value ? this.f.variant.value : "";
+   
+    if (this.ligandId) {
+      ligand001wb.ligandId = this.ligandId;
+      ligand001wb.insertUser = this.insertUser;
+      ligand001wb.insertDatetime = this.insertDatetime;
+      ligand001wb.updatedUser = this.authManager.getcurrentUser.username;
+      ligand001wb.updatedDatetime = new Date();
+      this.ligandManager.ligandupdate(ligand001wb).subscribe((response) => {
+        this.calloutService.showSuccess("Ligand Details Updated Successfully");
+        this.loadData();
+        this.LigandForm.reset();
+        this.ligandId = null;
+        this.submitted = false;
+      });
+    }
+    else {
+      ligand001wb.insertUser = this.authManager.getcurrentUser.username;
+      ligand001wb.insertDatetime = new Date();
+      this.ligandManager.ligandsave(ligand001wb).subscribe((response) => {
+        this.calloutService.showSuccess("Breakdown Details Saved Successfully");
+        this.loadData();
+        this.LigandForm.reset();
+        this.submitted = false;
+      });
+    }
 
 
   }

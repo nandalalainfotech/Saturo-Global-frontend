@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LigandRoutingModule } from './ligand-routing.module';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
+import { LigandManager } from 'src/app/shared/services/restcontroller/bizservice/ligandManager.service';
+import { LigandRoutingModule } from './ligand-routing.module';
+
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AgGridModule } from 'ag-grid-angular';
     FormsModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
-  ]
+  ],
+  providers: [LigandManager]
 })
 export class LigandModule { }
