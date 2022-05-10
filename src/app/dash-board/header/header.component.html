@@ -5,7 +5,8 @@
             <div class="col-md-5 col-lg-7 logo">
                 <h2 class="h2">
                     <!-- <label for="menu" class="menu-bar is-active"> -->
-                    <i class="fa fa-bars" [ngClass]="isOpen ? 'rerotation' : 'rotation'" style="margin-left: 10px" (click)="clickMenu()"></i>
+                    <i class="fa fa-bars" [ngClass]="isOpen ? 'rerotation' : 'rotation'" style="margin-left: 10px"
+                        (click)="clickMenu()"></i>
                     <img src="../../../assets/images/ERP-logo.png" />
                     <!-- <img src="{{downloadUrl}}"> -->
                     <!-- </label> -->
@@ -21,68 +22,247 @@
                     </li>
 
                     <li class="setting">
-                        <a><i
-                                class="fa fa-paint-brush"
-                                style="color: white"
-                                aria-hidden="true"
-                                [(colorPicker)]="themes"
-                                [cpOKButton]="true"
-                                [cpOKButtonClass]="' btn-primary btn-xs button'"
-                                [cpOKButtonText]="'Reset'"
-                                [cpCancelButton]="true"
-                                [cpCancelButtonClass]="'btn-primary btn-xs'"
-                                [cpCancelButtonText]="'Cancel'"
-                                [cpSaveClickOutside]="false"
-                                [cpCloseClickOutside]="false"
-                                [cpPresetColors]="[
+                        <a><i class="fa fa-paint-brush" style="color: white" aria-hidden="true" [(colorPicker)]="themes"
+                                [cpOKButton]="true" [cpOKButtonClass]="' btn-primary btn-xs button'"
+                                [cpOKButtonText]="'Reset'" [cpCancelButton]="true"
+                                [cpCancelButtonClass]="'btn-primary btn-xs'" [cpCancelButtonText]="'Cancel'"
+                                [cpSaveClickOutside]="false" [cpCloseClickOutside]="false" [cpPresetColors]="[
                                     '#9400D3',
                                     '#0000FF',
                                     '#00FF00',
                                     '#FFFF00',
                                     '#FF7F00',
                                     '#FF0000'
-                                ]"
-                                [cpPositionRelativeToArrow]="true"
-                                [cpPosition]="'left'"
-                                [cpPositionOffset]="'80%'"
-                                [cpAlphaChannel]="'disabled'"
-                                [cpDisableInput]="false"
-                                [cpOutputFormat]="'hex'"
-                                [cpWidth]="'270px'"
-                                [cpHeight]="'390px'"
-                                (cpSliderChange)="colorPicker($event)"
-                                (colorPickerSelect)="defaultColor()"
-                            ></i
-                        ></a>
+                                ]" [cpPositionRelativeToArrow]="true" [cpPosition]="'left'" [cpPositionOffset]="'80%'"
+                                [cpAlphaChannel]="'disabled'" [cpDisableInput]="false" [cpOutputFormat]="'hex'"
+                                [cpWidth]="'270px'" [cpHeight]="'390px'" (cpSliderChange)="colorPicker($event)"
+                                (colorPickerSelect)="defaultColor()"></i></a>
                     </li>
 
-                    <li class="link" class="setting">
-                        <span id="notification_count"></span>
-                        <span style="color: white" id="notificationLink">
-                            <i
-                                class="fa fa-bell"
-                                aria-hidden="true"
-                                title="View Notification"
-                            ></i
-                        ></span>
-                        <div id="notificationContainer">
-                            <div id="notificationsBody" class="notifications"></div>
+                   
+
+                    <li class="setting">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                style="color: white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                                class="bttn">
+                                <i class="fas fa-shield-virus" [ngClass]="
+                                        parentMenuString == 'Ligand'
+                                            ? 'is-active'
+                                            : ''
+                                    " aria-hidden="true" title=""></i>
+                            </button>
+
+                            <!-- [ngClass]="parentMenuString == 'Purchase Order' ? 'is-active' : ''"
+                        (click)="onMenuParentClick('Purchase Order', 'Purchase Order')">
+                            <a><i class="fa fa-shopping-cart" [ngClass]="parentMenuString == 'Purchase Order' ? 'is-active' : ''">
+                            </i><span [ngClass]="parentMenuString == 'Purchase Order' ? 'is-active' : ''" -->
+
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li routerLink="./app-master/app-ligand-version">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString == 'Ligand Version'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Ligand',
+                                                'Ligand Version'
+                                            )
+                                        ">Ligand Version Master</a>
+                                </li>
+
+                                <li routerLink="./app-master/app-ligand-type">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString == 'Ligand Type'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Ligand',
+                                                'Ligand Type'
+                                            )
+                                        ">Ligand Type Master</a>
+                                </li>
+
+                                <li routerLink="./app-master/app-assay-type">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString == 'Assay Type'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Assay',
+                                                'Assay Type'
+                                            )
+                                        ">Assay Type Master</a>
+                                </li>
+
+                                <li routerLink="./app-master/app-toxicity-type">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString == 'Toxicity Type'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Assay',
+                                                'Toxicity Type'
+                                            )
+                                        ">Toxicity Type Master</a>
+                                </li>
+                                <li routerLink="./app-master/app-route-of-administration-type">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString == 'Route of Administration'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Assay',
+                                                'Route of Administration'
+                                            )
+                                        ">ROA Master</a>
+                                </li>
+
+                                <li routerLink="./app-master/app-ligand-dose-svalue">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString == 'Ligand Dose(single-Value)'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick('Assay', 'Ligand Dose(single-Value)')
+                                        ">Ligand Dose(Single-Value) Master</a>
+                                </li>
+
+                                <li routerLink="./app-master/app-ligand-dose-hvalue">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString == 'Import / Export'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Assay',
+                                                'Ligand Dose(High-end-Value)'
+                                            )
+                                        ">Ligand Dose(H-Value) Master</a>
+                                </li>
+                                <li routerLink="./app-master/app-ligand-dose-lvalue">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString ==
+                                            'Application Setting'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Assay',
+                                                'Ligand Dose(Low-end-Value)'
+                                            )
+                                        ">Ligand Dose(L-Value) Master</a>
+                                </li>
+                                <li routerLink="./app-master/app-unit-svalue">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString ==
+                                            'Application Setting'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Assay',
+                                                'Unit(single-Value)'
+                                            )
+                                        ">Unit(Single-Value) Master</a>
+                                </li>
+                                <li routerLink="./app-master/app-unit-hvalue">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString ==
+                                            'Application Setting'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Assay',
+                                                'Unit(High-end-Value)'
+                                            )
+                                        ">Unit(H-Value) Master</a>
+                                </li>
+                                <li routerLink="./app-master/app-unit-lvalue">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString ==
+                                            'Application Setting'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Assay',
+                                                'Unit(Low-end-Value)'
+                                            )
+                                        ">Unit(L-Value) Master</a>
+                                </li>
+                                <li routerLink="./app-master/app-category">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString ==
+                                            'Application Setting'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Measurement',
+                                                'Category'
+                                            )
+                                        ">Category Master</a>
+                                </li>
+                                <li routerLink="./app-master/app-category-functions">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString ==
+                                            'Application Setting'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Measurement',
+                                                'Category(functions)'
+                                            )
+                                        ">Category(functions) Master</a>
+                                </li>
+                                <li routerLink="./app-master/app-original-prefix">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString ==
+                                            'Application Setting'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Measurement',
+                                                'Original-Prefix'
+                                            )
+                                        ">Original-Prefix Master</a>
+                                </li>
+                                <li routerLink="./app-master/app-bio-system-types">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
+                                            childMenuString ==
+                                            'Application Setting'
+                                                ? 'is-active'
+                                                : ''
+                                        " (click)="
+                                            onMenuChildClick(
+                                                'Measurement',
+                                                'Biological-system(types)'
+                                            )
+                                        ">Bio-system(types) Master</a>
+                                </li>
+                            </ul>
                         </div>
                     </li>
 
                     <li class="setting">
                         <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" style="color: white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="bttn">
-                                <i
-                                    class="fa fa-cog"
-                                    [ngClass]="
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                style="color: white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                                class="bttn">
+                                <i class="fa fa-cog" [ngClass]="
                                         parentMenuString == 'Setting'
                                             ? 'is-active'
                                             : ''
-                                    "
-                                    aria-hidden="true"
-                                    title="More options"
-                                ></i>
+                                    " aria-hidden="true" title="More options"></i>
                             </button>
 
                             <!-- [ngClass]="parentMenuString == 'Purchase Order' ? 'is-active' : ''"
@@ -105,60 +285,43 @@
                                     >
                                 </li> -->
 
-                                <li
-                                    routerLink="./app-setting/app-profile/app-registration"
-                                >
-                                    <a
-                                        [ngStyle]="{ color: colorthemes_1 }"
-                                        [ngClass]="
+                                <li routerLink="./app-setting/app-profile/app-registration">
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
                                             childMenuString == 'Profile'
                                                 ? 'is-active'
                                                 : ''
-                                        "
-                                        (click)="
+                                        " (click)="
                                             onMenuChildClick(
                                                 'Setting',
                                                 'Profile'
                                             )
-                                        "
-                                        >Profile</a
-                                    >
+                                        ">Profile</a>
                                 </li>
 
                                 <li routerLink="./app-setting/app-settings">
-                                    <a
-                                        [ngStyle]="{ color: colorthemes_1 }"
-                                        [ngClass]="
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
                                             childMenuString == 'Settings'
                                                 ? 'is-active'
                                                 : ''
-                                        "
-                                        (click)="
+                                        " (click)="
                                             onMenuChildClick(
                                                 'Setting',
                                                 'Settings'
                                             )
-                                        "
-                                        >Settings</a
-                                    >
+                                        ">Settings</a>
                                 </li>
 
                                 <li routerLink="./app-setting/app-user-theme">
-                                    <a
-                                        [ngStyle]="{ color: colorthemes_1 }"
-                                        [ngClass]="
+                                    <a [ngStyle]="{ color: colorthemes_1 }" [ngClass]="
                                             childMenuString == 'UserTheme'
                                                 ? 'is-active'
                                                 : ''
-                                        "
-                                        (click)="
+                                        " (click)="
                                             onMenuChildClick(
                                                 'Setting',
                                                 'UserTheme'
                                             )
-                                        "
-                                        >Themes</a
-                                    >
+                                        ">Themes</a>
                                 </li>
                                 <!-- <li routerLink="./app-setting/app-favourites">
                                     <a
@@ -237,26 +400,18 @@
                     </li>
                     <li class="setting" routerLink="./app-help">
                         <a>
-                            <i
-                                class="fa fa-question-circle"
-                                aria-hidden="true"
-                                title="Help"
-                                style="color: white"
+                            <i class="fa fa-question-circle" aria-hidden="true" title="Help" style="color: white"
                                 [ngClass]="
                                     parentMenuString == 'Help'
                                         ? 'is-active'
                                         : ''
-                                "
-                                (click)="onMenuParentClick('Help', 'Help')"
-                            ></i
-                        ></a>
-                                </li>
-                                <li class="setting">
-                                    <a (click)="submit()" [ngClass]="
+                                " (click)="onMenuParentClick('Help', 'Help')"></i></a>
+                    </li>
+                    <li class="setting">
+                        <a (click)="submit()" [ngClass]="
                                 parentMenuString == 'Logout' ? 'is-actived' : ''
                             " (click)="onMenuParentClick('Logout', 'Logout')">
-                                        <i class="fa fa-sign-out color" aria-hidden="true" title="Logout"></i
-                        ></a>
+                            <i class="fa fa-sign-out color" aria-hidden="true" title="Logout"></i></a>
                     </li>
                 </ul>
             </div>

@@ -14,8 +14,10 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuditComponent } from './shared/audit/audit.component';
+import { ConformationComponent } from './shared/conformation/conformation.component';
 import { PopupComponent } from './shared/popup/popup.component';
 import { CalloutComponent } from './shared/services/callout/callout.component';
+import { IconRendererComponent } from './shared/services/renderercomponent/icon-renderer-component';
 import { AuthManager } from './shared/services/restcontroller/bizservice/auth-manager.service';
 import { UserManager } from './shared/services/restcontroller/bizservice/user.service';
 import { BaseService } from './shared/services/services/base.service';
@@ -36,6 +38,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 		ResetPasswordComponent,
 		AuditComponent,
 		UserRegistrationComponent,
+		ConformationComponent,
+		IconRendererComponent
 	],
 	imports: [
 		CommonModule,

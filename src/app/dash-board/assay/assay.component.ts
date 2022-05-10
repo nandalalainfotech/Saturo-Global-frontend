@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
-import { Assay001mb } from 'src/app/shared/services/restcontroller/entities/Assay001mb';
 import { Utils } from 'src/app/shared/utils/utils';
 
 @Component({
@@ -16,17 +15,19 @@ export class AssayComponent implements OnInit {
     AssayForm: FormGroup | any;
     frameworkComponents: any;
     submitted = false;
-    ligandVersion: number | any;
+
+    assayId: number | any;
+    ligandVersionSlno: number | any;
     ordinal: number | any;
     collectionId: string | any;
-    assayType: string = "";
-    toxiCity: string = "";
-    route: string = "";
+    assayTypeSlno: string = "";
+    toxiCitySlno: string = "";
+    routeSlno: string = "";
     ligandSvalue: number | any;
     LigandHvalue: number | any;
     LigandLvalue: number | any;
-    Units: string = "";
-    Unit: string = "";
+    unitsSlno: string = "";
+    unitSlno: string = "";
     Administration: string = "";
     Procedure: string = "";
     Target: string | any;
@@ -34,11 +35,14 @@ export class AssayComponent implements OnInit {
     Conditionmaterial: string = "";
     Conditionmaterialid: number | any;
     value: number | any;
-    united: number | any;
+    unitedSlno: number | any;
+    insertUser: string = "";
+    insertDatetime: Date | any;
+    updatedUser: string = "";
+    updatedDatetime: Date | any;
 
     hexToRgb: any;
     rgbToHex: any;
-    assay: Assay001mb[] = [];
     public gridOptions: GridOptions | any;
     rowData: Observable<any[]> | any;
 

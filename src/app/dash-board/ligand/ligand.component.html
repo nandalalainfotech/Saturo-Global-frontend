@@ -32,13 +32,23 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="ligandVersion" for="series" cssClass="required">Ligand-Version</label>
-                        <input class="form-control" name="ligandVersion" formControlName="ligandVersion"
-                            [ngClass]="{ 'is-invalid': submitted && f.ligandVersion.errors }">
-                        <div *ngIf="submitted && f.ligandVersion.errors" class="invalid-feedback">
-                            <div *ngIf="f.ligandVersion.errors.required">Version is Required</div>
+                        <label path="ligandVersionSlno" for="ligandVersionSlno" cssClass="required">Ligand-Version</label>
+                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno"
+                            [ngClass]="{ 'is-invalid': submitted && f.ligandVersionSlno.errors }">
+                            <option value="" hidden> - Select Ligand-Version - </option>
+                            <option> 1 </option>
+                            <option> 2 </option>
+                            <option> 3 </option>
+                            <option> 4 </option>
+                            <option> 5 </option>
+                        </select>
+                        <div *ngIf="submitted && f.ligandVersionSlno.errors" class="invalid-feedback">
+                            <div *ngIf="f.ligandVersionSlno.errors.required">Ligand Version is Required</div>
                         </div>
                     </div>
                 </div>
@@ -69,10 +79,10 @@
             <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="ligandType" for="ligandType" cssClass="required">Ligand-Type</label>
+                        <label path="ligandTypeSlno" for="ligandTypeSlno" cssClass="required">Ligand-Type</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
-                        <select class="form-control" name="ligandType" formControlName="ligandType"
-                            [ngClass]="{ 'is-invalid': submitted && f.ligandType.errors }">
+                        <select class="form-control" name="ligandTypeSlno" formControlName="ligandTypeSlno"
+                            [ngClass]="{ 'is-invalid': submitted && f.ligandTypeSlno.errors }">
                             <option value="" hidden> - Select -LigandType - </option>
                             <option> Small molecule </option>
                             <option> BLG-Antibody </option>
@@ -87,8 +97,8 @@
                         {{system.description}}
                     </option> -->
                         </select>
-                        <div *ngIf="submitted && f.LigandType.errors" class="invalid-feedback">
-                            <div *ngIf="f.LigandType.errors.required">Lignd type is Required</div>
+                        <div *ngIf="submitted && f.ligandTypeSlno.errors" class="invalid-feedback">
+                            <div *ngIf="f.ligandTypeSlno.errors.required">Lignd type is Required</div>
                         </div>
                     </div>
                 </div>
@@ -234,8 +244,8 @@
                     </div>
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
-                            <label path="TargetStatus" for="tsName" cssClass="required">Target-status</label>
-                            <input class="form-control" path="tsName" name="TargetStatus" formControlName="TargetStatus"
+                            <label path="targetStatus" for="tsName" cssClass="required">Target-status</label>
+                            <input class="form-control" path="tsName" name="targetStatus" formControlName="targetStatus"
                                 value="" readonly />
                             <!-- <div *ngIf="submitted && f.TargetStatus.errors" class="invalid-feedback">
                                 <div *ngIf="f.TargetStatus.errors.required">Status is Required</div>
