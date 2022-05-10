@@ -5,11 +5,11 @@
             <div class="row">      
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="ligandType" for="series" cssClass="required">Ligand Types</label>
-                        <input class="form-control" name="ligandType" formControlName="ligandType"
-                            [ngClass]="{ 'is-invalid': submitted && f.ligandType.errors }">
-                        <div *ngIf="submitted && f.ligandType.errors" class="invalid-feedback">
-                            <div *ngIf="f.ligandType.errors.required">Ligand Type is Required</div>
+                        <label path="ligandtype" for="ligandtype" cssClass="required">Ligand Types</label>
+                        <input class="form-control" name="ligandtype" formControlName="ligandtype"
+                            [ngClass]="{ 'is-invalid': submitted && f.ligandtype.errors }">
+                        <div *ngIf="submitted && f.ligandtype.errors" class="invalid-feedback">
+                            <div *ngIf="f.ligandtype.errors.required">Ligand Type is Required</div>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,8 @@
         </div>
 
         <legend class="scheduler-border">Ligand Type</legend>
-        <!-- <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
             [frameworkComponents]="frameworkComponents">
-        </ag-grid-angular> -->
+        </ag-grid-angular>
     </fieldset>
 </div>

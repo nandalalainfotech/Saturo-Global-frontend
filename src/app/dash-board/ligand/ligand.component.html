@@ -1,16 +1,20 @@
 <fieldset class="scheduler-border">
     <legend class="scheduler-border">Link</legend>
-    <div class="row">
-        <div class="col-xs-3 col-sm-3">
-            <div class="form-group">
-                <label path="tanNumber" for="series" cssClass="required">TAN Number</label>
-                <input class="form-control" name="tanNumber" formControlName="tanNumber"
-                    [ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }">
-                <div *ngIf="submitted && f.tanNumber.errors" class="invalid-feedback">
-                    <div *ngIf="f.tanNumber.errors.required">Numeric Value is Required</div>
+    <div class="formData">
+        <form [formGroup]="LigandForm" (ngSubmit)="onLigandClick($event, LigandForm)">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="tanNumber" for="tanNumber" cssClass="required">TAN Number</label>
+                        <input class="form-control" name="tanNumber" formControlName="tanNumber"
+                            [ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }">
+                        <div *ngIf="submitted && f.tanNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.tanNumber.errors.required">Numeric Value is Required</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </fieldset>
 
@@ -18,13 +22,13 @@
 <fieldset class="scheduler-border">
     <legend class="scheduler-border">Ligand</legend>
     <div class="formData">
-        <form [formGroup]="LigandForm" (ngSubmit)="onLigandClick($event, LigandForm)" >
+        <form [formGroup]="LigandForm" (ngSubmit)="onLigandClick($event, LigandForm)">
 
 
             <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="ligandUri" for="series" cssClass="required">Ligand-Uri</label>
+                        <label path="ligandUri" for="ligandUri" cssClass="required">Ligand-Uri</label>
                         <input class="form-control" name="ligandUri" formControlName="ligandUri"
                             [ngClass]="{ 'is-invalid': submitted && f.ligandUri.errors }">
                         <div *ngIf="submitted && f.ligandUri.errors" class="invalid-feedback">
@@ -36,16 +40,16 @@
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="ligandVersionSlno" for="ligandVersionSlno" cssClass="required">Ligand-Version</label>
+                        <label path="ligandVersionSlno" for="ligandVersionSlno"
+                            cssClass="required">Ligand-Version</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
-                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno"
+                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno" (click)="onLigandVersionClick()"
                             [ngClass]="{ 'is-invalid': submitted && f.ligandVersionSlno.errors }">
-                            <option value="" hidden> - Select Ligand-Version - </option>
-                            <option> 1 </option>
-                            <option> 2 </option>
-                            <option> 3 </option>
-                            <option> 4 </option>
-                            <option> 5 </option>
+                            <option value="" hidden> - Select Ligand Version - </option>
+                            <option> -  Select Ligand Version - </option>
+                            <option *ngFor="let ligandVersion of ligandVersions" [value]="ligandVersion.id">
+                                {{ligandVersion.ligandVersion}}
+                            </option>
                         </select>
                         <div *ngIf="submitted && f.ligandVersionSlno.errors" class="invalid-feedback">
                             <div *ngIf="f.ligandVersionSlno.errors.required">Ligand Version is Required</div>
@@ -83,16 +87,11 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="ligandTypeSlno" formControlName="ligandTypeSlno"
                             [ngClass]="{ 'is-invalid': submitted && f.ligandTypeSlno.errors }">
-                            <option value="" hidden> - Select -LigandType - </option>
-                            <option> Small molecule </option>
-                            <option> BLG-Antibody </option>
-                            <option> BLG-Protein (</option>
-                            <option> BLG-Peptide </option>
-                            <option> BLG-Nucleic acid </option>
-                            <option> BLG-Gene/cell therapeutic </option>
-                            <option> BLG-Vaccine </option>
-                            <option> Natural extract </option>
-                            <option> Other </option>
+                            <option value="" hidden> - Select Ligand Types - </option>
+                            <option> -  Select Ligand Types - </option>
+                            <option *ngFor="let ligandtype of ligandtypes" [value]="ligandtype.id">
+                                {{ligandtype.ligandtype}}
+                            </option>
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                         {{system.description}}
                     </option> -->
@@ -134,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
 
             <div class="row">
@@ -155,7 +154,7 @@
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Reference</legend>
                 <div class="row">
-                   
+
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="sourceType" for="sourceType" cssClass="required">Source-type</label>
@@ -203,24 +202,16 @@
                 <div class="row">
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
-                            <label path="ligandVersion1" for="ligandVersion1" cssClass="required">Ligand-Version</label>
-                            <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
-                            <select class="form-control" name="ligandVersion1" formControlName="ligandVersion1"
-                                [ngClass]="{ 'is-invalid': submitted && f.ligandVersion1.errors }">
-                                <option value="" hidden> - Select Ligand-Version - </option>
-                                <option> 1 </option>
-                                <option> 2 </option>
-                                <option> 3 </option>
-                                <option> 4 </option>
-                                <option> 5 </option>
-                            </select>
-                            <div *ngIf="submitted && f.ligandVersion1.errors" class="invalid-feedback">
-                                <div *ngIf="f.ligandVersion1.errors.required">Ligand Version is Required</div>
-                            </div>
+                            <label path="ligandVersions" for="ligandVersions" cssClass="required">Ligand-Version</label>
+                            <input class="form-control" path="ligandVersions" name="ligandVersions" formControlName="ligandVersions" readonly/>
+                             <!--                            
+                            <div *ngIf="submitted && f.ligandVersions.errors" class="invalid-feedback">
+                                <div *ngIf="f.ligandVersions.errors.required">Ligand Version is Required</div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="row">
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
@@ -276,8 +267,9 @@
                     </div>
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
-                            <label path="acronym" for="series" cssClass="required" >Acronym</label>
-                            <input class="form-control" name="acronym" formControlName="acronym" [ngClass]="{ 'is-invalid': submitted && f.acronym.errors }">
+                            <label path="acronym" for="series" cssClass="required">Acronym</label>
+                            <input class="form-control" name="acronym" formControlName="acronym"
+                                [ngClass]="{ 'is-invalid': submitted && f.acronym.errors }">
                             <div *ngIf="submitted && f.acronym.errors" class="invalid-feedback">
                                 <div *ngIf="f.acronym.errors.required">Acronym is Required</div>
                             </div>
@@ -285,8 +277,9 @@
                     </div>
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
-                            <label path="organism" for="series" cssClass="required" >Organism-source</label>
-                            <input class="form-control" name="organism" formControlName="organism" [ngClass]="{ 'is-invalid': submitted && f.organism.errors }">
+                            <label path="organism" for="series" cssClass="required">Organism-source</label>
+                            <input class="form-control" name="organism" formControlName="organism"
+                                [ngClass]="{ 'is-invalid': submitted && f.organism.errors }">
                             <div *ngIf="submitted && f.organism.errors" class="invalid-feedback">
                                 <div *ngIf="f.organism.errors.required">Source is Required</div>
                             </div>
@@ -295,7 +288,8 @@
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="variant" for="variant" cssClass="required">Variant</label>
-                            <input class="form-control" name="variant" formControlName="variant" [ngClass]="{ 'is-invalid': submitted && f.variant.errors }">
+                            <input class="form-control" name="variant" formControlName="variant"
+                                [ngClass]="{ 'is-invalid': submitted && f.variant.errors }">
                             <div *ngIf="submitted && f.variant.errors" class="invalid-feedback">
                                 <div *ngIf="f.variant.errors.required">Variant is Required</div>
                             </div>
@@ -307,7 +301,7 @@
             <div class="row">
                 <div class="col-sm-12 ">
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary submit" cdkStepperNext>Submit</button>
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
                         <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ import { Ligand001wb } from "../entities/Ligand001wb";
 
 @Injectable()
 export class LigandManager extends BaseService {
-    private ligandUrl: string = `${environment.apiUrl}/breakdown`
+    private ligandUrl: string = `${environment.apiUrl}/ligand`
 
     allligand() {
         return this.getCallService(`${this.ligandUrl}` + "/findAll");
