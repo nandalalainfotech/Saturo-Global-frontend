@@ -7,9 +7,18 @@ import { Observable } from 'rxjs';
 import { deserialize } from 'serializer.ts/Serializer';
 import { AuditComponent } from 'src/app/shared/audit/audit.component';
 import { ConformationComponent } from 'src/app/shared/conformation/conformation.component';
+import { IconRendererComponent } from 'src/app/shared/services/renderercomponent/icon-renderer-component';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
+import { CategoryManager } from 'src/app/shared/services/restcontroller/bizservice/category.service';
+import { CategoryfunctionManager } from 'src/app/shared/services/restcontroller/bizservice/categoryFunction.service';
 import { MeasurementManager } from 'src/app/shared/services/restcontroller/bizservice/Measurement.service';
+import { OriginalprefixManager } from 'src/app/shared/services/restcontroller/bizservice/originalPrefix.service';
+import { BioTypeManager } from 'src/app/shared/services/restcontroller/bizservice/type.service';
+import { Category001mb } from 'src/app/shared/services/restcontroller/entities/Category001mb';
+import { Categoryfunction001mb } from 'src/app/shared/services/restcontroller/entities/Categoryfunction001mb';
 import { Measurement001wb } from 'src/app/shared/services/restcontroller/entities/Measurement001wb';
+import { Originalprefix001mb } from 'src/app/shared/services/restcontroller/entities/Originalprefix001mb';
+import { Type001mb } from 'src/app/shared/services/restcontroller/entities/Type001mb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
 import { Utils } from 'src/app/shared/utils/utils';
 
@@ -25,14 +34,14 @@ export class MeasurementComponent implements OnInit {
   submitted = false;
 
   measurementId: number | any;
-  dataLocator: number | any;
+  dataLocator: string = "";
   categorySlno: number | any;
   functionSlno: number | any;
   parameter: string = "";
   parameterDetail: string = "";
-  singleValue: string = "";
-  unit: string = "";
   originalPrefixSlno: number | any;
+  unit: string = "";
+  singleValue: string = "";
   highEndValue: string = "";
   lowEndValue: string = "";
   units: string = "";
@@ -45,13 +54,18 @@ export class MeasurementComponent implements OnInit {
   organDetail: string = "";
   species: string = "";
   speciesDetail: string = "";
-  genderSlno: number | any;
+  gender: string = "";
   ageGroup: string = "";
   insertUser: string = "";
   insertDatetime: Date | any;
   updatedUser: string = "";
   updatedDatetime: Date | any;
   measurement: Measurement001wb[] = [];
+  categorys: Category001mb [] = [];
+  categoryfunctions: Categoryfunction001mb [] = [];
+  Originals: Originalprefix001mb [] = [];
+  types: Type001mb [] = [];
+  
 
   hexToRgb: any;
   rgbToHex: any;
@@ -69,28 +83,56 @@ export class MeasurementComponent implements OnInit {
     private http: HttpClient,
     private calloutService: CalloutService,
     private modalService: NgbModal,
-    private measurementManager: MeasurementManager,) { }
+    private measurementManager: MeasurementManager,
+    private categoryManager: CategoryManager,
+    private categoryfunctionManager: CategoryfunctionManager,
+    private originalprefixManager: OriginalprefixManager,
+    private bioTypeManager: BioTypeManager,) { 
+      this.frameworkComponents = {
+        iconRenderer: IconRendererComponent
+      }
+    }
 
   ngOnInit(): void {
+
+    this.categoryManager.allcategoryType().subscribe(response => {
+      this.categorys = deserialize<Category001mb[]>(Category001mb, response);
+      
+    });
+
+    this.categoryfunctionManager.allcategoryFunction().subscribe(response => {
+      this.categoryfunctions = deserialize<Categoryfunction001mb[]>(Categoryfunction001mb, response);
+     
+    });
+
+    this.originalprefixManager.alloriginalPrefix().subscribe(response => {
+      this.Originals = deserialize<Originalprefix001mb[]>(Originalprefix001mb, response);
+      
+    });
+
+    this.bioTypeManager.allbioType().subscribe(response => {
+      this.types = deserialize<Type001mb[]>(Type001mb, response);
+     
+    });
 
     this.createDataGrid001();
 
     this.MeasurementForm = this.formBuilder.group({
 
       dataLocator: ['', Validators.required],
-      category: ['', Validators.required],
-      function: ['', Validators.required],
+      categorySlno: ['',],
+      functionSlno: ['', Validators.required],
       parameter: ['', Validators.required],
       parameterDetail: ['', Validators.required],
-      singleValue: ['', Validators.required],
+      originalPrefixSlno: ['', Validators.required],
       unit: ['', Validators.required],
-      originalPrefix: ['', Validators.required],
+      singleValue: ['', Validators.required],
       highEndValue: ['', Validators.required],
       lowEndValue: ['', Validators.required],
       units: ['', Validators.required],
       nonNumeric: ['', Validators.required],
       remark: ['', Validators.required],
-      type: ['', Validators.required],
+      typeSlno: ['', Validators.required],
       cell: ['', Validators.required],
       cellDetail: ['', Validators.required],
       organ: ['', Validators.required],
@@ -142,6 +184,19 @@ export class MeasurementComponent implements OnInit {
     this.gridOptions.animateRows = true;
     this.gridOptions.columnDefs = [
       {
+        headerName: 'Sl-No',
+        field: 'measurementId',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        headerCheckboxSelection: true,
+        headerCheckboxSelectionFilteredOnly: true,
+        checkboxSelection: true,
+        suppressSizeToFit: true,
+      },
+      {
         headerName: 'Data-locator',
         field: 'dataLocator',
         width: 200,
@@ -154,24 +209,23 @@ export class MeasurementComponent implements OnInit {
       },
       {
         headerName: 'Category',
-        field: 'category',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
+        valueGetter: this.setCategory.bind(this)
       },
       {
         headerName: 'Function',
-        field: 'function',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
-
+        valueGetter: this.setCategoryFunction.bind(this)
       },
       {
         headerName: 'Parameter',
@@ -195,6 +249,16 @@ export class MeasurementComponent implements OnInit {
 
       },
       {
+        headerName: 'Original-prefix',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+        valueGetter: this.setOriginalPrefix.bind(this)
+      },
+      {
         headerName: 'Original-value(Single-value)',
         field: 'singleValue',
         width: 200,
@@ -216,17 +280,18 @@ export class MeasurementComponent implements OnInit {
 
       },
       {
-        headerName: 'Original-prefix',
-        field: 'originalPrefix',
+        headerName: 'Original-value(Single-value)',
+        field: 'singleValue',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
+
       },
       {
-        headerName: 'Original-value(High-end-value)',
+        headerName: 'Original-value(High-End-value)',
         field: 'highEndValue',
         width: 200,
         flex: 1,
@@ -237,7 +302,7 @@ export class MeasurementComponent implements OnInit {
 
       },
       {
-        headerName: 'Original-value(Low-end-value)',
+        headerName: 'Original-value(Low-End-value)',
         field: 'lowEndValue',
         width: 200,
         flex: 1,
@@ -280,13 +345,14 @@ export class MeasurementComponent implements OnInit {
       },
       {
         headerName: 'Type',
-        field: 'type',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
+        valueGetter: this.setTypes.bind(this)
+        
       },
       {
         headerName: 'Cell',
@@ -412,20 +478,36 @@ export class MeasurementComponent implements OnInit {
     ];
   }
 
+  setCategory(params: any): string {
+    return params.data.categorySlno2 ? params.data.categorySlno2.category : null;
+  }
+
+  setCategoryFunction(params: any): string {
+    return params.data.functionSlno2 ? params.data.functionSlno2.function : null;
+  }
+ 
+  setOriginalPrefix(params: any): string {
+    return params.data.originalPrefixSlno2 ? params.data.originalPrefixSlno2.originalPrefix : null;
+  }
+
+
+  setTypes(params: any): string {
+    return params.data.typeSlno2 ? params.data.typeSlno2.type : null;
+  }
+
   onEditButtonClick(params: any) {
     this.measurementId = params.data.measurementId;
     this.insertUser = params.data.insertUser;
     this.insertDatetime = params.data.insertDatetime;
     this.MeasurementForm.patchValue({
-      'measurementId': params.data.measurementId,
       'dataLocator': params.data.dataLocator,
       'categorySlno': params.data.categorySlno,
       'functionSlno': params.data.functionSlno,
       'parameter': params.data.parameter,
       'parameterDetail': params.data.parameterDetail,
-      'singleValue': params.data.singleValue,
-      'unit': params.data.unit,
       'originalPrefixSlno': params.data.originalPrefixSlno,
+      'unit': params.data.unit,
+      'singleValue': params.data.singleValue,
       'highEndValue': params.data.highEndValue,
       'lowEndValue': params.data.lowEndValue,
       'units': params.data.units,
@@ -438,17 +520,18 @@ export class MeasurementComponent implements OnInit {
       'organDetail': params.data.organDetail,
       'species': params.data.species,
       'speciesDetail': params.data.speciesDetail,
-      'genderSlno': params.data.genderSlno,
+      'gender': params.data.gender,
       'ageGroup': params.data.ageGroup,
 
     });
   }
+
   onDeleteButtonClick(params: any) {
     const modalRef = this.modalService.open(ConformationComponent);
     modalRef.componentInstance.details = "Measurement";
     modalRef.result.then((data) => {
       if (data == "Yes") {
-        this.measurementManager.measurementdelete(params.data.slNo).subscribe((response) => {
+        this.measurementManager.measurementdelete(params.data.measurementId).subscribe((response) => {
           for (let i = 0; i < this.measurement.length; i++) {
             if (this.measurement[i].measurementId == params.data.measurementId) {
               this.measurement?.splice(i, 1);
@@ -480,6 +563,7 @@ export class MeasurementComponent implements OnInit {
   }
 
   onMeasurementClick(event: any, MeasurementForm: any) {
+
     this.markFormGroupTouched(this.MeasurementForm);
     this.submitted = true;
     if (this.MeasurementForm.invalid) {
@@ -487,15 +571,14 @@ export class MeasurementComponent implements OnInit {
     }
 
     let measurement001wb = new Measurement001wb();
-    measurement001wb.measurementId = this.f.measurementId.value ? this.f.measurementId.value : "";
     measurement001wb.dataLocator = this.f.dataLocator.value ? this.f.dataLocator.value : "";
     measurement001wb.categorySlno = this.f.categorySlno.value ? this.f.categorySlno.value : "";
     measurement001wb.functionSlno = this.f.functionSlno.value ? this.f.functionSlno.value : "";
     measurement001wb.parameter = this.f.parameter.value ? this.f.parameter.value : "";
     measurement001wb.parameterDetail = this.f.parameterDetail.value ? this.f.parameterDetail.value : "";
-    measurement001wb.singleValue = this.f.singleValue.value ? this.f.singleValue.value : "";
-    measurement001wb.unit = this.f.unit.value ? this.f.unit.value : "";
     measurement001wb.originalPrefixSlno = this.f.originalPrefixSlno.value ? this.f.originalPrefixSlno.value : "";
+    measurement001wb.unit = this.f.unit.value ? this.f.unit.value : "";
+    measurement001wb.singleValue = this.f.singleValue.value ? this.f.singleValue.value : "";
     measurement001wb.highEndValue = this.f.highEndValue.value ? this.f.highEndValue.value : "";
     measurement001wb.lowEndValue = this.f.lowEndValue.value ? this.f.lowEndValue.value : "";
     measurement001wb.units = this.f.units.value ? this.f.units.value : "";
@@ -508,7 +591,7 @@ export class MeasurementComponent implements OnInit {
     measurement001wb.organDetail = this.f.organDetail.value ? this.f.organDetail.value : "";
     measurement001wb.species = this.f.species.value ? this.f.species.value : "";
     measurement001wb.speciesDetail = this.f.speciesDetail.value ? this.f.speciesDetail.value : "";
-    measurement001wb.genderSlno = this.f.genderSlno.value ? this.f.genderSlno.value : "";
+    measurement001wb.gender = this.f.gender.value ? this.f.gender.value : "";
     measurement001wb.ageGroup = this.f.ageGroup.value ? this.f.ageGroup.value : "";
 
 
@@ -520,6 +603,7 @@ export class MeasurementComponent implements OnInit {
       measurement001wb.updatedUser = this.authManager.getcurrentUser.username;
       measurement001wb.updatedDatetime = new Date();
       this.measurementManager.measurementupdate(measurement001wb).subscribe((response) => {
+
         this.calloutService.showSuccess("Measurement Details Updated Successfully");
         this.loadData();
         this.MeasurementForm.reset();
@@ -530,7 +614,9 @@ export class MeasurementComponent implements OnInit {
     else {
       measurement001wb.insertUser = this.authManager.getcurrentUser.username;
       measurement001wb.insertDatetime = new Date();
+      console.log("measurement001wb-->", measurement001wb);
       this.measurementManager.measurementsave(measurement001wb).subscribe((response) => {
+
         this.calloutService.showSuccess("Measurement Details Saved Successfully");
         this.loadData();
         this.MeasurementForm.reset();

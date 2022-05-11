@@ -25,9 +25,9 @@ export class MeasurementManager extends BaseService {
         return this.putCallService(`${this.measurementUrl}` + "/update", {}, measurement001wb);
     }
 
-    measurementdelete(slNo: any) {
+    measurementdelete(measurementId: any) {
         let data: any = {};
-        data['slNo'] = slNo;
+        data['measurementId'] = measurementId;
         return this.deleteCallService(`${this.measurementUrl}` + "/delete", data);
     }
 }

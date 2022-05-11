@@ -491,7 +491,7 @@ export class LigandComponent implements OnInit {
     modalRef.componentInstance.details = "Ligand";
     modalRef.result.then((data) => {
       if (data == "Yes") {
-        this.ligandManager.liganddelete(params.data.slNo).subscribe((response) => {
+        this.ligandManager.liganddelete(params.data.ligandId).subscribe((response) => {
           for (let i = 0; i < this.ligand.length; i++) {
             if (this.ligand[i].ligandId == params.data.ligandId) {
               this.ligand?.splice(i, 1);
@@ -540,7 +540,7 @@ export class LigandComponent implements OnInit {
     ligand001wb.ligandDetail = this.f.ligandDetail.value ? this.f.ligandDetail.value : "";
     ligand001wb.collectionName = this.f.collectionName.value ? this.f.collectionName.value : "";
     ligand001wb.collectionId = this.f.locator.value ? this.f.collectionId.value : "";
-    ligand001wb.locator = this.f.ligandStatus.value ? this.f.locator.value : "";
+    ligand001wb.locator = this.f.locator.value ? this.f.locator.value : "";
     ligand001wb.sourceType = this.f.sourceType.value ? this.f.sourceType.value : "";
     ligand001wb.citation = this.f.citation.value ? this.f.citation.value : "";
     ligand001wb.diseaseName = this.f.diseaseName.value ? this.f.diseaseName.value : "";
