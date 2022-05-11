@@ -18,16 +18,10 @@
                         <label path="categorySlno" for="categorySlno" cssClass="required">Category</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="categorySlno" formControlName="categorySlno" [ngClass]="{ 'is-invalid': submitted && f.categorySlno.errors }">
-                            <option value="" hidden> - Select -Category - </option>
-                            <option> PAC </option>
-                            <option> ADME </option>
-                            <option> TOX </option>
-                            <option> PAC-ADME </option>
-                            <option> PAC-TOX </option>
-                            <option> ADME-TOX </option>
-                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
-                        {{system.description}}
-                    </option> -->
+                            <option [value]=null> Select Category </option>
+                            <option *ngFor="let category of categorys" [value]="category.id">
+                                {{category.category}}
+                            </option>
                         </select>
                         <div *ngIf="submitted && f.categorySlno.errors" class="invalid-feedback">
                             <div *ngIf="f.categorySlno.errors.required">Category is Required</div>
@@ -42,50 +36,10 @@
                         <label path="functionSlno" for="functionSlno" cssClass="required">Category(functions)</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="functionSlno" formControlName="functionSlno" [ngClass]="{ 'is-invalid': submitted && f.functionSlno.errors }">
-                            <option value="" hidden> - Select -functions - </option>
-                            <option> Allergy inhibitor </option>
-                            <option> Amebicide </option>
-                            <option> Analgesic </option>
-                            <option> Anesthetic </option>
-                            <option> Anthelmintic </option>
-                            <option> Anti-aging agent </option>
-                            <option> Anti-AIDS agent </option>
-                            <option> Anti-Alzheimer agent </option>
-                            <option> Antiangiogenic agent </option>
-                            <option> Antiasthmatic agent </option>
-                            <option> Antiatherosclerotic </option>
-                            <option> Antibacterial agent </option>
-                            <option> Antibiotic </option>
-                            <option> Anticoagulation agent </option>
-                            <option> Anticonvulsant </option>
-                            <option> Anticoronaviral agent </option>
-                            <option> Antidiabetic agent </option>
-                            <option> Anti-hemorrhoidal agent </option>
-                            <option> Antihypotensive agent </option>
-                            <option> Anti-inflammatory agent </option>
-                            <option> Anti-ischemic agent </option>
-                            <option> Antimalarial </option>
-                            <option> Antimicrobial agent </option>
-                            <option> Antioxidant </option>
-                            <option> Antitumor agent </option>
-                            <option> Antiviral agent </option>
-                            <option> Cardioprotective agent </option>
-                            <option> Cytoprotective agent </option>
-                            <option> Fungicide </option>
-                            <option> Gastroprotective agent </option>
-                            <option> Hepatoprotective agent </option>
-                            <option> Immuno-modulator </option>
-                            <option> Immuno-stimulator </option>
-                            <option> Inhibitor </option>
-                            <option> Nephroprotective agent </option>
-                            <option> Neuroprotective agent </option>
-                            <option> Parasiticide </option>
-                            <option> Photosensitizer </option>
-                            <option> Protozoacide </option>
-                            <option> Radiosensitizer </option>
-                            <option> Sensitizer </option>
-                            <option> Stimulator </option>
-                            <option> Vasodilator </option>
+                            <option [value]=null> Select Category Function </option>
+                            <option *ngFor="let function of categoryfunctions" [value]="function.id">
+                                {{function.function}}
+                            </option>
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                         {{system.description}}
                     </option> -->
@@ -125,19 +79,10 @@
                         <label path="originalPrefixSlno" for="originalPrefixSlno" cssClass="required">Original-prefix</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="originalPrefixSlno" formControlName="originalPrefixSlno" [ngClass]="{ 'is-invalid': submitted && f.originalPrefixSlno.errors }">
-                            <option value="" hidden> - Select -Original-Prefix - </option>
-                            <option> = </option>
-                            <option> > </option>
-                            <option> < </option>
-                            <option> ≤ </option>
-                            <option> ≥ </option>
-                            <option> ~ </option>
-                            <option> - </option>
-                            <option> ≈ </option>
-                            <option> >= </option>
-                            <option> <= </option>
-                            <option> >~ </option>
-                            <option> <~ </option>
+                            <option [value]=null> Select Category Function </option>
+                            <option *ngFor="let originalPrefix of Originals" [value]="originalPrefix.id">
+                                {{originalPrefix.originalPrefix}}
+                            </option>
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                         {{system.description}}
                     </option> -->
@@ -247,9 +192,11 @@
                             <label path="typeSlno" for="typeSlno" cssClass="required">Type</label>
                             <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                             <select class="form-control" name="typeSlno" formControlName="typeSlno" [ngClass]="{ 'is-invalid': submitted && f.typeSlno.errors }">
-                                <option value="" hidden> - Select -types - </option>
-                                <option> in vitro </option>
-                                <option> in vivo </option>
+                                <option [value]="" hidden> - Select Types - </option>
+                                <option [value]="null"> - Select Types - </option>
+                                <option *ngFor="let type of types" [value]="type.id">
+                                    {{type.type}}
+                                </option>
                                 <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                             {{system.description}}
                         </option> -->
@@ -326,9 +273,9 @@
 
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
-                            <label path="genderSlno" for="genderSlno" cssClass="required">Gender</label>
+                            <label path="gender" for="gender" cssClass="required">Gender</label>
                             <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
-                            <select class="form-control" name="genderSlno" formControlName="genderSlno" [ngClass]="{ 'is-invalid': submitted && f.genderSlno.errors }">
+                            <select class="form-control" name="gender" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
                                 <option value="" hidden> - Select -Gender - </option>
                                 <option> Male </option>
                                 <option> female </option>
@@ -336,8 +283,8 @@
                                 {{system.description}}
                             </option> -->
                             </select>
-                            <div *ngIf="submitted && f.genderSlno.errors" class="invalid-feedback">
-                                <div *ngIf="f.genderSlno.errors.required">Gender is Required</div>
+                            <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                <div *ngIf="f.gender.errors.required">Gender is Required</div>
                             </div>
                         </div>
                     </div>
@@ -365,7 +312,7 @@
                 <div class="col-sm-12 ">
                     <div class="form-group">
                         <button class="btn btn-primary previous" cdkStepperPrevious>Previous</button>
-                        <button type="submit" class="btn btn-primary submit" cdkStepperNext>Submit</button>
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
                         <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
                     </div>
                 </div>

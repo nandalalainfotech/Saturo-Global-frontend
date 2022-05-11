@@ -30,6 +30,7 @@ import { CategoryManager } from 'src/app/shared/services/restcontroller/bizservi
 import { CategoryfunctionManager } from 'src/app/shared/services/restcontroller/bizservice/categoryFunction.service';
 import { OriginalprefixManager } from 'src/app/shared/services/restcontroller/bizservice/originalPrefix.service';
 import { BioTypeManager } from 'src/app/shared/services/restcontroller/bizservice/type.service';
+import { GenderComponent } from './gender/gender.component';
 
 
 
@@ -49,7 +50,8 @@ import { BioTypeManager } from 'src/app/shared/services/restcontroller/bizservic
     CategoryComponent,
     CategoryFunctionsComponent,
     OriginalPrefixComponent,
-    BioSystemTypesComponent],
+    BioSystemTypesComponent,
+    GenderComponent],
   imports: [
     CommonModule,
     MasterRoutingModule,

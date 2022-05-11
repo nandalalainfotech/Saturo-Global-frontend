@@ -20,12 +20,18 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { appSettingManager } from '../shared/services/restcontroller/bizservice/app-settings.service';
 import { AssayManager } from '../shared/services/restcontroller/bizservice/Assay.service';
 import { AssayTypeManager } from '../shared/services/restcontroller/bizservice/assayType.service';
+
+import { CategoryManager } from '../shared/services/restcontroller/bizservice/category.service';
+import { CategoryfunctionManager } from '../shared/services/restcontroller/bizservice/categoryFunction.service';
+
 import { LigandManager } from '../shared/services/restcontroller/bizservice/ligandManager.service';
 import { LigandTypeManager } from '../shared/services/restcontroller/bizservice/ligandType.service';
 import { LigandVersionManager } from '../shared/services/restcontroller/bizservice/ligandVersion.service';
 import { MeasurementManager } from '../shared/services/restcontroller/bizservice/Measurement.service';
 import { RouteofAdminManager } from '../shared/services/restcontroller/bizservice/routeOfAdministration.service';
 import { ToxicityManager } from '../shared/services/restcontroller/bizservice/toxiCity.service';
+import { OriginalprefixManager } from '../shared/services/restcontroller/bizservice/originalPrefix.service';
+import { BioTypeManager } from '../shared/services/restcontroller/bizservice/type.service';
 import { UnitHighEndValueManager } from '../shared/services/restcontroller/bizservice/UnitHighEndValue.service';
 import { UnitlowendvalueManager } from '../shared/services/restcontroller/bizservice/Unitlowendvalue.service';
 import { UnitSingleValueManager } from '../shared/services/restcontroller/bizservice/unitSingleValue.service';
@@ -97,10 +103,10 @@ import { TargetComponent } from './target/target.component';
         CdkStepperModule,
         NgStepperModule
     ],
-    providers: [DataSharedService, 
-        appSettingManager, 
-        UserManager, 
-        LigandManager, 
+    providers: [DataSharedService,
+        appSettingManager,
+        UserManager,
+        LigandManager,
         LigandVersionManager,
         LigandTypeManager,
         AssayManager,
@@ -111,7 +117,11 @@ import { TargetComponent } from './target/target.component';
         AssayTypeManager,
         ToxicityManager,
         RouteofAdminManager,
-        
+        CategoryManager,
+        CategoryfunctionManager,
+        OriginalprefixManager,
+        BioTypeManager
+
     ],
     exports: [NgbCollapseModule],
 })

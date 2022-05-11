@@ -1,13 +1,13 @@
 export class Measurement001wb {
     measurementId?: number;
-    dataLocator?: number;
+    dataLocator?: string;
     categorySlno?: number;
     functionSlno?: number;
     parameter?: string;
     parameterDetail?: string;
-    singleValue?: string;
-    unit?: string;
     originalPrefixSlno?: number;
+    unit?: string;
+    singleValue?: string;
     highEndValue?: string;
     lowEndValue?: string;
     units?: string;
@@ -20,7 +20,7 @@ export class Measurement001wb {
     organDetail?: string;
     species?: string;
     speciesDetail?: string;
-    genderSlno?: number;
+    gender?: string;
     ageGroup?: string;
     insertUser?: string;
     insertDatetime?: Date;

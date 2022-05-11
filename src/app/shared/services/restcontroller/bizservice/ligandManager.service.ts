@@ -27,9 +27,9 @@ export class LigandManager extends BaseService {
         return this.putCallService(`${this.ligandUrl}` + "/update", {}, ligand001wb);
     }
 
-    liganddelete(slNo: any) {
+    liganddelete(ligandId: any) {
         let data: any = {};
-        data['slNo'] = slNo;
+        data['ligandId'] = ligandId;
         return this.deleteCallService(`${this.ligandUrl}` + "/delete", data);
     }
 }
