@@ -26,6 +26,10 @@ import { LigandTypeManager } from 'src/app/shared/services/restcontroller/bizser
 import { AssayTypeManager } from 'src/app/shared/services/restcontroller/bizservice/assayType.service';
 import { ToxicityManager } from 'src/app/shared/services/restcontroller/bizservice/toxiCity.service';
 import { RouteofAdminManager } from 'src/app/shared/services/restcontroller/bizservice/routeOfAdministration.service';
+import { CategoryManager } from 'src/app/shared/services/restcontroller/bizservice/category.service';
+import { CategoryfunctionManager } from 'src/app/shared/services/restcontroller/bizservice/categoryFunction.service';
+import { OriginalprefixManager } from 'src/app/shared/services/restcontroller/bizservice/originalPrefix.service';
+import { BioTypeManager } from 'src/app/shared/services/restcontroller/bizservice/type.service';
 
 
 
@@ -54,6 +58,10 @@ import { RouteofAdminManager } from 'src/app/shared/services/restcontroller/bizs
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
   ],
-  providers: [LigandVersionManager,LigandTypeManager,AssayTypeManager,ToxicityManager,RouteofAdminManager]
+  providers: [LigandVersionManager,
+    LigandTypeManager,AssayTypeManager,
+    ToxicityManager,RouteofAdminManager,
+    CategoryManager,CategoryfunctionManager,OriginalprefixManager,BioTypeManager
+  ]
 })
 export class MasterModule { }
