@@ -44,7 +44,6 @@ export class LigandComponent implements OnInit {
   sourceType: string = "";
   citation: number | any;
   diseaseName: string = "";
-
   target: number | any;
   targetVersion: number | any;
   targetStatus: string = "";
@@ -57,9 +56,10 @@ export class LigandComponent implements OnInit {
   insertDatetime: Date | any;
   updatedUser: string = "";
   updatedDatetime: Date | any;
+
   ligand: Ligand001wb[] = [];
   ligandVersions: Ligandversion001mb[] = [];
-  ligandtypes: Ligandtype001mb [] = [];
+  ligandtypes: Ligandtype001mb[] = [];
 
   hexToRgb: any;
   rgbToHex: any;
@@ -96,7 +96,7 @@ export class LigandComponent implements OnInit {
 
     this.ligandTypeManager.allligandType().subscribe(response => {
       this.ligandtypes = deserialize<Ligandtype001mb[]>(Ligandtype001mb, response);
-      
+
     });
 
     this.createDataGrid001();
@@ -106,7 +106,7 @@ export class LigandComponent implements OnInit {
       tanNumber: ['', Validators.required],
       ligandUri: ['', Validators.required],
       ligandVersionSlno: ['', Validators.required],
-      ligandVersions:[''],
+      ligandVersions: [''],
       ligandStatus: [''],
       ligandTypeSlno: ['', Validators.required],
       collection: [''],

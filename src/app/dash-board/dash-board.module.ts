@@ -19,10 +19,13 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { appSettingManager } from '../shared/services/restcontroller/bizservice/app-settings.service';
 import { AssayManager } from '../shared/services/restcontroller/bizservice/Assay.service';
+import { AssayTypeManager } from '../shared/services/restcontroller/bizservice/assayType.service';
 import { LigandManager } from '../shared/services/restcontroller/bizservice/ligandManager.service';
 import { LigandTypeManager } from '../shared/services/restcontroller/bizservice/ligandType.service';
 import { LigandVersionManager } from '../shared/services/restcontroller/bizservice/ligandVersion.service';
 import { MeasurementManager } from '../shared/services/restcontroller/bizservice/Measurement.service';
+import { RouteofAdminManager } from '../shared/services/restcontroller/bizservice/routeOfAdministration.service';
+import { ToxicityManager } from '../shared/services/restcontroller/bizservice/toxiCity.service';
 import { UnitHighEndValueManager } from '../shared/services/restcontroller/bizservice/UnitHighEndValue.service';
 import { UnitlowendvalueManager } from '../shared/services/restcontroller/bizservice/Unitlowendvalue.service';
 import { UnitSingleValueManager } from '../shared/services/restcontroller/bizservice/unitSingleValue.service';
@@ -104,7 +107,11 @@ import { TargetComponent } from './target/target.component';
         MeasurementManager,
         UnitSingleValueManager,
         UnitHighEndValueManager,
-        UnitlowendvalueManager
+        UnitlowendvalueManager,
+        AssayTypeManager,
+        ToxicityManager,
+        RouteofAdminManager,
+        
     ],
     exports: [NgbCollapseModule],
 })

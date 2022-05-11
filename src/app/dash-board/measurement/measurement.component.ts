@@ -114,7 +114,7 @@ export class MeasurementComponent implements OnInit {
       this.colorthemes_4 = Utils.rgbToHex(rgb, 0.8);
     });
 
-
+    this.loadData();
   }
 
 

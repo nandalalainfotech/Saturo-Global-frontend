@@ -1,3 +1,6 @@
+import { Ligandversion001mb } from "./Ligandversion001mb";
+
+
 export class Ligand001wb {
     ligandId?: number;
     tanNumber?: string;
@@ -25,4 +28,8 @@ export class Ligand001wb {
     insertDatetime?: Date;
     updatedUser?: string | null;
     updatedDatetime?: Date | null;
+
+
+    ligandVersionSlno2?: Ligandversion001mb[];
+
 }

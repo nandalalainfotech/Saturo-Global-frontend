@@ -7,9 +7,24 @@ import { Observable } from 'rxjs';
 import { deserialize } from 'serializer.ts/Serializer';
 import { AuditComponent } from 'src/app/shared/audit/audit.component';
 import { ConformationComponent } from 'src/app/shared/conformation/conformation.component';
+import { IconRendererComponent } from 'src/app/shared/services/renderercomponent/icon-renderer-component';
 import { AssayManager } from 'src/app/shared/services/restcontroller/bizservice/Assay.service';
+import { AssayTypeManager } from 'src/app/shared/services/restcontroller/bizservice/assayType.service';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
+import { LigandManager } from 'src/app/shared/services/restcontroller/bizservice/ligandManager.service';
+import { RouteofAdminManager } from 'src/app/shared/services/restcontroller/bizservice/routeOfAdministration.service';
+import { ToxicityManager } from 'src/app/shared/services/restcontroller/bizservice/toxiCity.service';
+import { UnitHighEndValueManager } from 'src/app/shared/services/restcontroller/bizservice/UnitHighEndValue.service';
+import { UnitlowendvalueManager } from 'src/app/shared/services/restcontroller/bizservice/Unitlowendvalue.service';
+import { UnitSingleValueManager } from 'src/app/shared/services/restcontroller/bizservice/unitSingleValue.service';
 import { Assay001wb } from 'src/app/shared/services/restcontroller/entities/Assay001wb ';
+import { Assaytype001mb } from 'src/app/shared/services/restcontroller/entities/Assaytype001mb';
+import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Ligand001wb';
+import { Routeofadministration001mb } from 'src/app/shared/services/restcontroller/entities/Routeofadministration001mb';
+import { Toxicity001mb } from 'src/app/shared/services/restcontroller/entities/Toxicity001mb';
+import { Unithighendvalue001mb } from 'src/app/shared/services/restcontroller/entities/Unithighendvalue001mb';
+import { Unitlowendvalue001mb } from 'src/app/shared/services/restcontroller/entities/Unitlowendvalue001mb';
+import { Unitsinglevalue001mb } from 'src/app/shared/services/restcontroller/entities/Unitsinglevalue001mb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
 import { Utils } from 'src/app/shared/utils/utils';
 
@@ -31,8 +46,8 @@ export class AssayComponent implements OnInit {
   toxiCitySlno: number | any;
   routeSlno: number | any;
   ligandSvalue: string = "";
-  LigandHvalue: string = "";
-  LigandLvalue: string = "";
+  ligandHvalue: string = "";
+  ligandLvalue: string = "";
   unitsSlno: number | any;
   unitSlno: number | any;
   administration: string = "";
@@ -47,7 +62,15 @@ export class AssayComponent implements OnInit {
   insertDatetime: Date | any;
   updatedUser: string = "";
   updatedDatetime: Date | any;
+
   assay: Assay001wb[] = [];
+  ligands: Ligand001wb[] = [];
+  assayTypes: Assaytype001mb[] = [];
+  toxiCities: Toxicity001mb[] = [];
+  routeAdmins: Routeofadministration001mb[] = [];
+  unitsinglevalues: Unitsinglevalue001mb[] = [];
+  unithighendvalues: Unithighendvalue001mb[] = [];
+  unitlowendvalues: Unitlowendvalue001mb[] = [];
 
   hexToRgb: any;
   rgbToHex: any;
@@ -65,31 +88,73 @@ export class AssayComponent implements OnInit {
     private calloutService: CalloutService,
     private http: HttpClient,
     private modalService: NgbModal,
-    private assayManager: AssayManager,) { }
+    private assayManager: AssayManager,
+    private ligandManager: LigandManager,
+    private assayTypeManager: AssayTypeManager,
+    private toxicityManager: ToxicityManager,
+    private routeofAdminManager: RouteofAdminManager,
+    private unitSingleValueManager: UnitSingleValueManager,
+    private unitHighEndValueManager: UnitHighEndValueManager,
+    private unitlowendvalueManager: UnitlowendvalueManager,) {
+
+    this.frameworkComponents = {
+      iconRenderer: IconRendererComponent
+    }
+
+  }
 
   ngOnInit(): void {
 
+    this.createDataGrid001();
+
+    this.ligandManager.allligand().subscribe(response => {
+      this.ligands = deserialize<Ligand001wb[]>(Ligand001wb, response);
+    });
+
+    this.assayTypeManager.allassayType().subscribe(response => {
+      this.assayTypes = deserialize<Assaytype001mb[]>(Assaytype001mb, response);
+    });
+
+    this.toxicityManager.alltoxicityType().subscribe(response => {
+      this.toxiCities = deserialize<Toxicity001mb[]>(Toxicity001mb, response);
+    });
+
+    this.routeofAdminManager.allrouteofadminType().subscribe(response => {
+      this.routeAdmins = deserialize<Routeofadministration001mb[]>(Routeofadministration001mb, response);
+    });
+
+    this.unitSingleValueManager.allunitSingleValue().subscribe(response => {
+      this.unitsinglevalues = deserialize<Unitsinglevalue001mb[]>(Unitsinglevalue001mb, response);
+    });
+
+    this.unitHighEndValueManager.allunitHighEndValue().subscribe(response => {
+      this.unithighendvalues = deserialize<Unithighendvalue001mb[]>(Unithighendvalue001mb, response);
+    });
+
+    this.unitlowendvalueManager.allunitlowendvalue().subscribe(response => {
+      this.unitlowendvalues = deserialize<Unitlowendvalue001mb[]>(Unitlowendvalue001mb, response);
+    });
 
     this.AssayForm = this.formBuilder.group({
-      ligandVersion: ['', Validators.required],
+      ligandVersionSlno: ['', Validators.required],
       ordinal: ['', Validators.required],
       collectionId: ['', Validators.required],
-      assayType: ['', Validators.required],
-      toxiCity: ['', Validators.required],
-      route: ['', Validators.required],
+      assayTypeSlno: ['', Validators.required],
+      toxiCitySlno: ['', Validators.required],
+      routeSlno: ['', Validators.required],
       ligandSvalue: ['', Validators.required],
-      LigandHvalue: ['', Validators.required],
-      LigandLvalue: ['', Validators.required],
-      Unit: ['', Validators.required],
-      Units: ['', Validators.required],
-      Administration: ['', Validators.required],
-      Procedure: ['', Validators.required],
-      Target: ['', Validators.required],
-      Conditiontype: ['', Validators.required],
-      Conditionmaterial: ['', Validators.required],
-      Conditionmaterialid: ['', Validators.required],
+      ligandHvalue: ['', Validators.required],
+      ligandLvalue: ['', Validators.required],
+      unitSlno: ['', Validators.required],
+      unitsSlno: ['', Validators.required],
+      administration: ['', Validators.required],
+      procedure: ['', Validators.required],
+      target: ['', Validators.required],
+      conditionType: ['', Validators.required],
+      conditionMaterial: ['', Validators.required],
+      conditionMaterialid: ['', Validators.required],
       value: ['', Validators.required],
-      united: ['', Validators.required],
+      unitedSlno: ['', Validators.required],
     });
 
     this.authManager.currentUserSubject.subscribe((object: any) => {
@@ -103,9 +168,9 @@ export class AssayComponent implements OnInit {
       this.colorthemes_4 = Utils.rgbToHex(rgb, 0.8);
     });
 
-    this.createDataGrid001();
 
 
+    this.loadData();
 
 
   }
@@ -137,130 +202,149 @@ export class AssayComponent implements OnInit {
 
     this.gridOptions.columnDefs = [
       {
-        headerName: 'Ligand-Version',
-        field: 'ligandVersion',
+        headerName: 'Sl-No',
+        field: 'assayId',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
-        suppressSizeToFit: true
+        headerCheckboxSelection: true,
+        headerCheckboxSelectionFilteredOnly: true,
+        checkboxSelection: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Ligand-Version',
+        field: 'ligandVersionSlno',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+        // valueGetter: this.setVersion.bind(this)
       },
       {
         headerName: 'Ordinal',
-        field: 'Ordinal',
+        field: 'ordinal',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
         suppressSizeToFit: true
       },
       {
         headerName: 'Collection-id',
-        field: 'Collectionid',
+        field: 'collectionId',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
         suppressSizeToFit: true
       },
       {
         headerName: 'Assay-type',
-        field: 'AssayType',
+        field: 'assayTypeSlno',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
-        suppressSizeToFit: true
+        suppressSizeToFit: true,
+        valueGetter: this.setAssayType.bind(this)
       },
       {
         headerName: 'Toxicity-type',
-        field: 'Toxicity',
+        field: 'toxiCitySlno',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
-        suppressSizeToFit: true
+        suppressSizeToFit: true,
+        valueGetter: this.setToxicityType.bind(this)
       },
 
       {
         headerName: 'Route-of-administration',
-        field: 'Route',
+        field: 'routeSlno',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
-        suppressSizeToFit: true
+        suppressSizeToFit: true,
+        valueGetter: this.setRouteAdmin.bind(this)
       },
       {
-        headerName: 'Ligand-Dose',
-        field: 'Ligand',
+        headerName: 'Ligand-Dose(singleValue)',
+        field: 'ligandSvalue',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
         suppressSizeToFit: true
       },
       {
-        headerName: 'Unit',
-        field: 'Unit',
+        headerName: 'Unit(singleValue)',
+        field: 'unitSlno',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
-        suppressSizeToFit: true
+        suppressSizeToFit: true,
+        valueGetter: this.setUnitSingleValue.bind(this)
       },
       {
-        headerName: 'Ligand-Dose',
-        field: 'Liganddose',
+        headerName: 'Ligand-Dose(highValue)',
+        field: 'ligandHvalue',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
         suppressSizeToFit: true
       },
       {
-        headerName: 'Ligand-Dose',
-        field: 'Ligand',
+        headerName: 'Ligand-Dose(lowValue)',
+        field: 'ligandLvalue',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
         suppressSizeToFit: true
       },
       {
-        headerName: 'Unit',
-        field: 'Units',
+        headerName: 'Unit(highValue)',
+        field: 'unitsSlno',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
-
-        suppressSizeToFit: true
+        suppressSizeToFit: true,
+        valueGetter: this.setUnitHighValue.bind(this)
       },
       {
-        headerName: 'Administration-regimen',
-        field: 'Administration',
+        headerName: 'unit(lowValue)',
+        field: 'unitedSlno',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+        valueGetter: this.setUnitLowValue.bind(this)
+      },
+      {
+        headerName: 'Administration',
+        field: 'administration',
         width: 200,
         flex: 1,
         sortable: true,
@@ -271,7 +355,7 @@ export class AssayComponent implements OnInit {
       },
       {
         headerName: 'Procedure',
-        field: 'Procedure',
+        field: 'procedure',
         width: 200,
         flex: 1,
         sortable: true,
@@ -282,7 +366,7 @@ export class AssayComponent implements OnInit {
       },
       {
         headerName: 'Target-uri',
-        field: 'Target',
+        field: 'target',
         width: 200,
         flex: 1,
         sortable: true,
@@ -293,7 +377,7 @@ export class AssayComponent implements OnInit {
       },
       {
         headerName: 'Condition type',
-        field: 'Conditiontype',
+        field: 'conditionType',
         width: 200,
         flex: 1,
         sortable: true,
@@ -304,7 +388,7 @@ export class AssayComponent implements OnInit {
       },
       {
         headerName: 'Condition material',
-        field: 'Conditionmaterial',
+        field: 'conditionMaterial',
         width: 200,
         flex: 1,
         sortable: true,
@@ -315,7 +399,7 @@ export class AssayComponent implements OnInit {
       },
       {
         headerName: 'Condition material-id',
-        field: 'Conditionmaterialid',
+        field: 'conditionMaterialid',
         width: 200,
         flex: 1,
         sortable: true,
@@ -335,17 +419,7 @@ export class AssayComponent implements OnInit {
 
         suppressSizeToFit: true
       },
-      {
-        headerName: 'unit',
-        field: 'united',
-        width: 200,
-        flex: 1,
-        sortable: true,
-        filter: true,
-        resizable: true,
 
-        suppressSizeToFit: true
-      },
       {
         headerName: 'Edit',
         cellRenderer: 'iconRenderer',
@@ -385,13 +459,40 @@ export class AssayComponent implements OnInit {
     ]
   }
 
+  // setVersion(params: any): string {
+  //   return params.data.ligandVersionSlno2 ? params.data.ligandVersionSlno2.ligandVersion : null;
+  // }
+
+  setAssayType(params: any): string {
+    return params.data.assayTypeSlno2 ? params.data.assayTypeSlno2.assayType : null;
+  }
+
+  setToxicityType(params: any): string {
+    return params.data.toxiCitySlno2 ? params.data.toxiCitySlno2.toxiCity : null;
+  }
+
+  setRouteAdmin(params: any): string {
+    return params.data.routeSlno2 ? params.data.routeSlno2.route : null;
+  }
+
+  setUnitSingleValue(params: any): string {
+    return params.data.unitSlno2 ? params.data.unitSlno2.unit : null;
+  }
+
+  setUnitHighValue(params: any): string {
+    return params.data.unitsSlno2 ? params.data.unitsSlno2.units : null;
+  }
+
+  setUnitLowValue(params: any): string {
+    return params.data.unitedSlno2 ? params.data.unitedSlno2.united : null;
+  }
+
 
   onEditButtonClick(params: any) {
     this.assayId = params.data.assayId;
     this.insertUser = params.data.insertUser;
     this.insertDatetime = params.data.insertDatetime;
     this.AssayForm.patchValue({
-      'assayId': params.data.assayId,
       'ordinal': params.data.ordinal,
       'collectionId': params.data.collectionId,
       'ligandVersionSlno': params.data.ligandVersionSlno,
@@ -410,6 +511,7 @@ export class AssayComponent implements OnInit {
       'targetStatus': params.data.targetStatus,
       'conditionMaterial': params.data.conditionMaterial,
       'conditionMaterialid': params.data.conditionMaterialid,
+      'value': params.data.value,
       'unitedSlno': params.data.unitedSlno,
 
     });
@@ -457,13 +559,14 @@ export class AssayComponent implements OnInit {
 
 
   onAssayClick(event: any, itemsForm: any) {
+    console.log("itemsForm", itemsForm);
+
     this.markFormGroupTouched(this.AssayForm);
     this.submitted = true;
     if (this.AssayForm.invalid) {
       return;
     }
     let assay001wb = new Assay001wb();
-    assay001wb.assayId = this.f.assayId.value ? this.f.assayId.value : "";
     assay001wb.ordinal = this.f.ordinal.value ? this.f.ordinal.value : "";
     assay001wb.collectionId = this.f.collectionId.value ? this.f.collectionId.value : "";
     assay001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
