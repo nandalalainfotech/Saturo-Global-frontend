@@ -1,22 +1,21 @@
 <fieldset class="scheduler-border">
     <legend class="scheduler-border">Unit(Low-end-value)</legend>
     <div class="formData">
-        <form [formGroup]="UnitLowendForm" (ngSubmit)="onUnitUnitHigendvalueClick($event, UnitLowendForm)" >
-            <div class="row">      
+        <form [formGroup]="UnitLowendForm" (ngSubmit)="onUnitUnitHigendvalueClick($event, UnitLowendForm)">
+            <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="unitLvalue" for="series" cssClass="required">Unit(Low-end-value)</label>
-                        <input class="form-control" name="unitLvalue" formControlName="unitLvalue"
-                            [ngClass]="{ 'is-invalid': submitted && f.unitLvalue.errors }">
-                        <div *ngIf="submitted && f.unitLvalue.errors" class="invalid-feedback">
-                            <div *ngIf="f.unitLvalue.errors.required">Unit(Low-end-value) is Required</div>
+                        <label path="united" for="series" cssClass="required">Unit(Low-end-value)</label>
+                        <input class="form-control" name="united" formControlName="united" [ngClass]="{ 'is-invalid': submitted && f.united.errors }">
+                        <div *ngIf="submitted && f.united.errors" class="invalid-feedback">
+                            <div *ngIf="f.united.errors.required">Unit(Low-end-value) is Required</div>
                         </div>
                     </div>
                 </div>
-               
+
             </div>
 
-            
+
             <div class="row">
                 <div class="col-sm-12 ">
                     <div class="form-group">
@@ -46,8 +45,7 @@
         </div>
 
         <legend class="scheduler-border">Unit(Low-end-value)</legend>
-        <!-- <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
-            [frameworkComponents]="frameworkComponents">
-        </ag-grid-angular> -->
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
     </fieldset>
 </div>

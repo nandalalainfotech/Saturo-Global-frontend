@@ -18,9 +18,14 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { appSettingManager } from '../shared/services/restcontroller/bizservice/app-settings.service';
+import { AssayManager } from '../shared/services/restcontroller/bizservice/Assay.service';
 import { LigandManager } from '../shared/services/restcontroller/bizservice/ligandManager.service';
 import { LigandTypeManager } from '../shared/services/restcontroller/bizservice/ligandType.service';
 import { LigandVersionManager } from '../shared/services/restcontroller/bizservice/ligandVersion.service';
+import { MeasurementManager } from '../shared/services/restcontroller/bizservice/Measurement.service';
+import { UnitHighEndValueManager } from '../shared/services/restcontroller/bizservice/UnitHighEndValue.service';
+import { UnitlowendvalueManager } from '../shared/services/restcontroller/bizservice/Unitlowendvalue.service';
+import { UnitSingleValueManager } from '../shared/services/restcontroller/bizservice/unitSingleValue.service';
 import { UserManager } from '../shared/services/restcontroller/bizservice/user.service';
 import { DataSharedService } from '../shared/services/services/datashared.service';
 import { AssayComponent } from './assay/assay.component';
@@ -89,7 +94,18 @@ import { TargetComponent } from './target/target.component';
         CdkStepperModule,
         NgStepperModule
     ],
-    providers: [DataSharedService, appSettingManager, UserManager, LigandManager, LigandVersionManager,LigandTypeManager],
+    providers: [DataSharedService, 
+        appSettingManager, 
+        UserManager, 
+        LigandManager, 
+        LigandVersionManager,
+        LigandTypeManager,
+        AssayManager,
+        MeasurementManager,
+        UnitSingleValueManager,
+        UnitHighEndValueManager,
+        UnitlowendvalueManager
+    ],
     exports: [NgbCollapseModule],
 })
 export class DashboardModule { }

@@ -1,5 +1,6 @@
 export class Measurement001wb {
     measurementId?: number;
+    dataLocator?: number;
     categorySlno?: number;
     functionSlno?: number;
     parameter?: string;
