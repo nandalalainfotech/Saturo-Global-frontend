@@ -1,3 +1,5 @@
+import { Ligandversion001mb } from "./Ligandversion001mb";
+
 export class Assay001wb {
     assayId?: number;
     ordinal?: string;
@@ -23,4 +25,6 @@ export class Assay001wb {
     insertDatetime?: Date;
     updatedUser?: string | null;
     updatedDatetime?: Date | null;
+    ligandVersionSlno2?: Ligandversion001mb[];
+    
 }

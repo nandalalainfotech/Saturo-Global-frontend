@@ -9,11 +9,12 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno" [ngClass]="{ 'is-invalid': submitted && f.ligandVersionSlno.errors }">
                             <option value="" hidden> - Select Ligand-Version - </option>
-                            <option> 1 </option>
-                            <option> 2 </option>
-                            <option> 3 </option>
-                            <option> 4 </option>
-                            <option> 5 </option>
+                            <option> - Select Ligand-Version - </option>
+                            <option> - 1 -</option>
+                            <!-- <option *ngFor="let ligand of ligands" >
+                                {{ligand.ligandVersionSlno2?.ligandVersion}}
+                            </option> -->
+                           
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
@@ -50,9 +51,10 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="assayTypeSlno" formControlName="assayTypeSlno" [ngClass]="{ 'is-invalid': submitted && f.assayTypeSlno.errors }">
                             <option value="" hidden> - Select Assay-Types - </option>
-                            <option> Binding </option>
-                            <option> Functional </option>
-                            <option> Non-clinical trial ADME </option>
+                            <option> - Select Assay-Types - </option>
+                            <option *ngFor="let assayType of assayTypes" [value]="assayType.id">
+                                {{assayType.assayType}}
+                            </option>
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
@@ -71,29 +73,10 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="toxiCitySlno" formControlName="toxiCitySlno" [ngClass]="{ 'is-invalid': submitted && f.toxiCitySlno.errors }">
                             <option value="" hidden> - Select Toxicity-Types - </option>
-                            <option> Carcinogenicity </option>
-                            <option> Cardiotoxicity </option>
-                            <option> Cytotoxicity </option>
-                            <option> Dose-limiting toxicity </option>
-                            <option> Ecotoxicity </option>
-                            <option> Embryotoxicity </option>
-                            <option> Endocrine disruption </option>
-                            <option> Gastrointestinal toxicity </option>
-                            <option> Genotoxicity </option>
-                            <option> Hematotoxicity </option>
-                            <option> Hepatotoxicity </option>
-                            <option> Immunotoxicity </option>
-                            <option> Inhalation toxicity </option>
-                            <option> Mutagenicity </option>
-                            <option> Myelotoxicity </option>
-                            <option> Myotoxicity </option>
-                            <option> Nephrotoxicity </option>
-                            <option> Neurotoxicity </option>
-                            <option> Ocular toxicity </option>
-                            <option> Ototoxicity </option>
-                            <option> Pulmonary toxicity </option>
-                            <option> Reproductive toxicity </option>
-                            <option> Skin toxicity </option>
+                            <option> - Select Toxicity-Types - </option>
+                            <option *ngFor="let toxiCity of toxiCities" [value]="toxiCity.id">
+                                {{toxiCity.toxiCity}}
+                            </option>
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
@@ -112,51 +95,10 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="routeSlno" formControlName="routeSlno" [ngClass]="{ 'is-invalid': submitted && f.routeSlno.errors }">
                             <option value="" hidden> - Select Route-Types - </option>
-                            <option> Auricular </option>
-                            <option> Otic </option>
-                            <option> Buccal </option>
-                            <option> Epidural </option>
-                            <option> Intra-arterial </option>
-                            <option> Intra-articular </option>
-                            <option> Intracardiac </option>
-                            <option> Intracerebroventricular </option>
-                            <option> Intraductal </option>
-                            <option> Intrafollicular </option>
-                            <option> Intragastric </option>
-                            <option> Intralesional </option>
-                            <option> Intramuscular </option>
-                            <option> Intramammary </option>
-                            <option> Immersion </option>
-                            <option> Infiltration </option>
-                            <option> Respiratory </option>
-                            <option> Inhalation </option>
-                            <option> Intraperitoneal </option>
-                            <option> Intrasinal </option>
-                            <option> Intrasynovial </option>
-                            <option> Intrathecal </option>
-                            <option> Intrathecal </option>
-                            <option> Intratesticular </option>
-                            <option> Intrauterine </option>
-                            <option> Intravenous </option>
-                            <option> Intravesical </option>
-                            <option> Nasal </option>
-                            <option> Nasogastric </option>
-                            <option> Ophthalmic </option>
-                            <option> Parenteral </option>
-                            <option> Perineural </option>
-                            <option> Oral </option>
-                            <option> Gavaged </option>
-                            <option> Intragastric gavage </option>
-                            <option> Intragastric gavage </option>
-                            <option> Peroral </option>
-                            <option> Vaginal </option>
-                            <option> Rectal </option>
-                            <option> Subcutaneous </option>
-                            <option> Subcutaneous implant </option>
-                            <option> Sublingual </option>
-                            <option> Topical </option>
-                            <option> Topical-pour on </option>
-                            <option> Transdermal </option>
+                            <option> - Select Route-Types - </option>
+                            <option *ngFor="let routeAdmin of routeAdmins" [value]="routeAdmin.id">
+                                {{routeAdmin.route}}
+                            </option>
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
@@ -184,9 +126,10 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="unitSlno" formControlName="unitSlno" [ngClass]="{ 'is-invalid': submitted && f.unitSlno.errors }">
                             <option value="" hidden> - Select Unit-Types - </option>
-                            <option> 1 </option>
-                            <option> 2 </option>
-                            <option> 3 </option>
+                            <option> - Select Unit-Types - </option>
+                            <option *ngFor="let unitsinglevalue of unitsinglevalues" [value]="unitsinglevalue.id">
+                                {{unitsinglevalue.unit}}
+                            </option>
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
@@ -219,9 +162,10 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="unitsSlno" formControlName="unitsSlno" [ngClass]="{ 'is-invalid': submitted && f.unitsSlno.errors }">
                             <option value="" hidden> - Select Units-Types - </option>
-                            <option> 1 </option>
-                            <option> 2 </option>
-                            <option> 3 </option>
+                            <option> - Select Units-Types- </option>
+                            <option *ngFor="let unithighendvalue of unithighendvalues" [value]="unithighendvalue.id">
+                                {{unithighendvalue.units}}
+                            </option>
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
@@ -249,9 +193,10 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="unitedSlno" formControlName="unitedSlno" [ngClass]="{ 'is-invalid': submitted && f.unitedSlno.errors }">
                             <option value="" hidden> - Select Units-Types - </option>
-                            <option> 1 </option>
-                            <option> 2 </option>
-                            <option> 3 </option>
+                            <option> - Select Units-Types- </option>
+                            <option *ngFor="let unitlowendvalue of unitlowendvalues" [value]="unitlowendvalue.id">
+                                {{unitlowendvalue.united}}
+                            </option>
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
@@ -346,8 +291,8 @@
             <div class="row">
                 <div class="col-sm-12 ">
                     <div class="form-group buttons">
-                        <button class="btn btn-primary previous" cdkStepperPrevious>Previous</button>
-                        <button type="submit" class="btn btn-primary submit" cdkStepperNext>Submit</button>
+                        <button class="btn btn-primary previous">Previous</button>
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
                         <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
                     </div>
                 </div>
