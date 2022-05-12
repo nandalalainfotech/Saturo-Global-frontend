@@ -18,7 +18,8 @@
                         <label path="categorySlno" for="categorySlno" cssClass="required">Category</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="categorySlno" formControlName="categorySlno" [ngClass]="{ 'is-invalid': submitted && f.categorySlno.errors }">
-                            <option [value]=null> Select Category </option>
+                            <option [value]="" hidden> - Select Category - </option>
+                            <option [value]=null> - Select Category -</option>
                             <option *ngFor="let category of categorys" [value]="category.id">
                                 {{category.category}}
                             </option>
@@ -36,6 +37,7 @@
                         <label path="functionSlno" for="functionSlno" cssClass="required">Category(functions)</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="functionSlno" formControlName="functionSlno" [ngClass]="{ 'is-invalid': submitted && f.functionSlno.errors }">
+                            <option [value]="" hidden> - Select Category Function - </option>
                             <option [value]=null> Select Category Function </option>
                             <option *ngFor="let function of categoryfunctions" [value]="function.id">
                                 {{function.function}}
@@ -79,7 +81,8 @@
                         <label path="originalPrefixSlno" for="originalPrefixSlno" cssClass="required">Original-prefix</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="originalPrefixSlno" formControlName="originalPrefixSlno" [ngClass]="{ 'is-invalid': submitted && f.originalPrefixSlno.errors }">
-                            <option [value]=null> Select Category Function </option>
+                            <option [value]="" hidden> - Select Original Prefix - </option>
+                            <option [value]=null> - Select Original Prefix - </option>
                             <option *ngFor="let originalPrefix of Originals" [value]="originalPrefix.id">
                                 {{originalPrefix.originalPrefix}}
                             </option>

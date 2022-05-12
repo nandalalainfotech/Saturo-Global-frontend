@@ -1,10 +1,11 @@
+import { Ligand001wb } from "./Ligand001wb";
 import { Ligandversion001mb } from "./Ligandversion001mb";
 
 export class Assay001wb {
     assayId?: number;
     ordinal?: string;
     collectionId?: string;
-    ligandVersionSlno?: number;
+    ligandSlno?: number;
     assayTypeSlno?: number;
     toxiCitySlno?: number;
     routeSlno?: number;
@@ -25,6 +26,6 @@ export class Assay001wb {
     insertDatetime?: Date;
     updatedUser?: string | null;
     updatedDatetime?: Date | null;
-    ligandVersionSlno2?: Ligandversion001mb[];
+    ligandSlno2?: Ligand001wb[];
     
 }

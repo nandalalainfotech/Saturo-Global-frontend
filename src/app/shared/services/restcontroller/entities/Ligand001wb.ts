@@ -30,6 +30,6 @@ export class Ligand001wb {
     updatedDatetime?: Date | null;
 
 
-    ligandVersionSlno2?: Ligandversion001mb[];
+    ligandVersionSlno2?: Ligandversion001mb
 
 }

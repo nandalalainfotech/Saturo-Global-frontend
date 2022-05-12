@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { GridOptions } from 'ag-grid-community';
+import { ControllersService, GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { deserialize } from 'serializer.ts/Serializer';
 import { AuditComponent } from 'src/app/shared/audit/audit.component';
@@ -12,6 +12,7 @@ import { AssayManager } from 'src/app/shared/services/restcontroller/bizservice/
 import { AssayTypeManager } from 'src/app/shared/services/restcontroller/bizservice/assayType.service';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
 import { LigandManager } from 'src/app/shared/services/restcontroller/bizservice/ligandManager.service';
+import { LigandVersionManager } from 'src/app/shared/services/restcontroller/bizservice/ligandVersion.service';
 import { RouteofAdminManager } from 'src/app/shared/services/restcontroller/bizservice/routeOfAdministration.service';
 import { ToxicityManager } from 'src/app/shared/services/restcontroller/bizservice/toxiCity.service';
 import { UnitHighEndValueManager } from 'src/app/shared/services/restcontroller/bizservice/UnitHighEndValue.service';
@@ -20,6 +21,7 @@ import { UnitSingleValueManager } from 'src/app/shared/services/restcontroller/b
 import { Assay001wb } from 'src/app/shared/services/restcontroller/entities/Assay001wb ';
 import { Assaytype001mb } from 'src/app/shared/services/restcontroller/entities/Assaytype001mb';
 import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Ligand001wb';
+import { Ligandversion001mb } from 'src/app/shared/services/restcontroller/entities/Ligandversion001mb';
 import { Routeofadministration001mb } from 'src/app/shared/services/restcontroller/entities/Routeofadministration001mb';
 import { Toxicity001mb } from 'src/app/shared/services/restcontroller/entities/Toxicity001mb';
 import { Unithighendvalue001mb } from 'src/app/shared/services/restcontroller/entities/Unithighendvalue001mb';
@@ -39,7 +41,7 @@ export class AssayComponent implements OnInit {
   submitted = false;
 
   assayId: number | any;
-  ligandVersionSlno: number | any;
+  ligandSlno: number | any;
   ordinal: string = "";
   collectionId: string = "";
   assayTypeSlno: number | any;
@@ -72,6 +74,8 @@ export class AssayComponent implements OnInit {
   unithighendvalues: Unithighendvalue001mb[] = [];
   unitlowendvalues: Unitlowendvalue001mb[] = [];
 
+  ligandVersions: Ligandversion001mb[] = [];
+
   hexToRgb: any;
   rgbToHex: any;
   public gridOptions: GridOptions | any;
@@ -95,7 +99,8 @@ export class AssayComponent implements OnInit {
     private routeofAdminManager: RouteofAdminManager,
     private unitSingleValueManager: UnitSingleValueManager,
     private unitHighEndValueManager: UnitHighEndValueManager,
-    private unitlowendvalueManager: UnitlowendvalueManager,) {
+    private unitlowendvalueManager: UnitlowendvalueManager,
+    private ligandVersionManager: LigandVersionManager) {
 
     this.frameworkComponents = {
       iconRenderer: IconRendererComponent
@@ -109,7 +114,12 @@ export class AssayComponent implements OnInit {
 
     this.ligandManager.allligand().subscribe(response => {
       this.ligands = deserialize<Ligand001wb[]>(Ligand001wb, response);
+      // console.log("this.ligands--->",this.ligands);
     });
+
+    // this.ligandVersionManager.allligandVersion().subscribe(response => {
+    //   this.ligandVersions = deserialize<Ligandversion001mb[]>(Ligandversion001mb, response);
+    // });
 
     this.assayTypeManager.allassayType().subscribe(response => {
       this.assayTypes = deserialize<Assaytype001mb[]>(Assaytype001mb, response);
@@ -136,7 +146,7 @@ export class AssayComponent implements OnInit {
     });
 
     this.AssayForm = this.formBuilder.group({
-      ligandVersionSlno: ['', Validators.required],
+      ligandSlno: ['', Validators.required],
       ordinal: ['', Validators.required],
       collectionId: ['', Validators.required],
       assayTypeSlno: ['', Validators.required],
@@ -177,6 +187,7 @@ export class AssayComponent implements OnInit {
 
   loadData() {
     this.assayManager.allassay().subscribe(response => {
+      console.log("response", response)
       this.assay = deserialize<Assay001wb[]>(Assay001wb, response);
       if (this.assay.length > 0) {
         this.gridOptions?.api?.setRowData(this.assay);
@@ -216,14 +227,13 @@ export class AssayComponent implements OnInit {
       },
       {
         headerName: 'Ligand-Version',
-        field: 'ligandVersionSlno',
         width: 200,
         flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
-        // valueGetter: this.setVersion.bind(this)
+        valueGetter: this.setVersion.bind(this)
       },
       {
         headerName: 'Ordinal',
@@ -459,9 +469,9 @@ export class AssayComponent implements OnInit {
     ]
   }
 
-  // setVersion(params: any): string {
-  //   return params.data.ligandVersionSlno2 ? params.data.ligandVersionSlno2.ligandVersion : null;
-  // }
+  setVersion(params: any): string {
+    return params.data.ligandSlno2 ? params.data.ligandSlno2.ligandVersionSlno2?.ligandVersion : null;
+  }
 
   setAssayType(params: any): string {
     return params.data.assayTypeSlno2 ? params.data.assayTypeSlno2.assayType : null;
@@ -495,7 +505,7 @@ export class AssayComponent implements OnInit {
     this.AssayForm.patchValue({
       'ordinal': params.data.ordinal,
       'collectionId': params.data.collectionId,
-      'ligandVersionSlno': params.data.ligandVersionSlno,
+      'ligandSlno': params.data.ligandSlno,
       'assayTypeSlno': params.data.assayTypeSlno,
       'toxiCitySlno': params.data.toxiCitySlno,
       'routeSlno': params.data.routeSlno,
@@ -523,7 +533,7 @@ export class AssayComponent implements OnInit {
     modalRef.componentInstance.details = "Assay";
     modalRef.result.then((data) => {
       if (data == "Yes") {
-        this.assayManager.assaydelete(params.data.slNo).subscribe((response) => {
+        this.assayManager.assaydelete(params.data.assayId).subscribe((response) => {
           for (let i = 0; i < this.assay.length; i++) {
             if (this.assay[i].assayId == params.data.assayId) {
               this.assay?.splice(i, 1);
@@ -559,7 +569,7 @@ export class AssayComponent implements OnInit {
 
 
   onAssayClick(event: any, itemsForm: any) {
-    console.log("itemsForm", itemsForm);
+    // console.log("itemsForm", itemsForm);
 
     this.markFormGroupTouched(this.AssayForm);
     this.submitted = true;
@@ -569,7 +579,7 @@ export class AssayComponent implements OnInit {
     let assay001wb = new Assay001wb();
     assay001wb.ordinal = this.f.ordinal.value ? this.f.ordinal.value : "";
     assay001wb.collectionId = this.f.collectionId.value ? this.f.collectionId.value : "";
-    assay001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
+    assay001wb.ligandSlno = this.f.ligandSlno.value ? this.f.ligandSlno.value : "";
     assay001wb.assayTypeSlno = this.f.assayTypeSlno.value ? this.f.assayTypeSlno.value : "";
     assay001wb.toxiCitySlno = this.f.toxiCitySlno.value ? this.f.toxiCitySlno.value : "";
     assay001wb.routeSlno = this.f.routeSlno.value ? this.f.routeSlno.value : "";
@@ -605,7 +615,9 @@ export class AssayComponent implements OnInit {
     else {
       assay001wb.insertUser = this.authManager.getcurrentUser.username;
       assay001wb.insertDatetime = new Date();
+      console.log("assay001wb", assay001wb)
       this.assayManager.assaysave(assay001wb).subscribe((response) => {
+        console.log("response---------->>save", response)
         this.calloutService.showSuccess("Assay Details Saved Successfully");
         this.loadData();
         this.AssayForm.reset();

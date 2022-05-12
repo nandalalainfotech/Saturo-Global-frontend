@@ -5,6 +5,4 @@ export class Ligandversion001mb {
     insertDatetime?: Date;
     updatedUser?: string | null;
     updatedDatetime?: Date | null;
-
-
 }
