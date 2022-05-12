@@ -5,22 +5,22 @@
             <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="ligandVersionSlno" for="ligandVersionSlno" cssClass="required">Ligand-Version</label>
+                        <label path="ligandSlno" for="ligandSlno" cssClass="required">Ligand-Version</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
-                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno" [ngClass]="{ 'is-invalid': submitted && f.ligandVersionSlno.errors }">
+                        <select class="form-control" name="ligandSlno" formControlName="ligandSlno" [ngClass]="{ 'is-invalid': submitted && f.ligandSlno.errors }">
                             <option value="" hidden> - Select Ligand-Version - </option>
                             <option> - Select Ligand-Version - </option>
-                            <option> - 1 -</option>
-                            <!-- <option *ngFor="let ligand of ligands" >
-                                {{ligand.ligandVersionSlno2?.ligandVersion}}
-                            </option> -->
-                           
+                            <!-- <option> 1 </option> -->
+                            <option *ngFor="let ligandObject of ligands" [value]="ligandObject.ligandId">
+                                {{ligandObject.ligandVersionSlno2?.ligandVersion}}
+                            </option>
+
                             <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
                         </select>
-                        <div *ngIf="submitted && f.ligandVersionSlno.errors" class="invalid-feedback">
-                            <div *ngIf="f.ligandVersionSlno.errors.required">Ligand Version is Required</div>
+                        <div *ngIf="submitted && f.ligandSlno.errors" class="invalid-feedback">
+                            <div *ngIf="f.ligandSlno.errors.required">Ligand Version is Required</div>
                         </div>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
             <div class="row">
                 <div class="col-sm-12 ">
                     <div class="form-group buttons">
-                        <button class="btn btn-primary previous">Previous</button>
+                        <button class="btn btn-primary previous" cdkStepperPrevious>Previous</button>
                         <button type="submit" class="btn btn-primary submit">Submit</button>
                         <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
                     </div>

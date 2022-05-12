@@ -12,6 +12,7 @@ import { RouteofAdminManager } from 'src/app/shared/services/restcontroller/bizs
 import { UnitSingleValueManager } from 'src/app/shared/services/restcontroller/bizservice/unitSingleValue.service';
 import { UnitHighEndValueManager } from 'src/app/shared/services/restcontroller/bizservice/UnitHighEndValue.service';
 import { UnitlowendvalueManager } from 'src/app/shared/services/restcontroller/bizservice/Unitlowendvalue.service';
+import { LigandVersionManager } from 'src/app/shared/services/restcontroller/bizservice/ligandVersion.service';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { UnitlowendvalueManager } from 'src/app/shared/services/restcontroller/b
     RouteofAdminManager,
     UnitSingleValueManager,
     UnitHighEndValueManager,
-    UnitlowendvalueManager]
+    UnitlowendvalueManager,
+    LigandVersionManager]
 })
 export class AssayModule { }
