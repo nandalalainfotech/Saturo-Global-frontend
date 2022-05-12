@@ -47,6 +47,7 @@ import { MeasurementComponent } from './measurement/measurement.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { TargetComponent } from './target/target.component';
+import { ReportComponent } from './report/report.component';
 // import { GoJsChartComponent } from './body/go-js-chart/go-js-chart.component';
 
 
@@ -65,6 +66,7 @@ import { TargetComponent } from './target/target.component';
         AssayComponent,
         MeasurementComponent,
         StepperComponent,
+        ReportComponent,
         // MasterComponent,
         // RadarChartComponent,
         // ModernChartComponent,
