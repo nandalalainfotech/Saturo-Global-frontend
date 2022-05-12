@@ -18,8 +18,9 @@
                         <label path="categorySlno" for="categorySlno" cssClass="required">Category</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="categorySlno" formControlName="categorySlno" [ngClass]="{ 'is-invalid': submitted && f.categorySlno.errors }">
-                            <option [value]="" hidden> - Select Category - </option>
-                            <option [value]=null> - Select Category -</option>
+                            
+                            <option value="" hidden> -  Select Category - </option>
+                            <option> - Select Category - </option>
                             <option *ngFor="let category of categorys" [value]="category.id">
                                 {{category.category}}
                             </option>
@@ -37,8 +38,9 @@
                         <label path="functionSlno" for="functionSlno" cssClass="required">Category(functions)</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="functionSlno" formControlName="functionSlno" [ngClass]="{ 'is-invalid': submitted && f.functionSlno.errors }">
-                            <option [value]="" hidden> - Select Category Function - </option>
-                            <option [value]=null> Select Category Function </option>
+                            
+                            <option value="" hidden> -  Select Category Function - </option>
+                            <option> - Select Category Function - </option>
                             <option *ngFor="let function of categoryfunctions" [value]="function.id">
                                 {{function.function}}
                             </option>
@@ -82,7 +84,7 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="originalPrefixSlno" formControlName="originalPrefixSlno" [ngClass]="{ 'is-invalid': submitted && f.originalPrefixSlno.errors }">
                             <option [value]="" hidden> - Select Original Prefix - </option>
-                            <option [value]=null> - Select Original Prefix - </option>
+                            <option> - Select Original Prefix - </option>
                             <option *ngFor="let originalPrefix of Originals" [value]="originalPrefix.id">
                                 {{originalPrefix.originalPrefix}}
                             </option>
@@ -195,8 +197,8 @@
                             <label path="typeSlno" for="typeSlno" cssClass="required">Type</label>
                             <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                             <select class="form-control" name="typeSlno" formControlName="typeSlno" [ngClass]="{ 'is-invalid': submitted && f.typeSlno.errors }">
-                                <option [value]="" hidden> - Select Types - </option>
-                                <option [value]="null"> - Select Types - </option>
+                                <option value="" hidden> -  Select Types - </option>
+                                <option> - Select Types - </option>
                                 <option *ngFor="let type of types" [value]="type.id">
                                     {{type.type}}
                                 </option>

@@ -213,7 +213,7 @@ export class LigandComponent implements OnInit {
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
-        valueGetter: this.setVersion.bind(this)
+        valueGetter: this.setLigandVersion.bind(this)
       },
       {
         headerName: 'Ligand-status',
@@ -324,7 +324,7 @@ export class LigandComponent implements OnInit {
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
-        valueGetter: this.setVersion.bind(this)
+        valueGetter: this.setLigandVersion.bind(this)
       },
       {
         headerName: 'Target-Uri',
@@ -447,7 +447,7 @@ export class LigandComponent implements OnInit {
     ];
   }
 
-  setVersion(params: any): string {
+  setLigandVersion(params: any): string {
     return params.data.ligandVersionSlno2 ? params.data.ligandVersionSlno2.ligandVersion : null;
   }
 
@@ -534,18 +534,18 @@ export class LigandComponent implements OnInit {
     ligand001wb.tanNumber = this.f.tanNumber.value ? this.f.tanNumber.value : "";
     ligand001wb.ligandUri = this.f.ligandUri.value ? this.f.ligandUri.value : "";
     ligand001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
-    ligand001wb.ligandStatus = this.f.ligandStatus.value ? this.f.ligandStatus.value : "";
-    ligand001wb.collection = this.f.collection.value ? this.f.collection.value : "";
+    ligand001wb.ligandStatus = this.f.ligandStatus.value ? this.f.ligandStatus.value : "embargoed";
+    ligand001wb.collection = this.f.collection.value ? this.f.collection.value : "CAS";
     ligand001wb.ligandTypeSlno = this.f.ligandTypeSlno.value ? this.f.ligandTypeSlno.value : "";
     ligand001wb.ligandDetail = this.f.ligandDetail.value ? this.f.ligandDetail.value : "";
     ligand001wb.collectionName = this.f.collectionName.value ? this.f.collectionName.value : "";
     ligand001wb.collectionId = this.f.locator.value ? this.f.collectionId.value : "";
     ligand001wb.locator = this.f.locator.value ? this.f.locator.value : "";
-    ligand001wb.sourceType = this.f.sourceType.value ? this.f.sourceType.value : "";
+    ligand001wb.sourceType = this.f.sourceType.value ? this.f.sourceType.value : "journal";
     ligand001wb.citation = this.f.citation.value ? this.f.citation.value : "";
     ligand001wb.diseaseName = this.f.diseaseName.value ? this.f.diseaseName.value : "";
     ligand001wb.target = this.f.target.value ? this.f.target.value : "";
-    ligand001wb.targetStatus = this.f.targetStatus.value ? this.f.targetStatus.value : "";
+    ligand001wb.targetStatus = this.f.targetStatus.value ? this.f.targetStatus.value : "embargoed";
     ligand001wb.targetVersion = this.f.targetVersion.value ? this.f.targetVersion.value : "";
     ligand001wb.collectionId1 = this.f.collectionId1.value ? this.f.collectionId1.value : "";
     ligand001wb.original = this.f.original.value ? this.f.original.value : "";
@@ -581,6 +581,29 @@ export class LigandComponent implements OnInit {
 
   }
 
+  // onTanNumberClick(){
+  //   this.LigandForm.get('tanNumber').valueChanges.subscribe((value: any) => {
+  //     for (let tan of this.ligand) {
+  //       if (tan.ligandId == value) {
+  //         this.LigandForm.patchValue({
+  //           'citation': tan.citation,
+
+  //         });
+  //         break;
+  //       }
+  //     }
+  //   });
+  // }
+
+
+  onBlurEvent(event: any) {
+    let tannumber =this.f.tanNumber.value ? this.f.tanNumber.value : "";
+  console.log("tannumber------------>", tannumber);
+    this.LigandForm.patchValue({
+      'citation': tannumber,
+
+    })
+  }
 
   onLigandVersionClick() {
     this.LigandForm.get('ligandVersionSlno').valueChanges.subscribe((value: any) => {

@@ -6,7 +6,7 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="tanNumber" for="tanNumber" cssClass="required">TAN Number</label>
-                        <input class="form-control" name="tanNumber" formControlName="tanNumber"
+                        <input class="form-control" name="tanNumber" formControlName="tanNumber" (blur)="onBlurEvent($event)"
                             [ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }">
                         <div *ngIf="submitted && f.tanNumber.errors" class="invalid-feedback">
                             <div *ngIf="f.tanNumber.errors.required">Numeric Value is Required</div>
@@ -159,7 +159,7 @@
                         <div class="form-group">
                             <label path="sourceType" for="sourceType" cssClass="required">Source-type</label>
                             <input class="form-control" path="sourceType" name="sourceType" formControlName="sourceType"
-                                value="journal" placeholder="journal" readonly />
+                                value=""  readonly />
                             <!-- <div *ngIf="submitted && f.Collection.errors" class="invalid-feedback">
                             <div *ngIf="f.Collection.errors.required">Status is Required</div>
                         </div>  -->
@@ -168,11 +168,10 @@
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="citation" for="series" cssClass="required">Citation</label>
-                            <input class="form-control" name="citation" formControlName="citation"
-                                [ngClass]="{ 'is-invalid': submitted && f.citation.errors }">
-                            <div *ngIf="submitted && f.citation.errors" class="invalid-feedback">
+                            <input class="form-control" path="citation" name="citation" formControlName="citation" readonly/>
+                            <!-- <div *ngIf="submitted && f.citation.errors" class="invalid-feedback">
                                 <div *ngIf="f.citation.errors.required">Citation is Required</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
