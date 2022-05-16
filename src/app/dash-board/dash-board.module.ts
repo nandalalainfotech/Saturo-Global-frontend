@@ -48,6 +48,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { StepperComponent } from './stepper/stepper.component';
 import { TargetComponent } from './target/target.component';
 import { ReportComponent } from './report/report.component';
+import { LigandReportsManager } from '../shared/services/restcontroller/bizservice/report.service';
 // import { GoJsChartComponent } from './body/go-js-chart/go-js-chart.component';
 
 
@@ -122,7 +123,8 @@ import { ReportComponent } from './report/report.component';
         CategoryManager,
         CategoryfunctionManager,
         OriginalprefixManager,
-        BioTypeManager
+        BioTypeManager,
+        LigandReportsManager
 
     ],
     exports: [NgbCollapseModule],
