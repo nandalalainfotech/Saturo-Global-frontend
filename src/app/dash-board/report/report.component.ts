@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +14,9 @@ import { Assay001wb } from 'src/app/shared/services/restcontroller/entities/Assa
 import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Ligand001wb';
 import { Measurement001wb } from 'src/app/shared/services/restcontroller/entities/Measurement001wb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
-
+import { saveAs } from 'file-saver';
+import { LigandReportsManager } from 'src/app/shared/services/restcontroller/bizservice/report.service';
+import { Utils } from 'src/app/shared/utils/utils';
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -30,6 +32,14 @@ export class ReportComponent implements OnInit {
   assay: Assay001wb[] = [];
   measurement: Measurement001wb[] = [];
 
+  hexToRgb: any;
+  rgbToHex: any;
+
+  @HostBinding('style.--color_l1') colorthemes_1: any;
+  @HostBinding('style.--color_l2') colorthemes_2: any;
+  @HostBinding('style.--color_l3') colorthemes_3: any;
+  @HostBinding('style.--color_l4') colorthemes_4: any;
+
   constructor(
     private authManager: AuthManager,
     private formBuilder: FormBuilder,
@@ -38,6 +48,7 @@ export class ReportComponent implements OnInit {
     private modalService: NgbModal,
     private ligandManager: LigandManager,
     private assayManager: AssayManager,
+    private ligandReportsManager: LigandReportsManager,
     private measurementManager: MeasurementManager,
     private http: HttpClient,
   ) {
@@ -81,6 +92,17 @@ export class ReportComponent implements OnInit {
       } else {
         this.gridOptions2?.api?.setRowData([]);
       }
+    });
+
+    this.authManager.currentUserSubject.subscribe((object: any) => {
+      let rgb = Utils.hexToRgb(object.theme);
+      this.colorthemes_1 = Utils.rgbToHex(rgb, -0.3);
+
+      this.colorthemes_2 = Utils.rgbToHex(rgb, 0.1);
+
+      this.colorthemes_3 = Utils.rgbToHex(rgb, 0.5);
+
+      this.colorthemes_4 = Utils.rgbToHex(rgb, 0.8);
     });
   }
 
@@ -903,4 +925,20 @@ export class ReportComponent implements OnInit {
     return params.data.typeSlno2 ? params.data.typeSlno2.type : null;
   }
 
+  
+
+  //  ------EXCEL FILE --------//
+
+  onGenerateExcelReport() {
+    this.ligandReportsManager.machineReportsExcel().subscribe((response) => {
+      if (this.ligand) {
+        saveAs(response);
+      } else {
+        saveAs(response, "download");
+      }
+    })
+  }
+ 
 }
+
+

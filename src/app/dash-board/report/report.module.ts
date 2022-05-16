@@ -7,6 +7,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { LigandManager } from 'src/app/shared/services/restcontroller/bizservice/ligandManager.service';
 import { AssayManager } from 'src/app/shared/services/restcontroller/bizservice/Assay.service';
 import { MeasurementManager } from 'src/app/shared/services/restcontroller/bizservice/Measurement.service';
+import { LigandReportsManager } from 'src/app/shared/services/restcontroller/bizservice/report.service';
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import { MeasurementManager } from 'src/app/shared/services/restcontroller/bizse
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
   ],
-  providers: [LigandManager,AssayManager,MeasurementManager]
+  providers: [LigandManager,AssayManager,MeasurementManager,LigandReportsManager]
 })
 export class ReportModule { }
