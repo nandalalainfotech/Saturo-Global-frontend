@@ -49,7 +49,7 @@ export class UsernameComponent implements OnInit {
 			updateUser.personId = this.user001mb.personId;
 			updateUser.oldUsername = this.f.username.value;
 			updateUser.newUsername = this.f.newusername.value;
-			this.userManager.updateUserName(updateUser).subscribe((response: any) => {
+			this.userManager.updateuser(updateUser).subscribe((response: any) => {
 				this.calloutService.showSuccess("New User Name Updated Successfully");
 				this.userNameForm.controls.newusername.reset();
 			});

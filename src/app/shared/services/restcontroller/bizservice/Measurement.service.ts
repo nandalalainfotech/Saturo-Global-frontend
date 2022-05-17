@@ -7,8 +7,10 @@ import { Measurement001wb } from "../entities/Measurement001wb";
 export class MeasurementManager extends BaseService {
     private measurementUrl: string = `${environment.apiUrl}/measurement`
 
-    allmeasurement() {
-        return this.getCallService(`${this.measurementUrl}` + "/findAll");
+    allmeasurement(username:any) {
+        let data: any = {};
+        data['username'] = username;
+        return this.getCallService(`${this.measurementUrl}` + "/findAll",data);
     }
 
     measurementsave(measurement001wb: Measurement001wb) {

@@ -72,7 +72,6 @@ export class UserRegistrationComponent implements OnInit {
             securityquestion: ['', Validators.required],
             securityanswer: ['', Validators.required],
             email: ['', Validators.required],
-            domain: ['', Validators.required],
             status: ['', Validators.required],
         });
        
@@ -130,7 +129,6 @@ let user001mb = new User001mb();
 user001mb.firstname = this.f.firstname.value ? this.f.firstname.value : "";
 user001mb.lastname = this.f.lastname.value ? this.f.lastname.value : "";
 user001mb.username = this.f.username.value ? this.f.username.value : "";
-user001mb.domain = this.f.domain.value ? this.f.domain.value : "";
 user001mb.status = "A";
 user001mb.securityquestion = this.f.securityquestion.value ? this.f.securityquestion.value : "";
 user001mb.securityanswer = this.f.securityanswer.value ? this.f.securityanswer.value : "";

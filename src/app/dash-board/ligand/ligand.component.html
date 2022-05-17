@@ -6,8 +6,7 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="tanNumber" for="tanNumber" cssClass="required">TAN Number</label>
-                        <input class="form-control" name="tanNumber" formControlName="tanNumber" (blur)="onBlurEvent($event)"
-                            [ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }">
+                        <input class="form-control" name="tanNumber" formControlName="tanNumber" (blur)="onBlurEvent($event)" [ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }">
                         <div *ngIf="submitted && f.tanNumber.errors" class="invalid-feedback">
                             <div *ngIf="f.tanNumber.errors.required">Numeric Value is Required</div>
                         </div>
@@ -29,8 +28,7 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="ligandUri" for="ligandUri" cssClass="required">Ligand-Uri</label>
-                        <input class="form-control" name="ligandUri" formControlName="ligandUri"
-                            [ngClass]="{ 'is-invalid': submitted && f.ligandUri.errors }">
+                        <input class="form-control" name="ligandUri" formControlName="ligandUri" [ngClass]="{ 'is-invalid': submitted && f.ligandUri.errors }">
                         <div *ngIf="submitted && f.ligandUri.errors" class="invalid-feedback">
                             <div *ngIf="f.ligandUri.errors.required">URI is Required</div>
                         </div>
@@ -40,13 +38,10 @@
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="ligandVersionSlno" for="ligandVersionSlno"
-                            cssClass="required">Ligand-Version</label>
-                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
-                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno" (click)="onLigandVersionClick()"
-                            [ngClass]="{ 'is-invalid': submitted && f.ligandVersionSlno.errors }">
+                        <label path="ligandVersionSlno" for="ligandVersionSlno" cssClass="required">Ligand-Version</label>
+                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno" (click)="onLigandVersionClick()" [ngClass]="{ 'is-invalid': submitted && f.ligandVersionSlno.errors }">
                             <option value="" hidden> - Select Ligand Version - </option>
-                            <option> -  Select Ligand Version - </option>
+                            <option> - Select Ligand Version - </option>
                             <option *ngFor="let ligandVersion of ligandVersions" [value]="ligandVersion.id">
                                 {{ligandVersion.ligandVersion}}
                             </option>
@@ -56,39 +51,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-3 col-sm-3">
+
+                <!-- <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="ligandStatus" for="ligandStatus" cssClass="required">Ligand-status</label>
-                        <input class="form-control" path="ligandStatus" name="ligandStatus" value="hidden"
-                            formControlName="ligandStatus" value="embargoed" readonly />
-                        <!-- <div *ngIf="submitted && f.TargetStatus.errors" class="invalid-feedback">
+                        <input class="form-control" path="ligandStatus" name="ligandStatus" value="hidden" formControlName="ligandStatus" value="embargoed" readonly /> -->
+                <!-- <div *ngIf="submitted && f.TargetStatus.errors" class="invalid-feedback">
                         <div *ngIf="f.TargetStatus.errors.required">Status is Required</div>
                     </div> -->
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3">
+                <!-- </div>
+                </div> -->
+
+                <!--<div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="collection" for="collection" cssClass="required">Collection</label>
-                        <input class="form-control" path="collection" name="collection" formControlName="collection"
-                            value="" readonly />
-                        <!-- <div *ngIf="submitted && f.Collection.errors" class="invalid-feedback">
+                        <input class="form-control" path="collection" name="collection" formControlName="collection" value="" readonly /> -->
+                <!-- <div *ngIf="submitted && f.Collection.errors" class="invalid-feedback">
                         <div *ngIf="f.Collection.errors.required">Status is Required</div>
                     </div>  -->
-                    </div>
-                </div>
-
-            </div>
+                <!-- </div>
+                </div> -->
 
 
-            <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="ligandTypeSlno" for="ligandTypeSlno" cssClass="required">Ligand-Type</label>
-                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
-                        <select class="form-control" name="ligandTypeSlno" formControlName="ligandTypeSlno"
-                            [ngClass]="{ 'is-invalid': submitted && f.ligandTypeSlno.errors }">
+                        <select class="form-control" name="ligandTypeSlno" formControlName="ligandTypeSlno" [ngClass]="{ 'is-invalid': submitted && f.ligandTypeSlno.errors }">
                             <option value="" hidden> - Select Ligand Types - </option>
-                            <option> -  Select Ligand Types - </option>
+                            <option> - Select Ligand Types - </option>
                             <option *ngFor="let ligandtype of ligandtypes" [value]="ligandtype.id">
                                 {{ligandtype.ligandtype}}
                             </option>
@@ -105,29 +95,56 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="ligandDetail" for="series" cssClass="required">Ligand-detail</label>
-                        <input class="form-control" name="ligandDetail" formControlName="ligandDetail"
-                            [ngClass]="{ 'is-invalid': submitted && f.ligandDetail.errors }">
+                        <input class="form-control" name="ligandDetail" formControlName="ligandDetail" [ngClass]="{ 'is-invalid': submitted && f.ligandDetail.errors }">
                         <div *ngIf="submitted && f.ligandDetail.errors" class="invalid-feedback">
                             <div *ngIf="f.ligandDetail.errors.required">Ligand Detail is Required</div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+
+
+            <div class="row">
+
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="collectionName" for="series" cssClass="required">Collection-name</label>
-                        <input class="form-control" name="collectionName" formControlName="collectionName"
-                            [ngClass]="{ 'is-invalid': submitted && f.collectionName.errors }">
-                        <div *ngIf="submitted && f.collectionName.errors" class="invalid-feedback">
-                            <div *ngIf="f.collectionName.errors.required">collection name is Required</div>
+                        <label path="identifier1" for="series" cssClass="required">Identifier1</label>
+                        <input class="form-control" name="identifier1" formControlName="identifier1" [ngClass]="{ 'is-invalid': submitted && f.identifier1.errors }">
+                        <div *ngIf="submitted && f.identifier1.errors" class="invalid-feedback">
+                            <div *ngIf="f.identifier1.errors.required">Identifier1 is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="identifier2" for="series" cssClass="required">Identifier2</label>
+                        <input class="form-control" name="identifier2" formControlName="identifier2" [ngClass]="{ 'is-invalid': submitted && f.identifier2.errors }">
+                        <div *ngIf="submitted && f.identifier2.errors" class="invalid-feedback">
+                            <div *ngIf="f.identifier2.errors.required">Identifier2 is Required</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
+                        <label path="identifier3" for="series" cssClass="required">Identifier3</label>
+                        <input class="form-control" name="identifier3" formControlName="identifier3" [ngClass]="{ 'is-invalid': submitted && f.identifier3.errors }">
+                        <div *ngIf="submitted && f.identifier3.errors" class="invalid-feedback">
+                            <div *ngIf="f.identifier3.errors.required">Identifier3 is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
                         <label path="collectionId" for="series" cssClass="required">Collection-id</label>
-                        <input class="form-control" name="collectionId" formControlName="collectionId"
-                            [ngClass]="{ 'is-invalid': submitted && f.collectionId.errors }">
+                        <input class="form-control" name="collectionId" formControlName="collectionId" (blur)="onBlurEvent($event)" [ngClass]="{ 'is-invalid': submitted && f.collectionId.errors }">
                         <div *ngIf="submitted && f.collectionId.errors" class="invalid-feedback">
                             <div *ngIf="f.collectionId.errors.required">ID is Required</div>
                         </div>
@@ -140,8 +157,7 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="locator" for="series" cssClass="required">Locator</label>
-                        <input class="form-control" name="locator" formControlName="locator"
-                            [ngClass]="{ 'is-invalid': submitted && f.locator.errors }">
+                        <input class="form-control" name="locator" formControlName="locator" [ngClass]="{ 'is-invalid': submitted && f.locator.errors }">
                         <div *ngIf="submitted && f.locator.errors" class="invalid-feedback">
                             <div *ngIf="f.locator.errors.required">Locator is Required</div>
                         </div>
@@ -155,25 +171,43 @@
                 <legend class="scheduler-border">Reference</legend>
                 <div class="row">
 
-                    <div class="col-xs-3 col-sm-3">
+                    <!-- <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="sourceType" for="sourceType" cssClass="required">Source-type</label>
-                            <input class="form-control" path="sourceType" name="sourceType" formControlName="sourceType"
-                                value=""  readonly />
-                            <!-- <div *ngIf="submitted && f.Collection.errors" class="invalid-feedback">
-                            <div *ngIf="f.Collection.errors.required">Status is Required</div>
-                        </div>  -->
+                            <input class="form-control" path="sourceType" name="sourceType" formControlName="sourceType" value="" readonly />
+                          
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="citation" for="series" cssClass="required">Citation</label>
-                            <input class="form-control" path="citation" name="citation" formControlName="citation" readonly/>
+                            <input class="form-control" path="citation" name="citation" formControlName="citation" readonly />
                             <!-- <div *ngIf="submitted && f.citation.errors" class="invalid-feedback">
                                 <div *ngIf="f.citation.errors.required">Citation is Required</div>
                             </div> -->
                         </div>
                     </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="relatedDocument" for="series" cssClass="required">Related-document</label>
+                            <input class="form-control" path="relatedDocument" name="relatedDocument" formControlName="relatedDocument" readonly />
+                            <!-- <div *ngIf="submitted && f.citation.errors" class="invalid-feedback">
+                                <div *ngIf="f.citation.errors.required">Citation is Required</div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="registryNumber" for="series" cssClass="required">Substance-uri registry-number</label>
+                            <input class="form-control" path="registryNumber" name="registryNumber" formControlName="registryNumber" readonly />
+                            <!-- <div *ngIf="submitted && f.citation.errors" class="invalid-feedback">
+                                <div *ngIf="f.citation.errors.required">Citation is Required</div>
+                            </div> -->
+                        </div>
+                    </div>
+
                 </div>
             </fieldset>
 
@@ -184,8 +218,7 @@
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="diseaseName" for="series" cssClass="required">Original-disease-name</label>
-                            <input class="form-control" name="diseaseName" formControlName="diseaseName"
-                                [ngClass]="{ 'is-invalid': submitted && f.diseaseName.errors }">
+                            <input class="form-control" name="diseaseName" formControlName="diseaseName" [ngClass]="{ 'is-invalid': submitted && f.diseaseName.errors }">
                             <div *ngIf="submitted && f.diseaseName.errors" class="invalid-feedback">
                                 <div *ngIf="f.diseaseName.errors.required">disease Name is Required</div>
                             </div>
@@ -202,8 +235,8 @@
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="ligandVersions" for="ligandVersions" cssClass="required">Ligand-Version</label>
-                            <input class="form-control" path="ligandVersions" name="ligandVersions" formControlName="ligandVersions" readonly/>
-                             <!--                            
+                            <input class="form-control" path="ligandVersions" name="ligandVersions" formControlName="ligandVersions" readonly />
+                            <!--                            
                             <div *ngIf="submitted && f.ligandVersions.errors" class="invalid-feedback">
                                 <div *ngIf="f.ligandVersions.errors.required">Ligand Version is Required</div>
                             </div> -->
@@ -215,8 +248,7 @@
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="target" for="series" cssClass="required">Target-uri</label>
-                            <input class="form-control" name="target" formControlName="target"
-                                [ngClass]="{ 'is-invalid': submitted && f.target.errors }">
+                            <input class="form-control" name="target" formControlName="target" [ngClass]="{ 'is-invalid': submitted && f.target.errors }">
                             <div *ngIf="submitted && f.target.errors" class="invalid-feedback">
                                 <div *ngIf="f.target.errors.required">URI is Required</div>
                             </div>
@@ -225,50 +257,45 @@
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="targetVersion" for="targetVersion" cssClass="required">Target-version</label>
-                            <input class="form-control" name="targetVersion" formControlName="targetVersion"
-                                [ngClass]="{ 'is-invalid': submitted && f.targetVersion.errors }">
+                            <input class="form-control" name="targetVersion" formControlName="targetVersion" [ngClass]="{ 'is-invalid': submitted && f.targetVersion.errors }">
                             <div *ngIf="submitted && f.targetVersion.errors" class="invalid-feedback">
                                 <div *ngIf="f.targetVersion.errors.required">Target Version is Required</div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-3 col-sm-3">
+                    <!-- <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="targetStatus" for="tsName" cssClass="required">Target-status</label>
-                            <input class="form-control" path="tsName" name="targetStatus" formControlName="targetStatus"
-                                value="" readonly />
-                            <!-- <div *ngIf="submitted && f.TargetStatus.errors" class="invalid-feedback">
-                                <div *ngIf="f.TargetStatus.errors.required">Status is Required</div>
-                            </div> -->
+                            <input class="form-control" path="tsName" name="targetStatus" formControlName="targetStatus" value="" readonly />
+                          
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="collectionId1" for="collectionId1" cssClass="required">Collection-id</label>
-                            <input class="form-control" name="collectionId1" formControlName="collectionId1"
-                                [ngClass]="{ 'is-invalid': submitted && f.collectionId1.errors }">
+                            <input class="form-control" name="collectionId1" formControlName="collectionId1" [ngClass]="{ 'is-invalid': submitted && f.collectionId1.errors }">
                             <div *ngIf="submitted && f.collectionId1.errors" class="invalid-feedback">
                                 <div *ngIf="f.collectionId1.errors.required">ID is Required</div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
+
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="original" for="original" cssClass="required">Original-target-name</label>
-                            <input class="form-control" name="original" formControlName="original"
-                                [ngClass]="{ 'is-invalid': submitted && f.original.errors }">
+                            <input class="form-control" name="original" formControlName="original" [ngClass]="{ 'is-invalid': submitted && f.original.errors }">
                             <div *ngIf="submitted && f.original.errors" class="invalid-feedback">
                                 <div *ngIf="f.original.errors.required">Name is Required</div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="acronym" for="series" cssClass="required">Acronym</label>
-                            <input class="form-control" name="acronym" formControlName="acronym"
-                                [ngClass]="{ 'is-invalid': submitted && f.acronym.errors }">
+                            <input class="form-control" name="acronym" formControlName="acronym" [ngClass]="{ 'is-invalid': submitted && f.acronym.errors }">
                             <div *ngIf="submitted && f.acronym.errors" class="invalid-feedback">
                                 <div *ngIf="f.acronym.errors.required">Acronym is Required</div>
                             </div>
@@ -277,8 +304,7 @@
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="organism" for="series" cssClass="required">Organism-source</label>
-                            <input class="form-control" name="organism" formControlName="organism"
-                                [ngClass]="{ 'is-invalid': submitted && f.organism.errors }">
+                            <input class="form-control" name="organism" formControlName="organism" [ngClass]="{ 'is-invalid': submitted && f.organism.errors }">
                             <div *ngIf="submitted && f.organism.errors" class="invalid-feedback">
                                 <div *ngIf="f.organism.errors.required">Source is Required</div>
                             </div>
@@ -287,8 +313,7 @@
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
                             <label path="variant" for="variant" cssClass="required">Variant</label>
-                            <input class="form-control" name="variant" formControlName="variant"
-                                [ngClass]="{ 'is-invalid': submitted && f.variant.errors }">
+                            <input class="form-control" name="variant" formControlName="variant" [ngClass]="{ 'is-invalid': submitted && f.variant.errors }">
                             <div *ngIf="submitted && f.variant.errors" class="invalid-feedback">
                                 <div *ngIf="f.variant.errors.required">Variant is Required</div>
                             </div>

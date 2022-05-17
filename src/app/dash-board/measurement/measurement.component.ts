@@ -65,7 +65,7 @@ export class MeasurementComponent implements OnInit {
   categoryfunctions: Categoryfunction001mb [] = [];
   Originals: Originalprefix001mb [] = [];
   types: Type001mb [] = [];
-  
+  username:any;
 
   hexToRgb: any;
   rgbToHex: any;
@@ -161,7 +161,9 @@ export class MeasurementComponent implements OnInit {
 
 
   loadData() {
-    this.measurementManager.allmeasurement().subscribe(response => {
+    this.username = this.authManager.getcurrentUser.username;
+    this.measurementManager.allmeasurement(this.username).subscribe(response => {
+
       this.measurement = deserialize<Measurement001wb[]>(Measurement001wb, response);
       if (this.measurement.length > 0) {
         this.gridOptions?.api?.setRowData(this.measurement);

@@ -7,11 +7,14 @@ import { Assay001wb } from "../entities/Assay001wb ";
 export class AssayManager extends BaseService {
     private assayUrl: string = `${environment.apiUrl}/assay`
 
-    allassay() {
-        return this.getCallService(`${this.assayUrl}` + "/findAll");
+    allassay(username:any) {
+        let data: any = {};
+        data['username'] = username;
+        return this.getCallService(`${this.assayUrl}` + "/findAll",data);
     }
 
     assaysave(assay001wb: Assay001wb) {
+        console.log("assay001wb",assay001wb);
         return this.postCallService(`${this.assayUrl}` + "/save", {}, assay001wb);
     }
 

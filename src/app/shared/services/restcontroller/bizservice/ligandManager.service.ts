@@ -9,8 +9,10 @@ import { Ligand001wb } from "../entities/Ligand001wb";
 export class LigandManager extends BaseService {
     private ligandUrl: string = `${environment.apiUrl}/ligand`
 
-    allligand() {
-        return this.getCallService(`${this.ligandUrl}` + "/findAll");
+    allligand(username:any) {
+        let data: any = {};
+        data['username'] = username;
+        return this.getCallService(`${this.ligandUrl}` + "/findAll",data);
     }
 
     ligandsave(ligand001wb: Ligand001wb) {

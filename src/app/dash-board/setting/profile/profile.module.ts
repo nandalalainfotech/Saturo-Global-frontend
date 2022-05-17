@@ -14,6 +14,7 @@ import { BreadcrumbModule } from '../../breadcrumb/breadcrumb.module';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
 import { UserManager } from 'src/app/shared/services/restcontroller/bizservice/user.service';
 import { PersonManager } from 'src/app/shared/services/restcontroller/bizservice/person.service';
+import { RoleManager } from 'src/app/shared/services/restcontroller/bizservice/role.service';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { PersonManager } from 'src/app/shared/services/restcontroller/bizservice
   providers: [
     UserManager,
     AuthManager,
-    PersonManager
+    PersonManager,
+    RoleManager
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

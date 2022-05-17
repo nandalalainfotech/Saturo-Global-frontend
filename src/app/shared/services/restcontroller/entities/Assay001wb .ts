@@ -20,6 +20,11 @@ export class Assay001wb {
     conditionType?: string;
     conditionMaterial?: string;
     conditionMaterialid?: string;
+    singleCondition?: string;
+    singleUnit?: string;
+    highCondition?: string;
+    lowCondition?: string;
+    highLowUnit?: string;
     value?: string;
     unitedSlno?: number;
     insertUser?: string;
