@@ -8,9 +8,9 @@ import { BaseService } from "../../services/base.service";
 @Injectable()
 export class appSettingManager extends BaseService {
 
-    allFiles() {
-        return this.getCallService('http://localhost:3000/testandreportstudio/api/appsettings/findAll');
-    }
+    // allFiles() {
+    //     return this.getCallService('http://localhost:3000/testandreportstudio/api/appsettings/findAll');
+    // }
 
     save(selectedFile: any, clientname: string, clientdescription: string, category: string) {
         var formData: any = new FormData();

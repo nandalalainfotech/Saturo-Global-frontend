@@ -11,11 +11,11 @@ import { User001mb } from "../entities/User001mb";
 export class AuthManager extends BaseService {
     
     private authManagerUrl: string = `${environment.apiUrl}/auth`
-    login(uName: string, pWord: string, domain: string) {
+    login(uName: string, pWord: string) {
         let params: any = {};
         params['username'] = uName;
         params['password'] = pWord;
-        params['domain'] = domain;
+        // params['domain'] = domain;
         return this.getCallService(`${this.authManagerUrl}`+`/getUserAuthentication`, params)
             .pipe(map(res => {
                 if (res) {

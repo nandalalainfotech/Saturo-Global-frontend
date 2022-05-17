@@ -102,6 +102,16 @@
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
+                        <label path="singleValue" for="singleValue" cssClass="required">Original-value(Single-value)</label>
+                        <input class="form-control" name="singleValue" formControlName="singleValue" [ngClass]="{ 'is-invalid': submitted && f.singleValue.errors }">
+                        <div *ngIf="submitted && f.singleValue.errors" class="invalid-feedback">
+                            <div *ngIf="f.singleValue.errors.required">Single Value is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
                         <label path="unit" for="unit" cssClass="required">Unit</label>
                         <input class="form-control" name="unit" formControlName="unit" [ngClass]="{ 'is-invalid': submitted && f.unit.errors }">
                         <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
@@ -111,15 +121,7 @@
                 </div>
 
 
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="singleValue" for="singleValue" cssClass="required">Original-value(Single-value)</label>
-                        <input class="form-control" name="singleValue" formControlName="singleValue" [ngClass]="{ 'is-invalid': submitted && f.singleValue.errors }">
-                        <div *ngIf="submitted && f.singleValue.errors" class="invalid-feedback">
-                            <div *ngIf="f.singleValue.errors.required">Single Value is Required</div>
-                        </div>
-                    </div>
-                </div>
+
 
 
             </div>
@@ -156,21 +158,25 @@
                     </div>
                 </div>
 
-                <div class="col-xs-3 col-sm-3">
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6">
                     <div class="form-group">
                         <label path="nonNumeric" for="nonNumeric" cssClass="required">Original-value(Non-numeric-value)</label>
-                        <input class="form-control" name="nonNumeric" formControlName="nonNumeric" [ngClass]="{ 'is-invalid': submitted && f.nonNumeric.errors }">
+                        <textarea class="form-control" name="nonNumeric" formControlName="nonNumeric" [ngClass]="{ 'is-invalid': submitted && f.nonNumeric.errors }"></textarea>
                         <div *ngIf="submitted && f.nonNumeric.errors" class="invalid-feedback">
                             <div *ngIf="f.nonNumeric.errors.required">Non-numeric value is Required</div>
                         </div>
                     </div>
                 </div>
+                <!-- </div> -->
 
-            </div>
+                <!-- <div class="row"> -->
 
-            <div class="row">
-
-                <div class="col-xs-3 col-sm-3">
+                <div class="col-xs-6 col-sm-6">
                     <div class="form-group">
                         <label path="remark" for="remark" cssClass="required">Remarks</label>
                         <textarea class="form-control" name="remark" formControlName="remark" [ngClass]="{ 'is-invalid': submitted && f.remark.errors }"></textarea>

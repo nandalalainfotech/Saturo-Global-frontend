@@ -84,7 +84,23 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="col-xs-6 col-sm-6 ">
+                <div class="form-group">
+                    <label for="roleid">Role Name</label>
+                    <input class="form-control" path="roleid" type="hidden" />
+                    <select class="form-control" name="roleid" id="roleid" formControlName="roleid" [ngClass]="{ 'is-invalid': submitted && f.roleid.errors }">
+                        <option value="" hidden> - Select the Role - </option>
+                        <option value="null"> - Select the Role - </option>
+                        <option *ngFor="let role of roles" [value]="role.id">
+                            {{role.rolename}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.roleid.errors" class="invalid-feedback">
+                        <div *ngIf="f.roleid.errors.required">Role Name is required</div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
                 <div class="col-xs-6 col-sm-6">
                     <div class="form-group">
                         <label for="domain">Domain</label>
@@ -101,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-xs-6 col-sm-6">
                     <div class="form-group">

@@ -31,7 +31,7 @@ export class ReportComponent implements OnInit {
   ligand: Ligand001wb[] = [];
   assay: Assay001wb[] = [];
   measurement: Measurement001wb[] = [];
-
+  username: any
   hexToRgb: any;
   rgbToHex: any;
 
@@ -66,7 +66,9 @@ export class ReportComponent implements OnInit {
 
     
 
-    this.ligandManager.allligand().subscribe(response => {
+    this.username = this.authManager.getcurrentUser.username;
+
+    this.ligandManager.allligand(this.username).subscribe(response => {
       this.ligand = deserialize<Ligand001wb[]>(Ligand001wb, response);
       if (this.ligand.length > 0) {
         this.gridOptions?.api?.setRowData(this.ligand);
@@ -75,7 +77,7 @@ export class ReportComponent implements OnInit {
       }
     });
 
-     this.assayManager.allassay().subscribe(response => {
+     this.assayManager.allassay(this.username).subscribe(response => {
       this.assay = deserialize<Assay001wb[]>(Assay001wb, response);
       if (this.assay.length > 0) {
         this.gridOptions1?.api?.setRowData(this.assay);
@@ -85,7 +87,7 @@ export class ReportComponent implements OnInit {
     });
 
 
-    this.measurementManager.allmeasurement().subscribe(response => {
+    this.measurementManager.allmeasurement(this.username).subscribe(response => {
       this.measurement = deserialize<Measurement001wb[]>(Measurement001wb, response);
       if (this.measurement.length > 0) {
         this.gridOptions2?.api?.setRowData(this.measurement);
@@ -93,6 +95,7 @@ export class ReportComponent implements OnInit {
         this.gridOptions2?.api?.setRowData([]);
       }
     });
+	
 
     this.authManager.currentUserSubject.subscribe((object: any) => {
       let rgb = Utils.hexToRgb(object.theme);
@@ -196,8 +199,30 @@ export class ReportComponent implements OnInit {
 
       },
       {
-        headerName: 'Collection-name',
-        field: 'collectionName',
+        headerName: 'Identifier1',
+        field: 'identifier1',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+
+      {
+        headerName: 'Identifier2',
+        field: 'identifier2',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+
+      {
+        headerName: 'Identifier3',
+        field: 'identifier3',
         width: 200,
         flex: 1,
         sortable: true,
@@ -248,6 +273,26 @@ export class ReportComponent implements OnInit {
       {
         headerName: 'Citation',
         field: 'citation',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Related-document',
+        field: 'relatedDocument',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Substance-uri',
+        field: 'registryNumber',
         width: 200,
         flex: 1,
         sortable: true,
@@ -501,19 +546,19 @@ export class ReportComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true
       },
+      // {
+      //   headerName: 'Unit(highValue)',
+      //   field: 'unitsSlno',
+      //   width: 200,
+      //   flex: 1,
+      //   sortable: true,
+      //   filter: true,
+      //   resizable: true,
+      //   suppressSizeToFit: true,
+      //   valueGetter: this.setUnitHighValue.bind(this)
+      // },
       {
-        headerName: 'Unit(highValue)',
-        field: 'unitsSlno',
-        width: 200,
-        flex: 1,
-        sortable: true,
-        filter: true,
-        resizable: true,
-        suppressSizeToFit: true,
-        valueGetter: this.setUnitHighValue.bind(this)
-      },
-      {
-        headerName: 'unit(lowValue)',
+        headerName: 'unit',
         field: 'unitedSlno',
         width: 200,
         flex: 1,
@@ -590,6 +635,56 @@ export class ReportComponent implements OnInit {
         suppressSizeToFit: true
       },
       {
+        headerName: 'Condition(Single-value)',
+        field: 'singleCondition',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true
+      },
+      {
+        headerName: 'Unit(Single-value)',
+        field: 'singleUnit',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true
+      },
+      {
+        headerName: 'Condition(High-end-value)',
+        field: 'highCondition',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true
+      },
+      {
+        headerName: 'Condition(Low-end-value)',
+        field: 'lowCondition',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true
+      },
+      {
+        headerName: 'Unit',
+        field: 'highLowUnit',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true
+      },
+      {
         headerName: 'value',
         field: 'value',
         width: 200,
@@ -625,9 +720,9 @@ export class ReportComponent implements OnInit {
     return params.data.unitSlno2 ? params.data.unitSlno2.unit : null;
   }
 
-  setUnitHighValue(params: any): string {
-    return params.data.unitsSlno2 ? params.data.unitsSlno2.units : null;
-  }
+  // setUnitHighValue(params: any): string {
+  //   return params.data.unitsSlno2 ? params.data.unitsSlno2.units : null;
+  // }
 
   setUnitLowValue(params: any): string {
     return params.data.unitedSlno2 ? params.data.unitedSlno2.united : null;

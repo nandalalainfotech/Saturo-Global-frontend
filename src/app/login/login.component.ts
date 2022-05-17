@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 	loginForm: FormGroup | any;
 	username: string = "";
 	password: string = "";
-	domain: string = "";
+	// domain: string = "";
 	user001mb?: User001mb;
 	toggle1: boolean = false;
 	submitted = false;
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 		this.loginForm = this.formBuilder.group({
 			username: ['', Validators.required],
 			password: ['', Validators.required],
-			domain: [null, Validators.required],
+			// domain: [null, Validators.required],
 		});
 
 	}
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
 			return;
 		}
 
-		this.authManager.login(this.f.username.value, this.f.password.value, this.f.domain.value).subscribe(response => {
+		this.authManager.login(this.f.username.value, this.f.password.value).subscribe(response => {
 			this.user001mb = this.authManager.getcurrentUser;
 			if (this.user001mb.status == "R") {
 				const modalRef = this.modalService.open(ResetPasswordComponent);

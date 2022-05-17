@@ -7,9 +7,11 @@ import { AuditComponent } from 'src/app/shared/audit/audit.component';
 import { IconRendererComponent } from 'src/app/shared/services/renderercomponent/icon-renderer-component';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
 import { PersonManager } from 'src/app/shared/services/restcontroller/bizservice/person.service';
+import { RoleManager } from 'src/app/shared/services/restcontroller/bizservice/role.service';
 import { SystemPropertiesService } from 'src/app/shared/services/restcontroller/bizservice/system-properties.service';
 import { UserManager } from 'src/app/shared/services/restcontroller/bizservice/user.service';
 import { Person001mb } from 'src/app/shared/services/restcontroller/entities/Person001mb';
+import { Role001mb } from 'src/app/shared/services/restcontroller/entities/Role001mb';
 import { Systemproperties001mb } from 'src/app/shared/services/restcontroller/entities/Systemproperties001mb';
 import { User001mb } from 'src/app/shared/services/restcontroller/entities/User001mb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
@@ -24,9 +26,9 @@ export class RegistrationComponent implements OnInit {
 
     frameworkComponents: any;
     personId: number | any;
+    roleid: number | any;
     insertUser: string = "";
     insertDatetime: Date | any;
-    domain: string = "";
     username: string = "";
     status: string = "";
     securityquestion: string = "";
@@ -40,6 +42,7 @@ export class RegistrationComponent implements OnInit {
     ctype: string = "register";
     users: User001mb[] = [];
     persons: Person001mb[] = [];
+    roles: Role001mb[] = [];
     systemproperties?: Systemproperties001mb[] = [];
     dsystemproperties?: Systemproperties001mb[] = [];
     csystemproperties?: Systemproperties001mb[] = [];
@@ -53,7 +56,8 @@ export class RegistrationComponent implements OnInit {
         private personManager: PersonManager,
         private calloutService: CalloutService,
         private authManager: AuthManager,
-        private modalService: NgbModal) {
+        private modalService: NgbModal,
+        private roleManager: RoleManager,) {
         this.frameworkComponents = {
             iconRenderer: IconRendererComponent
         }
@@ -63,7 +67,7 @@ export class RegistrationComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             firstname: ['', Validators.required],
             lastname: ['', Validators.required],
-            domain: ['', Validators.required],
+            roleid: ['', Validators.required],
             username: ['', Validators.required],
             status: ['', Validators.required],
             securityquestion: ['', Validators.required],
@@ -73,6 +77,11 @@ export class RegistrationComponent implements OnInit {
 
         this.loaddata();
         this.createDataGrid001();
+        
+        this.roleManager.allrole().subscribe((response) => {
+            this.roles = deserialize<Role001mb[]>(Role001mb, response);
+        });
+
         this.systemPropertiesService.system(this.name, this.type).subscribe(response => {
             this.systemproperties = deserialize<Systemproperties001mb[]>(Systemproperties001mb, response);
         });
@@ -145,16 +154,7 @@ export class RegistrationComponent implements OnInit {
                 resizable: true,
                 suppressSizeToFit: true,
             },
-            {
-                headerName: 'Domain ',
-                field: 'domain',
-                width: 200,
-                flex: 1,
-                sortable: true,
-                filter: true,
-                resizable: true,
-                suppressSizeToFit: true,
-            },
+           
             {
                 headerName: 'Username ',
                 field: 'username',
@@ -195,6 +195,16 @@ export class RegistrationComponent implements OnInit {
                 filter: true,
                 resizable: true,
                 suppressSizeToFit: true,
+            },
+            {
+                headerName: 'Role Name',
+                width: 200,
+                flex: 1,
+                sortable: true,
+                filter: true,
+                resizable: true,
+                suppressSizeToFit: true,
+                valueGetter: this.setRole.bind(this)
             },
             {
                 headerName: 'Email',
@@ -245,6 +255,11 @@ export class RegistrationComponent implements OnInit {
         ];
     }
 
+    setRole(params: any): string {
+        return params.data.role ? params.data.role.rolename : null;
+    }
+
+
     onEditButtonClick(params: any) {
         this.personId = params.data.personId;
         this.insertUser = params.data.insertUser;
@@ -252,7 +267,8 @@ export class RegistrationComponent implements OnInit {
         this.registerForm.patchValue({
             'firstname': params.data.person.firstname,
             'lastname': params.data.person.lastname,
-            'domain': params.data.domain,
+            // 'domain': params.data.domain,
+            'roleid': params.data.roleid,
             'username': params.data.username,
             'status': params.data.status,
             'securityquestion': params.data.securityquestion,
@@ -305,7 +321,8 @@ export class RegistrationComponent implements OnInit {
         let user001mb = new User001mb();
         user001mb.firstname = this.f.firstname.value ? this.f.firstname.value : "";
         user001mb.lastname = this.f.lastname.value ? this.f.lastname.value : "";
-        user001mb.domain = this.f.domain.value ? this.f.domain.value : "";
+        // user001mb.domain = this.f.domain.value ? this.f.domain.value : "";
+        user001mb.roleid = this.f.roleid.value ? this.f.roleid.value : "";
         user001mb.username = this.f.username.value ? this.f.username.value : "";
         user001mb.status = this.f.status.value ? this.f.status.value : "";
         user001mb.securityquestion = this.f.securityquestion.value ? this.f.securityquestion.value : "";

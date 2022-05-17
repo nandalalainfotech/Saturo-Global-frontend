@@ -10,11 +10,15 @@ export class Ligand001wb {
     collection?: string;
     ligandTypeSlno?: number;
     ligandDetail?: string;
-    collectionName?: string;
+    identifier1?: string;
+    identifier2?: string;
+    identifier3?: string;
     collectionId?: string;
     locator?: string;
     sourceType?: string;
     citation?: string;
+    relatedDocument?: string;
+    registryNumber?: string;
     diseaseName?: string;
     target?: string;
     targetVersion?: string;

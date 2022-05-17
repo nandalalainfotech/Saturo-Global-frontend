@@ -36,13 +36,17 @@ export class LigandComponent implements OnInit {
   ligandVersionSlno: number | any;
   ligandStatus: string = "";
   ligandTypeSlno: string = "";
-  collectionName: number | any;
+  Identifier1: string = "";
+  Identifier2: string = "";
+  Identifier3: string = "";
   collection: string = "";
   collectionId: number | any;
   ligandDetail: string = "";
   locator: string = "";
   sourceType: string = "";
-  citation: number | any;
+  citation: string = "";
+  relatedDocument:string = "";
+  registryNumber: string = "";
   diseaseName: string = "";
   target: number | any;
   targetVersion: number | any;
@@ -107,19 +111,23 @@ export class LigandComponent implements OnInit {
       ligandUri: ['', Validators.required],
       ligandVersionSlno: ['', Validators.required],
       ligandVersions: [''],
-      ligandStatus: [''],
+      // ligandStatus: [''],
       ligandTypeSlno: ['', Validators.required],
-      collection: [''],
-      collectionName: ['', Validators.required],
+      // collection: [''],
+      identifier1: ['', Validators.required],
+      identifier2: ['', Validators.required],
+      identifier3: ['', Validators.required],
       collectionId: ['', Validators.required],
       ligandDetail: ['', Validators.required],
       locator: ['', Validators.required],
-      sourceType: ['',],
+      // sourceType: ['',],
       citation: ['', Validators.required],
+      relatedDocument: [''],
+      registryNumber: [''],
       diseaseName: ['', Validators.required],
       target: ['', Validators.required],
       targetVersion: ['', Validators.required],
-      targetStatus: ['',],
+      // targetStatus: [''],
       collectionId1: ['', Validators.required],
       original: ['', Validators.required],
       acronym: ['', Validators.required],
@@ -144,8 +152,10 @@ export class LigandComponent implements OnInit {
 
   }
 
+  username = this.authManager.getcurrentUser.username;
+
   loadData() {
-    this.ligandManager.allligand().subscribe(response => {
+    this.ligandManager.allligand(this.username).subscribe(response => {
       this.ligand = deserialize<Ligand001wb[]>(Ligand001wb, response);
       if (this.ligand.length > 0) {
         this.gridOptions?.api?.setRowData(this.ligand);
@@ -247,8 +257,8 @@ export class LigandComponent implements OnInit {
 
       },
       {
-        headerName: 'Collection-name',
-        field: 'collectionName',
+        headerName: 'Identifier1',
+        field: 'identifier1',
         width: 200,
         flex: 1,
         sortable: true,
@@ -256,6 +266,31 @@ export class LigandComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true,
       },
+
+      {
+        headerName: 'Identifier2',
+        field: 'identifier2',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+
+      {
+        headerName: 'Identifier3',
+        field: 'identifier3',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+
+     
+
       {
         headerName: 'Collection-id',
         field: 'collectionId',
@@ -299,6 +334,26 @@ export class LigandComponent implements OnInit {
       {
         headerName: 'Citation',
         field: 'citation',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Related-document',
+        field: 'relatedDocument',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Substance-uri',
+        field: 'registryNumber',
         width: 200,
         flex: 1,
         sortable: true,
@@ -469,11 +524,15 @@ export class LigandComponent implements OnInit {
       // 'collection': params.data.collection,
       'ligandTypeSlno': params.data.ligandTypeSlno,
       'ligandDetail': params.data.ligandDetail,
-      'collectionName': params.data.collectionName,
+      'Identifier1': params.data.identifier1,
+      'identifier2': params.data.identifier2,
+      'identifier3': params.data.identifier3,
       'collectionId': params.data.collectionId,
       'locator': params.data.locator,
       // 'sourceType': params.data.sourceType,
       'citation': params.data.citation,
+      'relatedDocument': params.data.relatedDocument,
+      'registryNumber': params.data.registryNumber,
       'diseaseName': params.data.diseaseName,
       'target': params.data.target,
       'targetVersion': params.data.targetVersion,
@@ -534,18 +593,22 @@ export class LigandComponent implements OnInit {
     ligand001wb.tanNumber = this.f.tanNumber.value ? this.f.tanNumber.value : "";
     ligand001wb.ligandUri = this.f.ligandUri.value ? this.f.ligandUri.value : "";
     ligand001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
-    ligand001wb.ligandStatus = this.f.ligandStatus.value ? this.f.ligandStatus.value : "embargoed";
-    ligand001wb.collection = this.f.collection.value ? this.f.collection.value : "CAS";
+    ligand001wb.ligandStatus = "embargoed";
+    ligand001wb.collection = "CAS";
     ligand001wb.ligandTypeSlno = this.f.ligandTypeSlno.value ? this.f.ligandTypeSlno.value : "";
     ligand001wb.ligandDetail = this.f.ligandDetail.value ? this.f.ligandDetail.value : "";
-    ligand001wb.collectionName = this.f.collectionName.value ? this.f.collectionName.value : "";
+    ligand001wb.identifier1 = this.f.identifier1.value ? this.f.identifier1.value : "";
+    ligand001wb.identifier2 = this.f.identifier2.value ? this.f.identifier2.value : "";
+    ligand001wb.identifier3 = this.f.identifier3.value ? this.f.identifier3.value : "";
     ligand001wb.collectionId = this.f.locator.value ? this.f.collectionId.value : "";
     ligand001wb.locator = this.f.locator.value ? this.f.locator.value : "";
-    ligand001wb.sourceType = this.f.sourceType.value ? this.f.sourceType.value : "journal";
+    ligand001wb.sourceType =  "journal";
     ligand001wb.citation = this.f.citation.value ? this.f.citation.value : "";
+    ligand001wb.relatedDocument = this.f.relatedDocument.value ? this.f.relatedDocument.value : "";
+    ligand001wb.registryNumber = this.f.registryNumber.value ? this.f.registryNumber.value : "";
     ligand001wb.diseaseName = this.f.diseaseName.value ? this.f.diseaseName.value : "";
     ligand001wb.target = this.f.target.value ? this.f.target.value : "";
-    ligand001wb.targetStatus = this.f.targetStatus.value ? this.f.targetStatus.value : "embargoed";
+    ligand001wb.targetStatus = "embargoed";
     ligand001wb.targetVersion = this.f.targetVersion.value ? this.f.targetVersion.value : "";
     ligand001wb.collectionId1 = this.f.collectionId1.value ? this.f.collectionId1.value : "";
     ligand001wb.original = this.f.original.value ? this.f.original.value : "";
@@ -571,7 +634,7 @@ export class LigandComponent implements OnInit {
       ligand001wb.insertUser = this.authManager.getcurrentUser.username;
       ligand001wb.insertDatetime = new Date();
       this.ligandManager.ligandsave(ligand001wb).subscribe((response) => {
-        this.calloutService.showSuccess("Breakdown Details Saved Successfully");
+        this.calloutService.showSuccess("Ligand Details Saved Successfully");
         this.loadData();
         this.LigandForm.reset();
         this.submitted = false;
@@ -598,12 +661,17 @@ export class LigandComponent implements OnInit {
 
   onBlurEvent(event: any) {
     let tannumber =this.f.tanNumber.value ? this.f.tanNumber.value : "";
-  console.log("tannumber------------>", tannumber);
+    let collectionId =this.f.collectionId.value ? this.f.collectionId.value : "";
+  
     this.LigandForm.patchValue({
       'citation': tannumber,
+      'relatedDocument': tannumber,
+      'registryNumber': collectionId,
 
     })
   }
+
+  
 
   onLigandVersionClick() {
     this.LigandForm.get('ligandVersionSlno').valueChanges.subscribe((value: any) => {

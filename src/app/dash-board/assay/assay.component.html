@@ -6,11 +6,9 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="ligandSlno" for="ligandSlno" cssClass="required">Ligand-Version</label>
-                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="ligandSlno" formControlName="ligandSlno" [ngClass]="{ 'is-invalid': submitted && f.ligandSlno.errors }">
                             <option value="" hidden> - Select Ligand-Version - </option>
                             <option> - Select Ligand-Version - </option>
-                            <!-- <option> 1 </option> -->
                             <option *ngFor="let ligandObject of ligands" [value]="ligandObject.ligandId">
                                 {{ligandObject.ligandVersionSlno2?.ligandVersion}}
                             </option>
@@ -35,20 +33,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-3 col-sm-3">
+
+                <!-- <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="collectionId" for="series" cssClass="required">Collection-id</label>
-                        <input class="form-control" name="collectionId" formControlName="collectionId" [ngClass]="{ 'is-invalid': submitted && f.collectionId.errors }">
-                        <div *ngIf="submitted && f.collectionId.errors" class="invalid-feedback">
+                        <input class="form-control" name="collectionId" formControlName="collectionId" [ngClass]="{ 'is-invalid': submitted && f.collectionId.errors }" readonly> -->
+                <!-- <div *ngIf="submitted && f.collectionId.errors" class="invalid-feedback">
                             <div *ngIf="f.collectionId.errors.required">ID is Required</div>
-                        </div>
-                    </div>
-                </div>
+                        </div> -->
+                <!-- </div>
+                </div> -->
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="assayTypeSlno" for="assayTypeSlno" cssClass="required">Assay-type</label>
-                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="assayTypeSlno" formControlName="assayTypeSlno" [ngClass]="{ 'is-invalid': submitted && f.assayTypeSlno.errors }">
                             <option value="" hidden> - Select Assay-Types - </option>
                             <option> - Select Assay-Types - </option>
@@ -70,7 +68,6 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="toxiCitySlno" for="toxiCitySlno" cssClass="required">Toxicity-type</label>
-                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="toxiCitySlno" formControlName="toxiCitySlno" [ngClass]="{ 'is-invalid': submitted && f.toxiCitySlno.errors }">
                             <option value="" hidden> - Select Toxicity-Types - </option>
                             <option> - Select Toxicity-Types - </option>
@@ -86,13 +83,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="routeSlno" for="routeSlno" cssClass="required">Route-of-administration</label>
-                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="routeSlno" formControlName="routeSlno" [ngClass]="{ 'is-invalid': submitted && f.routeSlno.errors }">
                             <option value="" hidden> - Select Route-Types - </option>
                             <option> - Select Route-Types - </option>
@@ -109,11 +103,16 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div class="row">
+
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="ligandSvalue" for="series" cssClass="required">Ligand-Dose(Single-value)</label>
                         <input class="form-control" name="ligandSvalue" formControlName="ligandSvalue" [ngClass]="{ 'is-invalid': submitted && f.ligandSvalue.errors }">
                         <div *ngIf="submitted && f.ligandSvalue.errors" class="invalid-feedback">
+
                             <div *ngIf="f.ligandSvalue.errors.required">Ligand dose is Required</div>
                         </div>
                     </div>
@@ -123,17 +122,17 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="unitSlno" for="unitSlno" cssClass="required">Unit(Single-value)</label>
-                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
+
                         <select class="form-control" name="unitSlno" formControlName="unitSlno" [ngClass]="{ 'is-invalid': submitted && f.unitSlno.errors }">
                             <option value="" hidden> - Select Unit-Types - </option>
                             <option> - Select Unit-Types - </option>
                             <option *ngFor="let unitsinglevalue of unitsinglevalues" [value]="unitsinglevalue.id">
                                 {{unitsinglevalue.unit}}
                             </option>
-                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
-                        </select>
+                </select>
                         <div *ngIf="submitted && f.unitSlno.errors" class="invalid-feedback">
                             <div *ngIf="f.unitSlno.errors.required">Unit-Type is Required</div>
                         </div>
@@ -145,7 +144,19 @@
                         <label path="ligandHvalue" for="series" cssClass="required">Ligand-Dose(High-end-value)</label>
                         <input class="form-control" name="ligandHvalue" formControlName="ligandHvalue" [ngClass]="{ 'is-invalid': submitted && f.ligandHvalue.errors }">
                         <div *ngIf="submitted && f.ligandHvalue.errors" class="invalid-feedback">
+
                             <div *ngIf="f.ligandHvalue.errors.required">Ligand dose is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="ligandLvalue" for="series" cssClass="required">Ligand-Dose(Low-end-value)</label>
+                        <input class="form-control" name="ligandLvalue" formControlName="ligandLvalue" [ngClass]="{ 'is-invalid': submitted && f.ligandLvalue.errors }">
+                        <div *ngIf="submitted && f.ligandLvalue.errors" class="invalid-feedback">
+
+                            <div *ngIf="f.ligandLvalue.errors.required">Ligand dose is Required</div>
                         </div>
                     </div>
                 </div>
@@ -156,40 +167,31 @@
 
 
 
-                <div class="col-xs-3 col-sm-3">
+                <!-- <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="unitsSlno" for="unitsSlno" cssClass="required">Unit(High-end-value)</label>
-                        <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="unitsSlno" formControlName="unitsSlno" [ngClass]="{ 'is-invalid': submitted && f.unitsSlno.errors }">
                             <option value="" hidden> - Select Units-Types - </option>
                             <option> - Select Units-Types- </option>
                             <option *ngFor="let unithighendvalue of unithighendvalues" [value]="unithighendvalue.id">
                                 {{unithighendvalue.units}}
                             </option>
-                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                            <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
-                            </option> -->
+                            </option>
                         </select>
                         <div *ngIf="submitted && f.unitsSlno.errors" class="invalid-feedback">
                             <div *ngIf="f.unitsSlno.errors.required">Unit-Type is Required</div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-xs-3 col-sm-3">
-                    <div class="form-group">
-                        <label path="ligandLvalue" for="series" cssClass="required">Ligand-Dose(Low-end-value)</label>
-                        <input class="form-control" name="ligandLvalue" formControlName="ligandLvalue" [ngClass]="{ 'is-invalid': submitted && f.ligandLvalue.errors }">
-                        <div *ngIf="submitted && f.ligandLvalue.errors" class="invalid-feedback">
-                            <div *ngIf="f.ligandLvalue.errors.required">Ligand dose is Required</div>
-                        </div>
-                    </div>
-                </div>
+
 
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="unitedSlno" for="unitedSlno" cssClass="required">Unit(Low-end-value)</label>
+                        <label path="unitedSlno" for="unitedSlno" cssClass="required">Unit</label>
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="unitedSlno" formControlName="unitedSlno" [ngClass]="{ 'is-invalid': submitted && f.unitedSlno.errors }">
                             <option value="" hidden> - Select Units-Types - </option>
@@ -218,10 +220,6 @@
                 </div>
 
 
-            </div>
-
-            <div class="row">
-
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="procedure" for="series" cssClass="required">Procedure</label>
@@ -241,6 +239,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="conditionType" for="series" cssClass="required">Condition type</label>
@@ -260,10 +262,6 @@
                     </div>
                 </div>
 
-            </div>
-
-            <div class="row">
-
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="conditionMaterialid" for="series" cssClass="required">Condition material-id</label>
@@ -276,6 +274,68 @@
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
+                        <label path="singleCondition" for="series" cssClass="required">Condition(Single-value)</label>
+                        <input class="form-control" name="singleCondition" formControlName="singleCondition" [ngClass]="{ 'is-invalid': submitted && f.singleCondition.errors }">
+                        <div *ngIf="submitted && f.singleCondition.errors" class="invalid-feedback">
+                            <div *ngIf="f.singleCondition.errors.required">Condition(Single-value) is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="singleUnit" for="series" cssClass="required">Unit(Single-value)</label>
+                        <input class="form-control" name="singleUnit" formControlName="singleUnit" [ngClass]="{ 'is-invalid': submitted && f.singleUnit.errors }">
+                        <div *ngIf="submitted && f.singleUnit.errors" class="invalid-feedback">
+                            <div *ngIf="f.singleUnit.errors.required">Unit(Single-value) is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="highCondition" for="series" cssClass="required">Condition(High-end-value)</label>
+                        <input class="form-control" name="highCondition" formControlName="highCondition" [ngClass]="{ 'is-invalid': submitted && f.highCondition.errors }">
+                        <div *ngIf="submitted && f.highCondition.errors" class="invalid-feedback">
+                            <div *ngIf="f.highCondition.errors.required">Condition(High-end-value) is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="lowCondition" for="series" cssClass="required">Condition(Low-end-value)</label>
+                        <input class="form-control" name="lowCondition" formControlName="lowCondition" [ngClass]="{ 'is-invalid': submitted && f.lowCondition.errors }">
+                        <div *ngIf="submitted && f.lowCondition.errors" class="invalid-feedback">
+                            <div *ngIf="f.lowCondition.errors.required">Condition(Low-end-value) is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="highLowUnit" for="series" cssClass="required">Unit</label>
+                        <input class="form-control" name="highLowUnit" formControlName="highLowUnit" [ngClass]="{ 'is-invalid': submitted && f.highLowUnit.errors }">
+                        <div *ngIf="submitted && f.highLowUnit.errors" class="invalid-feedback">
+                            <div *ngIf="f.highLowUnit.errors.required">Unit is Required</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+
+
+
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
                         <label path="value" for="series" cssClass="required">value</label>
                         <input class="form-control" name="value" formControlName="value" [ngClass]="{ 'is-invalid': submitted && f.value.errors }">
                         <div *ngIf="submitted && f.value.errors" class="invalid-feedback">
@@ -284,9 +344,8 @@
                     </div>
                 </div>
 
-
-
             </div>
+
 
             <div class="row">
                 <div class="col-sm-12 ">

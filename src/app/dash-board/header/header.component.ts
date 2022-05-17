@@ -66,10 +66,10 @@ export class HeaderComponent implements OnInit {
 
             this.colorthemes_4 = Utils.rgbToHex(rgb, 0.8);
         });
-        this.appSettingService.allFiles().subscribe(response => {
-            this.appSettings = response.originalfilename;
-            this.downloadUrl = this.downloadUrl + this.appSettings;
-        });
+        // this.appSettingService.allFiles().subscribe(response => {
+        //     this.appSettings = response.originalfilename;
+        //     this.downloadUrl = this.downloadUrl + this.appSettings;
+        // });
     }
     ngAfterViewInit() {
         this.temporaryDisabled = false;

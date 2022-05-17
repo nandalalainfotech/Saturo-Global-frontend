@@ -23,6 +23,10 @@ export class UserManager extends BaseService {
     return this.putCallService(`${this.userUrl}` + "/update", {}, user001mb);
   }
 
+  updateRole(user001mb: User001mb) {
+    return this.putCallService(`${this.userUrl}` + "/updateRole", {}, user001mb);
+  }
+
   updateUserName(userName: any) {
     return this.postCallService(`${this.userUrl}` + "/updateUserName", {}, userName);
   }
