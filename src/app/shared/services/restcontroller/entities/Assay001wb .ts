@@ -25,12 +25,14 @@ export class Assay001wb {
     highCondition?: string;
     lowCondition?: string;
     highLowUnit?: string;
-    value?: string;
     unitedSlno?: number;
     insertUser?: string;
     insertDatetime?: Date;
     updatedUser?: string | null;
     updatedDatetime?: Date | null;
-    ligandSlno2?: Ligand001wb[];
+
+    ligandSlno2?: Ligand001wb;
+   
+    
     
 }

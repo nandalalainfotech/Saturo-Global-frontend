@@ -2,6 +2,29 @@
     <legend class="scheduler-border">Measurement</legend>
     <div class="formData">
         <form [formGroup]="MeasurementForm" (ngSubmit)="onMeasurementClick($event, MeasurementForm)" autocomplete="off" novalidate #formRef="ngForm">
+
+            <div class="row">
+                <div class="col-xs-3 col-sm-3">
+                    <div class="form-group">
+                        <label path="assaySlno" for="assaySlno" cssClass="required">Ligand-Version</label>
+                        <select class="form-control" name="assaySlno" formControlName="assaySlno" [ngClass]="{ 'is-invalid': submitted && f.assaySlno.errors }">
+                            <option value="" hidden> - Select Ligand-Version - </option>
+                            <option> - Select Ligand-Version - </option>
+                            <option *ngFor="let assayObject of assays" [value]="assayObject.assayId">
+                                {{assayObject.ligandSlno2?.ligandVersionSlno2?.ligandVersion}}
+                            </option>
+
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                                {{system.description}}
+                            </option> -->
+                        </select>
+                        <div *ngIf="submitted && f.assaySlno.errors" class="invalid-feedback">
+                            <div *ngIf="f.assaySlno.errors.required">Ligand Version is Required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">

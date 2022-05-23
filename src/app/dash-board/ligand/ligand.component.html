@@ -217,10 +217,30 @@
                 <div class="row">
                     <div class="col-xs-3 col-sm-3">
                         <div class="form-group">
-                            <label path="diseaseName" for="series" cssClass="required">Original-disease-name</label>
-                            <input class="form-control" name="diseaseName" formControlName="diseaseName" [ngClass]="{ 'is-invalid': submitted && f.diseaseName.errors }">
-                            <div *ngIf="submitted && f.diseaseName.errors" class="invalid-feedback">
-                                <div *ngIf="f.diseaseName.errors.required">disease Name is Required</div>
+                            <label path="diseaseName1" for="series" cssClass="required">Original-disease-name1</label>
+                            <input class="form-control" name="diseaseName1" formControlName="diseaseName1" [ngClass]="{ 'is-invalid': submitted && f.diseaseName1.errors }">
+                            <div *ngIf="submitted && f.diseaseName1.errors" class="invalid-feedback">
+                                <div *ngIf="f.diseaseName1.errors.required">disease Name1 is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="diseaseName2" for="series" cssClass="required">Original-disease-name2</label>
+                            <input class="form-control" name="diseaseName2" formControlName="diseaseName2" [ngClass]="{ 'is-invalid': submitted && f.diseaseName2.errors }">
+                            <div *ngIf="submitted && f.diseaseName2.errors" class="invalid-feedback">
+                                <div *ngIf="f.diseaseName2.errors.required">disease Name2 is Required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="diseaseName3" for="series" cssClass="required">Original-disease-name3</label>
+                            <input class="form-control" name="diseaseName3" formControlName="diseaseName3" [ngClass]="{ 'is-invalid': submitted && f.diseaseName3.errors }">
+                            <div *ngIf="submitted && f.diseaseName3.errors" class="invalid-feedback">
+                                <div *ngIf="f.diseaseName3.errors.required">disease Name3 is Required</div>
                             </div>
                         </div>
                     </div>

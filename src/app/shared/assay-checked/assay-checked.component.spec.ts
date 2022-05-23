@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UnitHvalueComponent } from './unit-hvalue.component';
+import { AssayCheckedComponent } from './assay-checked.component';
 
-describe('UnitHvalueComponent', () => {
-  let component: UnitHvalueComponent;
-  let fixture: ComponentFixture<UnitHvalueComponent>;
+describe('AssayCheckedComponent', () => {
+  let component: AssayCheckedComponent;
+  let fixture: ComponentFixture<AssayCheckedComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UnitHvalueComponent ]
+      declarations: [ AssayCheckedComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UnitHvalueComponent);
+    fixture = TestBed.createComponent(AssayCheckedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

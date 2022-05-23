@@ -13,7 +13,6 @@ import { MasterComponent } from './master.component';
 import { OriginalPrefixComponent } from './original-prefix/original-prefix.component';
 import { RouteOfAdministrationTypeComponent } from './route-of-administration-type/route-of-administration-type.component';
 import { ToxicityTypeComponent } from './toxicity-type/toxicity-type.component';
-import { UnitHvalueComponent } from './unit-hvalue/unit-hvalue.component';
 import { UnitLvalueComponent } from './unit-lvalue/unit-lvalue.component';
 import { UnitSvalueComponent } from './unit-svalue/unit-svalue.component';
 
@@ -58,10 +57,7 @@ const routes: Routes = [{
       path: "app-unit-svalue",
       component: UnitSvalueComponent
     },
-    {
-      path: "app-unit-hvalue",
-      component: UnitHvalueComponent
-    },
+   
     {
       path: "app-unit-lvalue",
       component: UnitLvalueComponent

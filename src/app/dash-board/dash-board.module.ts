@@ -32,7 +32,6 @@ import { RouteofAdminManager } from '../shared/services/restcontroller/bizservic
 import { ToxicityManager } from '../shared/services/restcontroller/bizservice/toxiCity.service';
 import { OriginalprefixManager } from '../shared/services/restcontroller/bizservice/originalPrefix.service';
 import { BioTypeManager } from '../shared/services/restcontroller/bizservice/type.service';
-import { UnitHighEndValueManager } from '../shared/services/restcontroller/bizservice/UnitHighEndValue.service';
 import { UnitlowendvalueManager } from '../shared/services/restcontroller/bizservice/Unitlowendvalue.service';
 import { UnitSingleValueManager } from '../shared/services/restcontroller/bizservice/unitSingleValue.service';
 import { UserManager } from '../shared/services/restcontroller/bizservice/user.service';
@@ -115,7 +114,6 @@ import { LigandReportsManager } from '../shared/services/restcontroller/bizservi
         AssayManager,
         MeasurementManager,
         UnitSingleValueManager,
-        UnitHighEndValueManager,
         UnitlowendvalueManager,
         AssayTypeManager,
         ToxicityManager,
