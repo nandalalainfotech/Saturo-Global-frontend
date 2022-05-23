@@ -1,0 +1,365 @@
+<app-checked-popup class="checked" title="Ligand Checking Area" acceptLabel="Accept" cancelLabel="Reject" acceptIcon="fa fa-check" [widthArg]="400" [heightArg]="400" (acceptClick)="onOkClick();" (cancelClick)="onCancelClick()">
+
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Link :</legend>
+        <div class="formData">
+            <form [formGroup]="LigandForm">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="tanNumber" for="tanNumber" cssClass="required">TAN Number : </label>
+                            </div>
+                            <div class="col-sm-7">
+                                <!-- <input type="text" class="tanNumber" name="tanNumber" formControlName="tanNumber"> -->
+                                {{tanNumber}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+
+
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Ligand</legend>
+        <div class="formData">
+            <form>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="ligandUri" for="ligandUri" cssClass="required">Ligand-Uri :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                {{ligandUri}}
+                                <!-- <input class="ligandUri" name="ligandUri" formControlName="ligandUri"> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="ligandVersionSlno" for="ligandVersionSlno" cssClass="required">Ligand-Version :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <div>
+                                    {{ligandVersionSlno}}
+                                </div>
+                                <!-- <input class="ligandVersionSlno" name="ligandVersionSlno" formControlName="ligandVersionSlno"> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="ligandTypeSlno" for="ligandTypeSlno" cssClass="required">Ligand-Type :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <!-- <div *ngFor="let ligandtype of ligandtypes" [value]="ligandtype.id"> -->
+                                {{ligandTypeSlno}}
+                                <!-- </div> -->
+                                <!-- <input class="ligandTypeSlno" name="ligandTypeSlno" formControlName="ligandTypeSlno"> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="ligandDetail" for="series" cssClass="required">Ligand-detail :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <!-- <input class="ligandDetail" name="ligandDetail" formControlName="ligandDetail"> -->
+                                {{ligandDetail}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="identifier1" for="series" cssClass="required">Identifier1 :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                {{identifier1}}
+                                <!-- <input class="identifier1" name="identifier1" formControlName="identifier1"> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="identifier2" for="series" cssClass="required">Identifier2 :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                {{identifier2}}
+                                <!-- <input class="identifier2" name="identifier2" formControlName="identifier2"> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="identifier3" for="series" cssClass="required">Identifier3 :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                {{identifier3}}
+                                <!-- <input class="identifier3" name="identifier3" formControlName="identifier3"> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="collectionId" for="series" cssClass="required">Collection-id :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                {{collectionId}}
+                                <!-- <input class="collectionId" name="collectionId" formControlName="collectionId"> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="locator" for="series" cssClass="required">Locator :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                {{locator}}
+                                <!-- <input class="locator" name="locator" formControlName="locator"> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Reference</legend>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="citation" for="series" cssClass="required">Citation :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{tanNumber}}
+                                    <!-- <input class="" path="citation" name="citation" formControlName="citation" readonly /> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="relatedDocument" for="series" cssClass="required">RelatedDocument
+                                        :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{tanNumber}}
+                                    <!-- <input class="" path="relatedDocument" name="relatedDocument" formControlName="relatedDocument" readonly /> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-7">
+                                    <label path="registryNumber" for="series" cssClass="required">Substance-uri registry number :</label>
+                                </div>
+                                <div class="col-sm-5">
+                                    {{collectionId}}
+                                    <!-- <input class="" path="registryNumber" name="registryNumber" formControlName="registryNumber" readonly /> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Disease</legend>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6">
+                            <div class="form-group">
+                                <div class="col-xs-6 col-sm-6">
+                                    <label path="diseaseName1" for="series" cssClass="required">Original disease name1 :</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6">
+                                    {{diseaseName1}}
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6">
+                            <div class="form-group">
+                                <div class="col-xs-6 col-sm-6">
+                                    <label path="diseaseName2" for="series" cssClass="required">Original disease name2 :</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6">
+                                    {{diseaseName2}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6">
+                            <div class="form-group">
+                                <div class="col-xs-6 col-sm-6">
+                                    <label path="diseaseName3" for="series" cssClass="required">Original disease name3 :</label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6">
+                                    {{diseaseName3}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">Target</legend>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="ligandVersions" for="ligandVersions" cssClass="required">Ligand Version :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{ligandVersions}}
+                                    <!-- <input class="" path="ligandVersions" name="ligandVersions" formControlName="ligandVersions" readonly /> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="target" for="series" cssClass="required">Target uri :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{target}}
+                                    <!-- <input class="" name="target" formControlName="target"> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="targetVersion" for="targetVersion" cssClass="required">Target version :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{targetVersion}}
+                                    <!-- <input class="" name="targetVersion" formControlName="targetVersion"> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="collectionId1" for="collectionId1" cssClass="required">Collection-id :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{collectionId1}}
+                                    <!-- <input class="" name="collectionId1" formControlName="collectionId1"> -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="original" for="original" cssClass="required">Original target name :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{original}}
+                                    <!-- <input class="" name="original" formControlName="original"> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="acronym" for="series" cssClass="required">Acronym :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{acronym}}
+                                    <!-- <input class="" name="acronym" formControlName="acronym"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="organism" for="series" cssClass="required">Organism source :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{organism}}
+                                    <!-- <input class="" name="organism" formControlName="organism"> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <label path="variant" for="variant" cssClass="required">Variant :</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    {{variant}}
+                                    <!-- <input class="" name="variant" formControlName="variant"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </fieldset>
+
+</app-checked-popup>

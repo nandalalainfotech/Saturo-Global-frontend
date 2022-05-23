@@ -11,7 +11,6 @@ import { LigandDoseSvalueComponent } from './ligand-dose-svalue/ligand-dose-sval
 import { LigandDoseHvalueComponent } from './ligand-dose-hvalue/ligand-dose-hvalue.component';
 import { LigandDoseLvalueComponent } from './ligand-dose-lvalue/ligand-dose-lvalue.component';
 import { UnitSvalueComponent } from './unit-svalue/unit-svalue.component';
-import { UnitHvalueComponent } from './unit-hvalue/unit-hvalue.component';
 import { UnitLvalueComponent } from './unit-lvalue/unit-lvalue.component';
 import { CategoryComponent } from './category/category.component';
 import { CategoryFunctionsComponent } from './category-functions/category-functions.component';
@@ -45,7 +44,6 @@ import { GenderComponent } from './gender/gender.component';
     LigandDoseHvalueComponent,
     LigandDoseLvalueComponent,
     UnitSvalueComponent,
-    UnitHvalueComponent,
     UnitLvalueComponent,
     CategoryComponent,
     CategoryFunctionsComponent,

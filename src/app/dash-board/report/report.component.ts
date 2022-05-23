@@ -1,21 +1,25 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, HostBinding, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GridOptions } from 'ag-grid-community';
+import { saveAs } from 'file-saver';
+import { param } from 'jquery';
 import { deserialize } from 'serializer.ts/Serializer';
+import { CheckedComponent } from 'src/app/shared/checked/checked.component';
 import { IconRendererComponent } from 'src/app/shared/services/renderercomponent/icon-renderer-component';
 import { AssayManager } from 'src/app/shared/services/restcontroller/bizservice/Assay.service';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
 import { LigandManager } from 'src/app/shared/services/restcontroller/bizservice/ligandManager.service';
+import { LigandTypeManager } from 'src/app/shared/services/restcontroller/bizservice/ligandType.service';
+import { LigandVersionManager } from 'src/app/shared/services/restcontroller/bizservice/ligandVersion.service';
 import { MeasurementManager } from 'src/app/shared/services/restcontroller/bizservice/Measurement.service';
+import { LigandReportsManager } from 'src/app/shared/services/restcontroller/bizservice/report.service';
 import { Assay001wb } from 'src/app/shared/services/restcontroller/entities/Assay001wb ';
 import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Ligand001wb';
 import { Measurement001wb } from 'src/app/shared/services/restcontroller/entities/Measurement001wb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
-import { saveAs } from 'file-saver';
-import { LigandReportsManager } from 'src/app/shared/services/restcontroller/bizservice/report.service';
 import { Utils } from 'src/app/shared/utils/utils';
 @Component({
   selector: 'app-report',
@@ -23,12 +27,25 @@ import { Utils } from 'src/app/shared/utils/utils';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
+  headerText: string = ";"
+  @Input() acc: string = '';
 
+  public LigandForm: FormGroup | any;
   frameworkComponents: any;
+  submitted = false;
   public gridOptions: GridOptions | any;
   public gridOptions1: GridOptions | any;
   public gridOptions2: GridOptions | any;
+  ligandId: number | any;
+  insertUser: string = "";
+  insertDatetime: Date | any;
+  updatedUser: string = "";
+  updatedDatetime: Date | any;
+  // searchPopup: string = '';
+
   ligand: Ligand001wb[] = [];
+  // Ligandversions=Ligandversion001mb[] = [];
+  // Ligandtypes=Ligandtype001mb[] = [];
   assay: Assay001wb[] = [];
   measurement: Measurement001wb[] = [];
   username: any
@@ -44,27 +61,73 @@ export class ReportComponent implements OnInit {
     private authManager: AuthManager,
     private formBuilder: FormBuilder,
     private calloutService: CalloutService,
-    private route: ActivatedRoute,
+    // private route: ActivatedRoute,
     private modalService: NgbModal,
     private ligandManager: LigandManager,
     private assayManager: AssayManager,
     private ligandReportsManager: LigandReportsManager,
     private measurementManager: MeasurementManager,
+    private ligandVersionManager: LigandVersionManager,
+    private ligandTypeManager: LigandTypeManager,
     private http: HttpClient,
+    // private calloutService: CalloutServiceF,
+    private router: Router
   ) {
-    
-      this.frameworkComponents = {
-        iconRenderer: IconRendererComponent
-      }
-   }
+
+    this.frameworkComponents = {
+      iconRenderer: IconRendererComponent,
+
+    }
+  }
 
   ngOnInit(): void {
 
+    // this.ligandVersionManager.allligandVersion().subscribe(response => {
+    //   this.ligandVersions = deserialize<Ligandversion001mb[]>(Ligandversion001mb, response);
+
+    // });
+
+    // this.ligandTypeManager.allligandType().subscribe(response => {
+    //   this.ligandtypes = deserialize<Ligandtype001mb[]>(Ligandtype001mb, response);
+
+    // });
+
+
     this.createDataGrid001();
+
+
+    // this.LigandForm = this.formBuilder.group({
+
+    //   tanNumber: ['', Validators.required],
+    //   ligandUri: ['', Validators.required],
+    //   ligandVersionSlno: ['', Validators.required],
+    //   ligandVersions: [''],
+    //   ligandTypeSlno: ['', Validators.required],
+    //   identifier1: ['', Validators.required],
+    //   identifier2: ['', Validators.required],
+    //   identifier3: ['', Validators.required],
+    //   collectionId: ['', Validators.required],
+    //   ligandDetail: ['', Validators.required],
+    //   locator: ['', Validators.required],
+    //   citation: ['', Validators.required],
+    //   relatedDocument: [''],
+    //   registryNumber: [''],
+    //   diseaseName1: ['', Validators.required],
+    //   diseaseName2: ['', Validators.required],
+    //   diseaseName3: ['', Validators.required],
+    //   target: ['', Validators.required],
+    //   targetVersion: ['', Validators.required],
+    //   collectionId1: ['', Validators.required],
+    //   original: ['', Validators.required],
+    //   acronym: ['', Validators.required],
+    //   organism: ['', Validators.required],
+    //   variant: ['', Validators.required],
+    // });
+
     this.createDataGrid002();
     this.createDataGrid003();
 
-    
+
 
     this.username = this.authManager.getcurrentUser.username;
 
@@ -77,7 +140,7 @@ export class ReportComponent implements OnInit {
       }
     });
 
-     this.assayManager.allassay(this.username).subscribe(response => {
+    this.assayManager.allassay(this.username).subscribe(response => {
       this.assay = deserialize<Assay001wb[]>(Assay001wb, response);
       if (this.assay.length > 0) {
         this.gridOptions1?.api?.setRowData(this.assay);
@@ -95,7 +158,7 @@ export class ReportComponent implements OnInit {
         this.gridOptions2?.api?.setRowData([]);
       }
     });
-	
+
 
     this.authManager.currentUserSubject.subscribe((object: any) => {
       let rgb = Utils.hexToRgb(object.theme);
@@ -107,6 +170,12 @@ export class ReportComponent implements OnInit {
 
       this.colorthemes_4 = Utils.rgbToHex(rgb, 0.8);
     });
+  }
+
+  onAccepted() {
+    // this.route.navigate(['/app-checked']);
+    // const modalRef = this.modalService.open(CheckedComponent,{size:'lg'});
+
   }
 
 
@@ -133,6 +202,62 @@ export class ReportComponent implements OnInit {
         checkboxSelection: true,
         suppressSizeToFit: true,
       },
+
+      {
+        headerName: 'Edit',
+        cellRenderer: 'iconRenderer',
+        width: 80,
+        flex: 1,
+        suppressSizeToFit: true,
+        cellStyle: { textAlign: 'center' },
+        cellRendererParams: {
+          onClick: this.onEditButtonClick.bind(this),
+          label: 'Edit'
+        },
+      },
+
+      {
+        headerName: 'Accepted',
+        field: 'acc',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        headerCheckboxSelection: true,
+        headerCheckboxSelectionFilteredOnly: true,
+        checkboxSelection: true,
+        suppressSizeToFit: true,
+        // valueGetter: this.setAccepted.bind(this)
+        // cellRendererParams: {
+        //   onClick: this.onAcceptClick.bind(this),
+
+        // },
+        // modalRef.result.then((data) => {
+        cellRenderer: function (params: any) {
+
+          var display = 'none';
+          if (params.data.score > 70) {
+            display = 'ok';
+          }
+
+
+        }
+      },
+
+      //   let columns = [{ width: 30, suppressSorting: true, suppressMenu: true,
+      //     cellRenderer: function (params) {
+      //         var display = 'block';
+      //         if (params.data.score > 70) {
+      //             display = 'none';
+      //         }
+
+      //         var html = '<input type="checkbox" style="display: ' + display + '">';
+
+      //         return html;
+      //     }
+      // }]
+
       {
         headerName: 'TAN Number',
         field: 'tanNumber',
@@ -280,9 +405,10 @@ export class ReportComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true,
       },
+
       {
-        headerName: 'Related-document',
-        field: 'relatedDocument',
+        headerName: 'Original-disease-name1',
+        field: 'diseaseName1',
         width: 200,
         flex: 1,
         sortable: true,
@@ -291,8 +417,8 @@ export class ReportComponent implements OnInit {
         suppressSizeToFit: true,
       },
       {
-        headerName: 'Substance-uri',
-        field: 'registryNumber',
+        headerName: 'Original-disease-name2',
+        field: 'diseaseName2',
         width: 200,
         flex: 1,
         sortable: true,
@@ -301,8 +427,8 @@ export class ReportComponent implements OnInit {
         suppressSizeToFit: true,
       },
       {
-        headerName: 'Original-disease-name',
-        field: 'diseaseName',
+        headerName: 'Original-disease-name3',
+        field: 'diseaseName3',
         width: 200,
         flex: 1,
         sortable: true,
@@ -402,7 +528,7 @@ export class ReportComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true,
       },
-     
+
     ];
   }
 
@@ -414,6 +540,54 @@ export class ReportComponent implements OnInit {
     return params.data.ligandTypeSlno2 ? params.data.ligandTypeSlno2.ligandtype : null;
   }
 
+  onEditButtonClick(params: any) {
+    console.log("params", params);
+    const modalRef = this.modalService.open(CheckedComponent, { size: 'lg' });
+    modalRef.componentInstance.tanNumber = params.data.tanNumber,
+      modalRef.componentInstance.ligandUri = params.data.ligandUri,
+      modalRef.componentInstance.ligandVersionSlno = params.data.ligandVersionSlno2?.ligandVersion,
+      modalRef.componentInstance.ligandStatus = params.data.ligandStatus,
+      modalRef.componentInstance.collection = params.data.collection,
+      modalRef.componentInstance.ligandTypeSlno = params.data.ligandTypeSlno2?.ligandtype
+    modalRef.componentInstance.ligandDetail = params.data.ligandDetail,
+      modalRef.componentInstance.identifier1 = params.data.identifier1
+    modalRef.componentInstance.identifier2 = params.data.identifier2,
+      modalRef.componentInstance.identifier3 = params.data.identifier3,
+      modalRef.componentInstance.collectionId = params.data.collectionId,
+      modalRef.componentInstance.locator = params.data.locator,
+      modalRef.componentInstance.collectionId = params.data.collectionId,
+      modalRef.componentInstance.diseaseName1 = params.data.diseaseName1,
+      modalRef.componentInstance.diseaseName2 = params.data.diseaseName2,
+      modalRef.componentInstance.diseaseName3 = params.data.diseaseName3,
+      modalRef.componentInstance.target = params.data.target,
+      modalRef.componentInstance.targetVersion = params.data.targetVersion,
+      modalRef.componentInstance.targetStatus = params.data.targetStatus,
+      modalRef.componentInstance.collectionId1 = params.data.collectionId1,
+      modalRef.componentInstance.original = params.data.original,
+      modalRef.componentInstance.acronym = params.data.acronym,
+      modalRef.componentInstance.organism = params.data.organism,
+      modalRef.componentInstance.variant = params.data.variant
+
+    modalRef.result.then((data) => {
+
+      console.log("Notaccepted");
+      if (data == "Yes") {
+        // setAccepted(params) {
+        //   return params.data.ligandVersionSlno2 ? params.data.ligandVersionSlno2.ligandVersion : null;
+        // }
+        this.calloutService.showSuccess("Ligand Data Accepted Successfully");
+      }
+
+    }
+
+    )
+
+  }
+
+  setStatusName(params: any): string {
+    console.log("paramsss", params)
+    return params.data.acc = "ok";
+  }
 
   // ----------------------------------assay------------------------------------
 
@@ -441,6 +615,20 @@ export class ReportComponent implements OnInit {
         checkboxSelection: true,
         suppressSizeToFit: true,
       },
+
+      {
+        headerName: 'Edit',
+        cellRenderer: 'iconRenderer',
+        width: 80,
+        flex: 1,
+        suppressSizeToFit: true,
+        cellStyle: { textAlign: 'center' },
+        cellRendererParams: {
+          onClick: this.onEditButtonClick.bind(this),
+          label: 'Edit'
+        },
+      },
+
       {
         headerName: 'Ligand-Version',
         width: 200,
@@ -696,7 +884,7 @@ export class ReportComponent implements OnInit {
         suppressSizeToFit: true
       },
 
-     
+
     ]
   }
 
@@ -913,7 +1101,7 @@ export class ReportComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true,
         valueGetter: this.setTypes.bind(this)
-        
+
       },
       {
         headerName: 'Cell',
@@ -999,7 +1187,7 @@ export class ReportComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true,
       },
-     
+
     ];
   }
 
@@ -1010,7 +1198,7 @@ export class ReportComponent implements OnInit {
   setCategoryFunction(params: any): string {
     return params.data.functionSlno2 ? params.data.functionSlno2.function : null;
   }
- 
+
   setOriginalPrefix(params: any): string {
     return params.data.originalPrefixSlno2 ? params.data.originalPrefixSlno2.originalPrefix : null;
   }
@@ -1020,7 +1208,7 @@ export class ReportComponent implements OnInit {
     return params.data.typeSlno2 ? params.data.typeSlno2.type : null;
   }
 
-  
+
 
   //  ------EXCEL FILE --------//
 
@@ -1033,7 +1221,7 @@ export class ReportComponent implements OnInit {
       }
     })
   }
- 
+
 }
 
 

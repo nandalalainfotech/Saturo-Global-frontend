@@ -1,5 +1,9 @@
+import { Assay001wb } from "./Assay001wb ";
+import { Ligandversion001mb } from "./Ligandversion001mb";
+
 export class Measurement001wb {
     measurementId?: number;
+    assaySlno?: number;
     dataLocator?: string;
     categorySlno?: number;
     functionSlno?: number;
@@ -26,4 +30,7 @@ export class Measurement001wb {
     insertDatetime?: Date;
     updatedUser?: string | null;
     updatedDatetime?: Date | null;
+
+    assaySlno2?: Assay001wb[];
+
 }

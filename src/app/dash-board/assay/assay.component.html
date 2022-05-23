@@ -129,10 +129,10 @@
                             <option *ngFor="let unitsinglevalue of unitsinglevalues" [value]="unitsinglevalue.id">
                                 {{unitsinglevalue.unit}}
                             </option>
-                <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
+                            <!-- <option *ngFor="let system of dummysystemproperties" [value]="system.description">
                                 {{system.description}}
                             </option> -->
-                </select>
+                        </select>
                         <div *ngIf="submitted && f.unitSlno.errors" class="invalid-feedback">
                             <div *ngIf="f.unitSlno.errors.required">Unit-Type is Required</div>
                         </div>
@@ -330,21 +330,20 @@
                 </div>
 
             </div>
-            <div class="row">
 
-
-
+            <!-- <div class="row">
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="value" for="series" cssClass="required">value</label>
-                        <input class="form-control" name="value" formControlName="value" [ngClass]="{ 'is-invalid': submitted && f.value.errors }">
+                        <input class="form-control" name="value" formControlName="value"
+                            [ngClass]="{ 'is-invalid': submitted && f.value.errors }">
                         <div *ngIf="submitted && f.value.errors" class="invalid-feedback">
                             <div *ngIf="f.value.errors.required">Value is Required</div>
                         </div>
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
 
             <div class="row">

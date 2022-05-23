@@ -10,7 +10,6 @@ import { AssayTypeManager } from 'src/app/shared/services/restcontroller/bizserv
 import { ToxicityManager } from 'src/app/shared/services/restcontroller/bizservice/toxiCity.service';
 import { RouteofAdminManager } from 'src/app/shared/services/restcontroller/bizservice/routeOfAdministration.service';
 import { UnitSingleValueManager } from 'src/app/shared/services/restcontroller/bizservice/unitSingleValue.service';
-import { UnitHighEndValueManager } from 'src/app/shared/services/restcontroller/bizservice/UnitHighEndValue.service';
 import { UnitlowendvalueManager } from 'src/app/shared/services/restcontroller/bizservice/Unitlowendvalue.service';
 import { LigandVersionManager } from 'src/app/shared/services/restcontroller/bizservice/ligandVersion.service';
 
@@ -30,7 +29,6 @@ import { LigandVersionManager } from 'src/app/shared/services/restcontroller/biz
     ToxicityManager,
     RouteofAdminManager,
     UnitSingleValueManager,
-    UnitHighEndValueManager,
     UnitlowendvalueManager,
     LigandVersionManager]
 })

@@ -47,7 +47,9 @@ export class LigandComponent implements OnInit {
   citation: string = "";
   relatedDocument:string = "";
   registryNumber: string = "";
-  diseaseName: string = "";
+  diseaseName1: string = "";
+  diseaseName2: string = "";
+  diseaseName3: string = "";
   target: number | any;
   targetVersion: number | any;
   targetStatus: string = "";
@@ -124,7 +126,9 @@ export class LigandComponent implements OnInit {
       citation: ['', Validators.required],
       relatedDocument: [''],
       registryNumber: [''],
-      diseaseName: ['', Validators.required],
+      diseaseName1: ['', Validators.required],
+      diseaseName2: ['', Validators.required],
+      diseaseName3: ['', Validators.required],
       target: ['', Validators.required],
       targetVersion: ['', Validators.required],
       // targetStatus: [''],
@@ -341,9 +345,10 @@ export class LigandComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true,
       },
+      
       {
-        headerName: 'Related-document',
-        field: 'relatedDocument',
+        headerName: 'Original-disease-name1',
+        field: 'diseaseName1',
         width: 200,
         flex: 1,
         sortable: true,
@@ -352,8 +357,8 @@ export class LigandComponent implements OnInit {
         suppressSizeToFit: true,
       },
       {
-        headerName: 'Substance-uri',
-        field: 'registryNumber',
+        headerName: 'Original-disease-name2',
+        field: 'diseaseName2',
         width: 200,
         flex: 1,
         sortable: true,
@@ -362,8 +367,8 @@ export class LigandComponent implements OnInit {
         suppressSizeToFit: true,
       },
       {
-        headerName: 'Original-disease-name',
-        field: 'diseaseName',
+        headerName: 'Original-disease-name3',
+        field: 'diseaseName3',
         width: 200,
         flex: 1,
         sortable: true,
@@ -371,6 +376,7 @@ export class LigandComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true,
       },
+
       {
         headerName: 'Ligand Version',
         width: 200,
@@ -512,6 +518,7 @@ export class LigandComponent implements OnInit {
 
 
   onEditButtonClick(params: any) {
+    console.log("params",params);
     this.ligandId = params.data.ligandId;
     this.insertUser = params.data.insertUser;
     this.insertDatetime = params.data.insertDatetime;
@@ -524,16 +531,18 @@ export class LigandComponent implements OnInit {
       // 'collection': params.data.collection,
       'ligandTypeSlno': params.data.ligandTypeSlno,
       'ligandDetail': params.data.ligandDetail,
-      'Identifier1': params.data.identifier1,
+      'identifier1': params.data.identifier1,
       'identifier2': params.data.identifier2,
       'identifier3': params.data.identifier3,
       'collectionId': params.data.collectionId,
       'locator': params.data.locator,
       // 'sourceType': params.data.sourceType,
       'citation': params.data.citation,
-      'relatedDocument': params.data.relatedDocument,
-      'registryNumber': params.data.registryNumber,
-      'diseaseName': params.data.diseaseName,
+      'relatedDocument': params.data.citation,
+      'registryNumber': params.data.collectionId,
+      'diseaseName1': params.data.diseaseName1,
+      'diseaseName2': params.data.diseaseName2,
+      'diseaseName3': params.data.diseaseName3,
       'target': params.data.target,
       'targetVersion': params.data.targetVersion,
       // 'targetStatus': params.data.targetStatus,
@@ -604,9 +613,11 @@ export class LigandComponent implements OnInit {
     ligand001wb.locator = this.f.locator.value ? this.f.locator.value : "";
     ligand001wb.sourceType =  "journal";
     ligand001wb.citation = this.f.citation.value ? this.f.citation.value : "";
-    ligand001wb.relatedDocument = this.f.relatedDocument.value ? this.f.relatedDocument.value : "";
-    ligand001wb.registryNumber = this.f.registryNumber.value ? this.f.registryNumber.value : "";
-    ligand001wb.diseaseName = this.f.diseaseName.value ? this.f.diseaseName.value : "";
+    ligand001wb.relatedDocument = this.f.citation.value ? this.f.citation.value : "";
+    ligand001wb.registryNumber = this.f.collectionId.value ? this.f.collectionId.value : "";
+    ligand001wb.diseaseName1 = this.f.diseaseName1.value ? this.f.diseaseName1.value : "";
+    ligand001wb.diseaseName2 = this.f.diseaseName2.value ? this.f.diseaseName2.value : "";
+    ligand001wb.diseaseName3 = this.f.diseaseName3.value ? this.f.diseaseName3.value : "";
     ligand001wb.target = this.f.target.value ? this.f.target.value : "";
     ligand001wb.targetStatus = "embargoed";
     ligand001wb.targetVersion = this.f.targetVersion.value ? this.f.targetVersion.value : "";

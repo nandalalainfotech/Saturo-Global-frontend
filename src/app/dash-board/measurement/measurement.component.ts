@@ -8,14 +8,17 @@ import { deserialize } from 'serializer.ts/Serializer';
 import { AuditComponent } from 'src/app/shared/audit/audit.component';
 import { ConformationComponent } from 'src/app/shared/conformation/conformation.component';
 import { IconRendererComponent } from 'src/app/shared/services/renderercomponent/icon-renderer-component';
+import { AssayManager } from 'src/app/shared/services/restcontroller/bizservice/Assay.service';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
 import { CategoryManager } from 'src/app/shared/services/restcontroller/bizservice/category.service';
 import { CategoryfunctionManager } from 'src/app/shared/services/restcontroller/bizservice/categoryFunction.service';
 import { MeasurementManager } from 'src/app/shared/services/restcontroller/bizservice/Measurement.service';
 import { OriginalprefixManager } from 'src/app/shared/services/restcontroller/bizservice/originalPrefix.service';
 import { BioTypeManager } from 'src/app/shared/services/restcontroller/bizservice/type.service';
+import { Assay001wb } from 'src/app/shared/services/restcontroller/entities/Assay001wb ';
 import { Category001mb } from 'src/app/shared/services/restcontroller/entities/Category001mb';
 import { Categoryfunction001mb } from 'src/app/shared/services/restcontroller/entities/Categoryfunction001mb';
+import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Ligand001wb';
 import { Measurement001wb } from 'src/app/shared/services/restcontroller/entities/Measurement001wb';
 import { Originalprefix001mb } from 'src/app/shared/services/restcontroller/entities/Originalprefix001mb';
 import { Type001mb } from 'src/app/shared/services/restcontroller/entities/Type001mb';
@@ -34,6 +37,7 @@ export class MeasurementComponent implements OnInit {
   submitted = false;
 
   measurementId: number | any;
+  assaySlno: number | any;
   dataLocator: string = "";
   categorySlno: number | any;
   functionSlno: number | any;
@@ -60,6 +64,9 @@ export class MeasurementComponent implements OnInit {
   insertDatetime: Date | any;
   updatedUser: string = "";
   updatedDatetime: Date | any;
+  
+  ligands: Ligand001wb[] = [];
+  assays: Assay001wb[] = [];
   measurement: Measurement001wb[] = [];
   categorys: Category001mb [] = [];
   categoryfunctions: Categoryfunction001mb [] = [];
@@ -83,6 +90,7 @@ export class MeasurementComponent implements OnInit {
     private http: HttpClient,
     private calloutService: CalloutService,
     private modalService: NgbModal,
+    private assayManager: AssayManager,
     private measurementManager: MeasurementManager,
     private categoryManager: CategoryManager,
     private categoryfunctionManager: CategoryfunctionManager,
@@ -94,6 +102,13 @@ export class MeasurementComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.username = this.authManager.getcurrentUser.username;
+    this.assayManager.allassay(this.username).subscribe(response => {
+      this.assays = deserialize<Assay001wb[]>(Assay001wb, response);
+      // console.log("this.assays ",this.assays );
+      
+      
+    });
 
     this.categoryManager.allcategoryType().subscribe(response => {
       this.categorys = deserialize<Category001mb[]>(Category001mb, response);
@@ -120,6 +135,7 @@ export class MeasurementComponent implements OnInit {
     this.MeasurementForm = this.formBuilder.group({
 
       dataLocator: ['', Validators.required],
+      assaySlno: ['', Validators.required],
       categorySlno: ['',],
       functionSlno: ['', Validators.required],
       parameter: ['', Validators.required],
@@ -197,6 +213,16 @@ export class MeasurementComponent implements OnInit {
         headerCheckboxSelectionFilteredOnly: true,
         checkboxSelection: true,
         suppressSizeToFit: true,
+      },
+      {
+        headerName: 'Ligand-Version',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+        valueGetter: this.setVersion.bind(this)
       },
       {
         headerName: 'Data-locator',
@@ -480,6 +506,11 @@ export class MeasurementComponent implements OnInit {
     ];
   }
 
+  setVersion(params: any): string {
+
+    return params.data.assaySlno2 ? params.data.assaySlno2.ligandSlno2?.ligandVersionSlno2?.ligandVersion : null;
+  }
+
   setCategory(params: any): string {
     return params.data.categorySlno2 ? params.data.categorySlno2.category : null;
   }
@@ -503,6 +534,7 @@ export class MeasurementComponent implements OnInit {
     this.insertDatetime = params.data.insertDatetime;
     this.MeasurementForm.patchValue({
       'dataLocator': params.data.dataLocator,
+      'assaySlno': params.data.assaySlno,
       'categorySlno': params.data.categorySlno,
       'functionSlno': params.data.functionSlno,
       'parameter': params.data.parameter,
@@ -574,6 +606,7 @@ export class MeasurementComponent implements OnInit {
 
     let measurement001wb = new Measurement001wb();
     measurement001wb.dataLocator = this.f.dataLocator.value ? this.f.dataLocator.value : "";
+    measurement001wb.assaySlno = this.f.assaySlno.value ? this.f.assaySlno.value : "";
     measurement001wb.categorySlno = this.f.categorySlno.value ? this.f.categorySlno.value : "";
     measurement001wb.functionSlno = this.f.functionSlno.value ? this.f.functionSlno.value : "";
     measurement001wb.parameter = this.f.parameter.value ? this.f.parameter.value : "";

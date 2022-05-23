@@ -19,7 +19,9 @@ export class Ligand001wb {
     citation?: string;
     relatedDocument?: string;
     registryNumber?: string;
-    diseaseName?: string;
+    diseaseName1?: string;
+    diseaseName2?: string;
+    diseaseName3?: string;
     target?: string;
     targetVersion?: string;
     targetStatus?: string;

@@ -27,6 +27,10 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { UserRegistrationModule } from './user-registration/user-registration.module';
 import { JwtInterceptor } from './_helpers';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { CheckedPopupComponent } from './shared/checked-popup/checked-popup.component';
+import { CheckedComponent } from './shared/checked/checked.component';
+import { AssayCheckedComponent } from './shared/assay-checked/assay-checked.component';
+import { MeasurementCheckedComponent } from './shared/measurement-checked/measurement-checked.component';
 
 
 @NgModule({
@@ -39,7 +43,11 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 		AuditComponent,
 		UserRegistrationComponent,
 		ConformationComponent,
-		IconRendererComponent
+		IconRendererComponent,
+		CheckedPopupComponent,
+		CheckedComponent,
+		AssayCheckedComponent,
+		MeasurementCheckedComponent
 	],
 	imports: [
 		CommonModule,
