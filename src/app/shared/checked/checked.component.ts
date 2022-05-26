@@ -1,5 +1,5 @@
-import { Component, EventEmitter, HostBinding, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
@@ -27,6 +27,8 @@ export class CheckedComponent implements OnInit {
   public LigandForm : FormGroup | any;
   frameworkComponents: any;
   submitted = false;
+
+  @Input() data: number | any;
 
   ligandId: number | any;
   tanNumber: number | any;
@@ -77,6 +79,7 @@ export class CheckedComponent implements OnInit {
   parentMenuString: string = "";
   childMenuString: string = "";
 
+  
 
   hexToRgb: any;
   rgbToHex: any;
@@ -108,6 +111,7 @@ export class CheckedComponent implements OnInit {
    }
 
   ngOnInit(): void { 
+    
     // const modalRef = this.modalService.open(LigandComponent,{size:'lg'});
     // this.colorthemes = this.user.theme;
     this.dataSharedService.currentMenuObject.subscribe((object: any) => {
@@ -146,12 +150,59 @@ export class CheckedComponent implements OnInit {
       this.colorthemes_4 = Utils.rgbToHex(rgb, 0.8);
     });
     this.title = this.title + 'SearchMenu';
+
+// console.log("data",this.data);
+
+  this.CheckedForm = this.formBuilder.group({
+
+      tanNumber: [this.data.tanNumber],
+      ligandUri: [this.data.ligandUri],
+      ligandVersionSlno: [this.data.ligandVersionSlno2.ligandVersion],
+      ligandTypeSlno: [this.data.ligandTypeSlno2.ligandtype],
+      ligandDetail: [this.data.ligandDetail],
+      identifier1: [this.data.identifier1],
+      identifier2: [this.data.identifier2],
+      identifier3: [this.data.identifier3],
+      collectionId: [this.data.collectionId],
+      locator: [this.data.locator],
+      citation: [this.data.tanNumber],
+      relatedDocument: [this.data.tanNumber],
+      registryNumber: [this.data.collectionId],
+      diseaseName1: [this.data.diseaseName1],
+      diseaseName2: [this.data.diseaseName2],
+      diseaseName3: [this.data.diseaseName3],
+      ligandVersions: [this.data.ligandVersionSlno2.ligandVersion],
+      target: [this.data.target],
+      targetVersion: [this.data.targetVersion],
+      collectionId1: [this.data.collectionId1],
+      original: [this.data.original],
+      acronym: [this.data.acronym],
+      organism: [this.data.organism],
+      variant: [this.data.variant],
+  });
+
+
+
   }
+
+
 
   
  
-  onOkClick() {
-    // this.activeModal.close('No');
+  onEdit() {
+
+    alert("Welcome");
+
+    // this.CheckedForm.patchValue({
+      
+      
+      // 'tanNumber': this.data.tanNumber,
+
+    // })
+   
+
+    console.log("Hi");
+    
   }
 
 onCancelClick() {

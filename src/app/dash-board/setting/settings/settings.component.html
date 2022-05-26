@@ -11,9 +11,6 @@
                     <div class="col-xs-6 col-sm-6 ">
                         <div class="form-group">
                             <label for="userName">User Name </label>
-                            <!-- <input path="userName" type="hidden" />
-                            <input path="loginid" type="hidden" />
-                            <input path="rlid" type="hidden" /> -->
                             <select formControlName="username" class="form-control" name="usernamelist" id="usernamelist" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
                                 <option value="" hidden> - Select the User Name - </option>
                                 <option value="null"> - Select the User Name - </option>
@@ -31,7 +28,7 @@
                             <label for="roleID">Role Name</label>
                             <input path="rolename" type="hidden" />
                             <select formControlName="rolename" class="form-control" name="rolename" id="rolename" [ngClass]="{ 'is-invalid': submitted && f.rolename.errors }">
-                                <option value="null"> - Select the role - </option>
+                                <option value="" hidden> - Select the role - </option>
                                 <option *ngFor="let role of roles" [value]="role.id">
                                     {{role.rolename}}
                                 </option>
@@ -41,21 +38,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-xs-6 col-sm-6 ">
-                        <div class="form-group">
-                            <label for="roleID">Status</label>
-                            <input path="status" type="hidden" />
-                            <select formControlName="status" class="form-control" name="rolenamelist" id="rolenamelist" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
-                                <option value="" hidden> - Select the status - </option>
-                                <option value="null"> - Select the status - </option>
-                                <option> Active </option>
-                                <option> InActive </option>
-                            </select>
-                            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
-                                <div *ngIf="f.status.errors.required">Status is required</div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="row">

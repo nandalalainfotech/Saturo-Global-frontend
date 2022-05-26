@@ -133,18 +133,7 @@ export class SettingsComponent implements OnInit {
                     label: 'Edit'
                 }
             },
-            // {
-            //     headerName: 'Delete',
-            //     cellRenderer: 'iconRenderer',
-            //     width: 200,
-            //     flex: 1,
-            //     suppressSizeToFit: true,
-            //     cellStyle: { textAlign: 'center' },
-            //     cellRendererParams: {
-            //         onClick: this.onDeleteButtonClick.bind(this),
-            //         label: 'Delete'
-            //     }
-            // },
+            
             {
                 headerName: 'Audit',
                 cellRenderer: 'iconRenderer',
@@ -175,20 +164,6 @@ export class SettingsComponent implements OnInit {
             'rolename': params.data.role.id,
         });
     }
-
-    // onDeleteButtonClick(params: any) {
-    //     this.roleManager.deleterole(params.data.id).subscribe((response) => {
-    //         for (let i = 0; i < this.roles.length; i++) {
-    //             if (this.roles[i].id == params.data.id) {
-    //                 this.roles?.splice(i, 1);
-    //                 break;
-    //             }
-    //         }
-    //         const selectedRows = params.api.getSelectedRows();
-    //         params.api.applyTransaction({ remove: selectedRows });
-    //         this.calloutService.showSuccess("Order Removed Successfully");
-    //     });
-    // }
 
     onAuditButtonClick(params: any) {
         const modalRef = this.modalService.open(AuditComponent);

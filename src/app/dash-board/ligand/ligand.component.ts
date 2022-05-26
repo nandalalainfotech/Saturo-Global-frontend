@@ -45,7 +45,7 @@ export class LigandComponent implements OnInit {
   locator: string = "";
   sourceType: string = "";
   citation: string = "";
-  relatedDocument:string = "";
+  relatedDocument: string = "";
   registryNumber: string = "";
   diseaseName1: string = "";
   diseaseName2: string = "";
@@ -110,33 +110,26 @@ export class LigandComponent implements OnInit {
     this.LigandForm = this.formBuilder.group({
 
       tanNumber: ['', Validators.required],
-      ligandUri: ['', Validators.required],
-      ligandVersionSlno: ['', Validators.required],
+      ligandUri: [''],
+      ligandVersionSlno: [''],
       ligandVersions: [''],
-      // ligandStatus: [''],
-      ligandTypeSlno: ['', Validators.required],
-      // collection: [''],
-      identifier1: ['', Validators.required],
-      identifier2: ['', Validators.required],
-      identifier3: ['', Validators.required],
-      collectionId: ['', Validators.required],
-      ligandDetail: ['', Validators.required],
-      locator: ['', Validators.required],
-      // sourceType: ['',],
-      citation: ['', Validators.required],
-      relatedDocument: [''],
-      registryNumber: [''],
-      diseaseName1: ['', Validators.required],
-      diseaseName2: ['', Validators.required],
-      diseaseName3: ['', Validators.required],
-      target: ['', Validators.required],
-      targetVersion: ['', Validators.required],
-      // targetStatus: [''],
-      collectionId1: ['', Validators.required],
-      original: ['', Validators.required],
-      acronym: ['', Validators.required],
-      organism: ['', Validators.required],
-      variant: ['', Validators.required],
+      ligandTypeSlno: [''],
+      identifier1: [''],
+      identifier2: [''],
+      identifier3: [''],
+      collectionId: [''],
+      ligandDetail: [''],
+      locator: [''],
+      diseaseName1: [''],
+      diseaseName2: [''],
+      diseaseName3: [''],
+      target: [''],
+      targetVersion: [''],
+      collectionId1: [''],
+      original: [''],
+      acronym: [''],
+      organism: [''],
+      variant: [''],
     });
 
 
@@ -208,17 +201,7 @@ export class LigandComponent implements OnInit {
         checkboxSelection: true,
         suppressSizeToFit: true,
       },
-      {
-        headerName: 'Ligand-Uri',
-        field: 'ligandUri',
-        width: 200,
-        // flex: 1,
-        sortable: true,
-        filter: true,
-        resizable: true,
-        suppressSizeToFit: true,
 
-      },
       {
         headerName: 'Ligand-Version',
         width: 200,
@@ -293,7 +276,7 @@ export class LigandComponent implements OnInit {
         suppressSizeToFit: true,
       },
 
-     
+
 
       {
         headerName: 'Collection-id',
@@ -325,27 +308,7 @@ export class LigandComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true,
       },
-      {
-        headerName: 'Source-type',
-        field: 'sourceType',
-        width: 200,
-        // flex: 1,
-        sortable: true,
-        filter: true,
-        resizable: true,
-        suppressSizeToFit: true,
-      },
-      {
-        headerName: 'Citation',
-        field: 'citation',
-        width: 200,
-        // flex: 1,
-        sortable: true,
-        filter: true,
-        resizable: true,
-        suppressSizeToFit: true,
-      },
-      
+
       {
         headerName: 'Original-disease-name1',
         field: 'diseaseName1',
@@ -387,17 +350,7 @@ export class LigandComponent implements OnInit {
         suppressSizeToFit: true,
         valueGetter: this.setLigandVersion.bind(this)
       },
-      {
-        headerName: 'Target-Uri',
-        field: 'target',
-        width: 200,
-        // flex: 1,
-        sortable: true,
-        filter: true,
-        resizable: true,
-        suppressSizeToFit: true,
 
-      },
       {
         headerName: 'Target-Version',
         field: 'targetVersion',
@@ -518,17 +471,13 @@ export class LigandComponent implements OnInit {
 
 
   onEditButtonClick(params: any) {
-    console.log("params",params);
     this.ligandId = params.data.ligandId;
     this.insertUser = params.data.insertUser;
     this.insertDatetime = params.data.insertDatetime;
     this.LigandForm.patchValue({
 
       'tanNumber': params.data.tanNumber,
-      'ligandUri': params.data.ligandUri,
       'ligandVersionSlno': params.data.ligandVersionSlno,
-      // 'ligandStatus': params.data.ligandStatus,
-      // 'collection': params.data.collection,
       'ligandTypeSlno': params.data.ligandTypeSlno,
       'ligandDetail': params.data.ligandDetail,
       'identifier1': params.data.identifier1,
@@ -536,16 +485,10 @@ export class LigandComponent implements OnInit {
       'identifier3': params.data.identifier3,
       'collectionId': params.data.collectionId,
       'locator': params.data.locator,
-      // 'sourceType': params.data.sourceType,
-      'citation': params.data.citation,
-      'relatedDocument': params.data.citation,
-      'registryNumber': params.data.collectionId,
       'diseaseName1': params.data.diseaseName1,
       'diseaseName2': params.data.diseaseName2,
       'diseaseName3': params.data.diseaseName3,
-      'target': params.data.target,
       'targetVersion': params.data.targetVersion,
-      // 'targetStatus': params.data.targetStatus,
       'collectionId1': params.data.collectionId1,
       'original': params.data.original,
       'acronym': params.data.acronym,
@@ -593,14 +536,16 @@ export class LigandComponent implements OnInit {
   }
 
   onLigandClick(event: any, LigandForm: any) {
+
     this.markFormGroupTouched(this.LigandForm);
+
     this.submitted = true;
     if (this.LigandForm.invalid) {
       return;
     }
     let ligand001wb = new Ligand001wb();
     ligand001wb.tanNumber = this.f.tanNumber.value ? this.f.tanNumber.value : "";
-    ligand001wb.ligandUri = this.f.ligandUri.value ? this.f.ligandUri.value : "";
+    ligand001wb.ligandUri = "bioactivity-ligand/SaturoGlobal/47495573K/1>bioactivity-ligand/3273cc11-7fac-4199-80f1-b1547d19de3e";
     ligand001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
     ligand001wb.ligandStatus = "embargoed";
     ligand001wb.collection = "CAS";
@@ -611,14 +556,14 @@ export class LigandComponent implements OnInit {
     ligand001wb.identifier3 = this.f.identifier3.value ? this.f.identifier3.value : "";
     ligand001wb.collectionId = this.f.locator.value ? this.f.collectionId.value : "";
     ligand001wb.locator = this.f.locator.value ? this.f.locator.value : "";
-    ligand001wb.sourceType =  "journal";
-    ligand001wb.citation = this.f.citation.value ? this.f.citation.value : "";
-    ligand001wb.relatedDocument = this.f.citation.value ? this.f.citation.value : "";
+    ligand001wb.sourceType = "journal";
+    ligand001wb.citation = this.f.tanNumber.value ? this.f.tanNumber.value : "";
+    ligand001wb.relatedDocument = this.f.tanNumber.value ? this.f.tanNumber.value : "";
     ligand001wb.registryNumber = this.f.collectionId.value ? this.f.collectionId.value : "";
     ligand001wb.diseaseName1 = this.f.diseaseName1.value ? this.f.diseaseName1.value : "";
     ligand001wb.diseaseName2 = this.f.diseaseName2.value ? this.f.diseaseName2.value : "";
     ligand001wb.diseaseName3 = this.f.diseaseName3.value ? this.f.diseaseName3.value : "";
-    ligand001wb.target = this.f.target.value ? this.f.target.value : "";
+    ligand001wb.target = "bioactivity-target/SaturoGlobal/47497201S/1/1>bioactivity-target/0c5c0727-a4fb-4150-9b92-61625914189b";
     ligand001wb.targetStatus = "embargoed";
     ligand001wb.targetVersion = this.f.targetVersion.value ? this.f.targetVersion.value : "";
     ligand001wb.collectionId1 = this.f.collectionId1.value ? this.f.collectionId1.value : "";
@@ -644,7 +589,9 @@ export class LigandComponent implements OnInit {
     else {
       ligand001wb.insertUser = this.authManager.getcurrentUser.username;
       ligand001wb.insertDatetime = new Date();
+      console.log("LigandForm--ligand001wb-------->2", ligand001wb);
       this.ligandManager.ligandsave(ligand001wb).subscribe((response) => {
+
         this.calloutService.showSuccess("Ligand Details Saved Successfully");
         this.loadData();
         this.LigandForm.reset();
@@ -671,9 +618,9 @@ export class LigandComponent implements OnInit {
 
 
   onBlurEvent(event: any) {
-    let tannumber =this.f.tanNumber.value ? this.f.tanNumber.value : "";
-    let collectionId =this.f.collectionId.value ? this.f.collectionId.value : "";
-  
+    let tannumber = this.f.tanNumber.value ? this.f.tanNumber.value : "";
+    let collectionId = this.f.collectionId.value ? this.f.collectionId.value : "";
+
     this.LigandForm.patchValue({
       'citation': tannumber,
       'relatedDocument': tannumber,
@@ -682,7 +629,7 @@ export class LigandComponent implements OnInit {
     })
   }
 
-  
+
 
   onLigandVersionClick() {
     this.LigandForm.get('ligandVersionSlno').valueChanges.subscribe((value: any) => {
@@ -701,6 +648,63 @@ export class LigandComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.LigandForm.reset();
+  }
+
+  onRepeat() {
+    let i = this.ligand.length - 1;
+    for (i; i < this.ligand.length; i++) {
+      this.LigandForm.patchValue({
+        'tanNumber': this.ligand[i].tanNumber,
+        'ligandVersionSlno': this.ligand[i].ligandVersionSlno,
+        'ligandTypeSlno': this.ligand[i].ligandTypeSlno,
+        'ligandDetail': this.ligand[i].ligandDetail,
+        'identifier1': this.ligand[i].identifier1,
+        'identifier2': this.ligand[i].identifier2,
+        'identifier3': this.ligand[i].identifier3,
+        'collectionId': this.ligand[i].collectionId,
+        'locator': this.ligand[i].locator,
+        'diseaseName1': this.ligand[i].diseaseName1,
+        'diseaseName2': this.ligand[i].diseaseName2,
+        'diseaseName3': this.ligand[i].diseaseName3,
+        'targetVersion': this.ligand[i].targetVersion,
+        'collectionId1': this.ligand[i].collectionId1,
+        'original': this.ligand[i].original,
+        'acronym': this.ligand[i].acronym,
+        'organism': this.ligand[i].organism,
+        'variant': this.ligand[i].variant,
+      });
+    }
+  }
+
+  onEdit() {
+console.log("new edit----->");
+
+    let i = this.ligand.length - 1;
+    for (i; i < this.ligand.length; i++) {
+      this.insertDatetime = new Date();
+      this.ligandId = this.ligand[i].ligandId;
+     this.LigandForm.patchValue({
+        'ligandId': this.ligand[i].ligandId,
+        'tanNumber': this.ligand[i].tanNumber,
+        'ligandVersionSlno': this.ligand[i].ligandVersionSlno,
+        'ligandTypeSlno': this.ligand[i].ligandTypeSlno,
+        'ligandDetail': this.ligand[i].ligandDetail,
+        'identifier1': this.ligand[i].identifier1,
+        'identifier2': this.ligand[i].identifier2,
+        'identifier3': this.ligand[i].identifier3,
+        'collectionId': this.ligand[i].collectionId,
+        'locator': this.ligand[i].locator,
+        'diseaseName1': this.ligand[i].diseaseName1,
+        'diseaseName2': this.ligand[i].diseaseName2,
+        'diseaseName3': this.ligand[i].diseaseName3,
+        'targetVersion': this.ligand[i].targetVersion,
+        'collectionId1': this.ligand[i].collectionId1,
+        'original': this.ligand[i].original,
+        'acronym': this.ligand[i].acronym,
+        'organism': this.ligand[i].organism,
+        'variant': this.ligand[i].variant,
+      });
+    }
   }
 
 

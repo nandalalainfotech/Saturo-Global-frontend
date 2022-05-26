@@ -73,6 +73,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xs-6 col-sm-6 ">
                     <div class="form-group">
                         <label path="securityanswer" for="securityanswer" cssClass="required">Security
@@ -84,41 +85,25 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-6 ">
-                <div class="form-group">
-                    <label for="roleid">Role Name</label>
-                    <input class="form-control" path="roleid" type="hidden" />
-                    <select class="form-control" name="roleid" id="roleid" formControlName="roleid" [ngClass]="{ 'is-invalid': submitted && f.roleid.errors }">
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 ">
+                    <div class="form-group">
+                        <label for="roleid">Role Name</label>
+                        <input class="form-control" path="roleid" type="hidden" />
+                        <select class="form-control" name="roleid" id="roleid" formControlName="roleid" [ngClass]="{ 'is-invalid': submitted && f.roleid.errors }">
                         <option value="" hidden> - Select the Role - </option>
                         <option value="null"> - Select the Role - </option>
                         <option *ngFor="let role of roles" [value]="role.id">
                             {{role.rolename}}
                         </option>
                     </select>
-                    <div *ngIf="submitted && f.roleid.errors" class="invalid-feedback">
-                        <div *ngIf="f.roleid.errors.required">Role Name is required</div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="row">
-                <div class="col-xs-6 col-sm-6">
-                    <div class="form-group">
-                        <label for="domain">Domain</label>
-                        <input class="form-control" path="domain" type="hidden" />
-                        <select formControlName="domain" class="form-control" name="domain" id="domain" [ngClass]="{ 'is-invalid': submitted && f.domain.errors }">
-                            <option value="" hidden> - Select the Status - </option>
-                            <option value="null"> - Select the Status - </option>
-                            <option *ngFor="let system of dsystemproperties" [value]="system.description">
-                                {{system.description}}
-                            </option>
-                        </select>
-                        <div *ngIf="submitted && f.domain.errors" class="invalid-feedback">
-                            <div *ngIf="f.domain.errors.required">Domain is required</div>
+                        <div *ngIf="submitted && f.roleid.errors" class="invalid-feedback">
+                            <div *ngIf="f.roleid.errors.required">Role Name is required</div>
                         </div>
                     </div>
                 </div>
-            </div> -->
-            <div class="row">
+
                 <div class="col-xs-6 col-sm-6">
                     <div class="form-group">
                         <label path="email" for="email" cssClass="required">Email</label>
@@ -129,6 +114,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-sm-12 ">
                     <div class="form-group">

@@ -31,6 +31,7 @@ export class ReportComponent implements OnInit {
   @Input() acc: string = '';
 
   public LigandForm: FormGroup | any;
+  public CheckedForm: FormGroup | any;
   frameworkComponents: any;
   submitted = false;
   public gridOptions: GridOptions | any;
@@ -56,6 +57,7 @@ export class ReportComponent implements OnInit {
   @HostBinding('style.--color_l2') colorthemes_2: any;
   @HostBinding('style.--color_l3') colorthemes_3: any;
   @HostBinding('style.--color_l4') colorthemes_4: any;
+  modalRef: any;
 
   constructor(
     private authManager: AuthManager,
@@ -82,52 +84,9 @@ export class ReportComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.ligandVersionManager.allligandVersion().subscribe(response => {
-    //   this.ligandVersions = deserialize<Ligandversion001mb[]>(Ligandversion001mb, response);
-
-    // });
-
-    // this.ligandTypeManager.allligandType().subscribe(response => {
-    //   this.ligandtypes = deserialize<Ligandtype001mb[]>(Ligandtype001mb, response);
-
-    // });
-
-
     this.createDataGrid001();
-
-
-    // this.LigandForm = this.formBuilder.group({
-
-    //   tanNumber: ['', Validators.required],
-    //   ligandUri: ['', Validators.required],
-    //   ligandVersionSlno: ['', Validators.required],
-    //   ligandVersions: [''],
-    //   ligandTypeSlno: ['', Validators.required],
-    //   identifier1: ['', Validators.required],
-    //   identifier2: ['', Validators.required],
-    //   identifier3: ['', Validators.required],
-    //   collectionId: ['', Validators.required],
-    //   ligandDetail: ['', Validators.required],
-    //   locator: ['', Validators.required],
-    //   citation: ['', Validators.required],
-    //   relatedDocument: [''],
-    //   registryNumber: [''],
-    //   diseaseName1: ['', Validators.required],
-    //   diseaseName2: ['', Validators.required],
-    //   diseaseName3: ['', Validators.required],
-    //   target: ['', Validators.required],
-    //   targetVersion: ['', Validators.required],
-    //   collectionId1: ['', Validators.required],
-    //   original: ['', Validators.required],
-    //   acronym: ['', Validators.required],
-    //   organism: ['', Validators.required],
-    //   variant: ['', Validators.required],
-    // });
-
     this.createDataGrid002();
     this.createDataGrid003();
-
-
 
     this.username = this.authManager.getcurrentUser.username;
 
@@ -152,6 +111,8 @@ export class ReportComponent implements OnInit {
 
     this.measurementManager.allmeasurement(this.username).subscribe(response => {
       this.measurement = deserialize<Measurement001wb[]>(Measurement001wb, response);
+      console.log("this.measurement",this.measurement);
+      
       if (this.measurement.length > 0) {
         this.gridOptions2?.api?.setRowData(this.measurement);
       } else {
@@ -173,8 +134,6 @@ export class ReportComponent implements OnInit {
   }
 
   onAccepted() {
-    // this.route.navigate(['/app-checked']);
-    // const modalRef = this.modalService.open(CheckedComponent,{size:'lg'});
 
   }
 
@@ -193,7 +152,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Sl-No',
         field: 'ligandId',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -202,12 +161,11 @@ export class ReportComponent implements OnInit {
         checkboxSelection: true,
         suppressSizeToFit: true,
       },
-
       {
         headerName: 'Edit',
         cellRenderer: 'iconRenderer',
         width: 80,
-        flex: 1,
+        //flex: 1,
         suppressSizeToFit: true,
         cellStyle: { textAlign: 'center' },
         cellRendererParams: {
@@ -216,53 +174,12 @@ export class ReportComponent implements OnInit {
         },
       },
 
-      {
-        headerName: 'Accepted',
-        field: 'acc',
-        width: 200,
-        flex: 1,
-        sortable: true,
-        filter: true,
-        resizable: true,
-        headerCheckboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true,
-        checkboxSelection: true,
-        suppressSizeToFit: true,
-        // valueGetter: this.setAccepted.bind(this)
-        // cellRendererParams: {
-        //   onClick: this.onAcceptClick.bind(this),
-
-        // },
-        // modalRef.result.then((data) => {
-        cellRenderer: function (params: any) {
-
-          var display = 'none';
-          if (params.data.score > 70) {
-            display = 'ok';
-          }
-
-
-        }
-      },
-
-      //   let columns = [{ width: 30, suppressSorting: true, suppressMenu: true,
-      //     cellRenderer: function (params) {
-      //         var display = 'block';
-      //         if (params.data.score > 70) {
-      //             display = 'none';
-      //         }
-
-      //         var html = '<input type="checkbox" style="display: ' + display + '">';
-
-      //         return html;
-      //     }
-      // }]
 
       {
         headerName: 'TAN Number',
         field: 'tanNumber',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -275,7 +192,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Ligand-Uri',
         field: 'ligandUri',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -285,7 +202,7 @@ export class ReportComponent implements OnInit {
       {
         headerName: 'Ligand-Version',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -296,7 +213,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Ligand-status',
         field: 'ligandStatus',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -306,7 +223,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Collection',
         field: 'collection',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -315,7 +232,7 @@ export class ReportComponent implements OnInit {
       {
         headerName: 'Ligand-Type',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -327,7 +244,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Identifier1',
         field: 'identifier1',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -338,7 +255,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Identifier2',
         field: 'identifier2',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -349,7 +266,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Identifier3',
         field: 'identifier3',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -359,7 +276,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Collection-id',
         field: 'collectionId',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -369,7 +286,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Ligand-detail',
         field: 'ligandDetail',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -379,7 +296,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Locator',
         field: 'locator',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -389,7 +306,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Source-type',
         field: 'sourceType',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -399,7 +316,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Citation',
         field: 'citation',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -410,7 +327,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Original-disease-name1',
         field: 'diseaseName1',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -420,7 +337,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Original-disease-name2',
         field: 'diseaseName2',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -430,7 +347,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Original-disease-name3',
         field: 'diseaseName3',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -439,7 +356,7 @@ export class ReportComponent implements OnInit {
       {
         headerName: 'Ligand Version',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -450,7 +367,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Target-Uri',
         field: 'target',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -461,7 +378,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Target-Version',
         field: 'targetVersion',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -471,7 +388,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Target-Status',
         field: 'targetStatus',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -481,7 +398,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Collection-ID',
         field: 'collectionId1',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -491,7 +408,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Target-Name',
         field: 'original',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -502,7 +419,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Acronym',
         field: 'acronym',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -512,7 +429,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Organism-Source',
         field: 'organism',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -522,12 +439,13 @@ export class ReportComponent implements OnInit {
         headerName: 'Variant',
         field: 'variant',
         width: 200,
-        flex: 1,
+        //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
         suppressSizeToFit: true,
       },
+      
 
     ];
   }
@@ -543,30 +461,7 @@ export class ReportComponent implements OnInit {
   onEditButtonClick(params: any) {
     console.log("params", params);
     const modalRef = this.modalService.open(CheckedComponent, { size: 'lg' });
-    modalRef.componentInstance.tanNumber = params.data.tanNumber,
-      modalRef.componentInstance.ligandUri = params.data.ligandUri,
-      modalRef.componentInstance.ligandVersionSlno = params.data.ligandVersionSlno2?.ligandVersion,
-      modalRef.componentInstance.ligandStatus = params.data.ligandStatus,
-      modalRef.componentInstance.collection = params.data.collection,
-      modalRef.componentInstance.ligandTypeSlno = params.data.ligandTypeSlno2?.ligandtype
-    modalRef.componentInstance.ligandDetail = params.data.ligandDetail,
-      modalRef.componentInstance.identifier1 = params.data.identifier1
-    modalRef.componentInstance.identifier2 = params.data.identifier2,
-      modalRef.componentInstance.identifier3 = params.data.identifier3,
-      modalRef.componentInstance.collectionId = params.data.collectionId,
-      modalRef.componentInstance.locator = params.data.locator,
-      modalRef.componentInstance.collectionId = params.data.collectionId,
-      modalRef.componentInstance.diseaseName1 = params.data.diseaseName1,
-      modalRef.componentInstance.diseaseName2 = params.data.diseaseName2,
-      modalRef.componentInstance.diseaseName3 = params.data.diseaseName3,
-      modalRef.componentInstance.target = params.data.target,
-      modalRef.componentInstance.targetVersion = params.data.targetVersion,
-      modalRef.componentInstance.targetStatus = params.data.targetStatus,
-      modalRef.componentInstance.collectionId1 = params.data.collectionId1,
-      modalRef.componentInstance.original = params.data.original,
-      modalRef.componentInstance.acronym = params.data.acronym,
-      modalRef.componentInstance.organism = params.data.organism,
-      modalRef.componentInstance.variant = params.data.variant
+    modalRef.componentInstance.data = params.data;
 
     modalRef.result.then((data) => {
 
@@ -606,7 +501,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Sl-No',
         field: 'assayId',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -620,7 +515,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Edit',
         cellRenderer: 'iconRenderer',
         width: 80,
-        flex: 1,
+       //flex: 1,
         suppressSizeToFit: true,
         cellStyle: { textAlign: 'center' },
         cellRendererParams: {
@@ -632,7 +527,7 @@ export class ReportComponent implements OnInit {
       {
         headerName: 'Ligand-Version',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -643,7 +538,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Ordinal',
         field: 'ordinal',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -653,7 +548,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Collection-id',
         field: 'collectionId',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -663,7 +558,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Assay-type',
         field: 'assayTypeSlno',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -674,7 +569,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Toxicity-type',
         field: 'toxiCitySlno',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -686,7 +581,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Route-of-administration',
         field: 'routeSlno',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -697,7 +592,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Ligand-Dose(singleValue)',
         field: 'ligandSvalue',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -707,7 +602,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Unit(singleValue)',
         field: 'unitSlno',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -718,7 +613,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Ligand-Dose(highValue)',
         field: 'ligandHvalue',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -728,7 +623,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Ligand-Dose(lowValue)',
         field: 'ligandLvalue',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -738,7 +633,7 @@ export class ReportComponent implements OnInit {
       //   headerName: 'Unit(highValue)',
       //   field: 'unitsSlno',
       //   width: 200,
-      //   flex: 1,
+      //  //flex: 1,
       //   sortable: true,
       //   filter: true,
       //   resizable: true,
@@ -749,7 +644,7 @@ export class ReportComponent implements OnInit {
         headerName: 'unit',
         field: 'unitedSlno',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -760,7 +655,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Administration',
         field: 'administration',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -771,7 +666,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Procedure',
         field: 'procedure',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -782,7 +677,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Target-uri',
         field: 'target',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -793,7 +688,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Condition type',
         field: 'conditionType',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -804,7 +699,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Condition material',
         field: 'conditionMaterial',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -815,7 +710,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Condition material-id',
         field: 'conditionMaterialid',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -826,7 +721,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Condition(Single-value)',
         field: 'singleCondition',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -836,7 +731,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Unit(Single-value)',
         field: 'singleUnit',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -846,7 +741,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Condition(High-end-value)',
         field: 'highCondition',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -856,7 +751,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Condition(Low-end-value)',
         field: 'lowCondition',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -866,7 +761,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Unit',
         field: 'highLowUnit',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -876,7 +771,7 @@ export class ReportComponent implements OnInit {
         headerName: 'value',
         field: 'value',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -936,7 +831,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Sl-No',
         field: 'measurementId',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -949,7 +844,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Data-locator',
         field: 'dataLocator',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -959,7 +854,7 @@ export class ReportComponent implements OnInit {
       {
         headerName: 'Category',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -969,7 +864,7 @@ export class ReportComponent implements OnInit {
       {
         headerName: 'Function',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -980,7 +875,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Parameter',
         field: 'parameter',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -990,7 +885,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Parameter-detail',
         field: 'parameterDetail',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1000,7 +895,7 @@ export class ReportComponent implements OnInit {
       {
         headerName: 'Original-prefix',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1011,7 +906,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Original-value(Single-value)',
         field: 'singleValue',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1021,7 +916,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Unit',
         field: 'unit',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1032,7 +927,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Original-value(Single-value)',
         field: 'singleValue',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1043,7 +938,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Original-value(High-End-value)',
         field: 'highEndValue',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1054,7 +949,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Original-value(Low-End-value)',
         field: 'lowEndValue',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1064,7 +959,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Unit',
         field: 'units',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1075,7 +970,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Original-value(Non-numeric-value)',
         field: 'nonNumeric',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1085,7 +980,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Remarks',
         field: 'remark',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1095,7 +990,7 @@ export class ReportComponent implements OnInit {
       {
         headerName: 'Type',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1107,7 +1002,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Cell',
         field: 'cell',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1118,7 +1013,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Cell-detail',
         field: 'cellDetail',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1128,7 +1023,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Organ',
         field: 'organ',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1139,7 +1034,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Organ-detail',
         field: 'organDetail',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1149,7 +1044,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Species',
         field: 'species',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1160,7 +1055,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Species-detail',
         field: 'speciesDetail',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1170,7 +1065,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Gender',
         field: 'gender',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
@@ -1181,7 +1076,7 @@ export class ReportComponent implements OnInit {
         headerName: 'Age-group',
         field: 'ageGroup',
         width: 200,
-        flex: 1,
+       //flex: 1,
         sortable: true,
         filter: true,
         resizable: true,
