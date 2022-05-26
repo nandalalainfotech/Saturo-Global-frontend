@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ReportComponent } from 'src/app/dash-board/report/report.component';
@@ -13,6 +14,9 @@ import { Utils } from '../utils/utils';
     styleUrls: ['./checked-popup.component.css']
 })
 export class CheckedPopupComponent implements OnInit {
+    // public CheckedForm: FormGroup | any;
+    @Input() CheckedForm: number | any;
+
     headerText: string = "";
     ligand: Ligand001wb[] = [];
 
@@ -96,7 +100,8 @@ export class CheckedPopupComponent implements OnInit {
 
     onAcceptClick(event: any) {
 
-        // console.log("called--->okkkk", event);
+        // console.log("called--->okkkk",this.CheckedForm);
+
         // if (event.isTrusted) {
         //     // console.log("call", true)
 

@@ -116,10 +116,6 @@ export class AssayComponent implements OnInit {
       // console.log("this.ligands--->",this.ligands);
     });
 
-    // this.ligandVersionManager.allligandVersion().subscribe(response => {
-    //   this.ligandVersions = deserialize<Ligandversion001mb[]>(Ligandversion001mb, response);
-    // });
-
     this.assayTypeManager.allassayType().subscribe(response => {
       this.assayTypes = deserialize<Assaytype001mb[]>(Assaytype001mb, response);
     });
@@ -136,36 +132,31 @@ export class AssayComponent implements OnInit {
       this.unitsinglevalues = deserialize<Unitsinglevalue001mb[]>(Unitsinglevalue001mb, response);
     });
 
-    // this.unitHighEndValueManager.allunitHighEndValue().subscribe(response => {
-    //   this.unithighendvalues = deserialize<Unithighendvalue001mb[]>(Unithighendvalue001mb, response);
-    // });
-
     this.unitlowendvalueManager.allunitlowendvalue().subscribe(response => {
       this.unitlowendvalues = deserialize<Unitlowendvalue001mb[]>(Unitlowendvalue001mb, response);
     });
 
     this.AssayForm = this.formBuilder.group({
       ligandSlno: ['', Validators.required],
-      ordinal: ['', Validators.required],
-      assayTypeSlno: ['', Validators.required],
-      toxiCitySlno: ['', Validators.required],
-      routeSlno: ['', Validators.required],
-      ligandSvalue: ['', Validators.required],
-      unitSlno: ['', Validators.required],
-      ligandHvalue: ['', Validators.required],
-      ligandLvalue: ['', Validators.required],
-      unitedSlno: ['', Validators.required],
-      administration: ['', Validators.required],
-      procedure: ['', Validators.required],
-      target: ['', Validators.required],
-      conditionType: ['', Validators.required],
-      conditionMaterial: ['', Validators.required],
-      singleCondition: ['', Validators.required],
-      singleUnit: ['', Validators.required],
-      highCondition: ['', Validators.required],
-      lowCondition: ['', Validators.required],
-      highLowUnit: ['', Validators.required],
-      conditionMaterialid: ['', Validators.required],
+      ordinal: [''],
+      assayTypeSlno: [''],
+      toxiCitySlno: [''],
+      routeSlno: [''],
+      ligandSvalue: [''],
+      unitSlno: [''],
+      ligandHvalue: [''],
+      ligandLvalue: [''],
+      unitedSlno: [''],
+      administration: [''],
+      procedure: [''],
+      conditionType: [''],
+      conditionMaterial: [''],
+      singleCondition: [''],
+      singleUnit: [''],
+      highCondition: [''],
+      lowCondition: [''],
+      highLowUnit: [''],
+      conditionMaterialid: [''],
 
     });
 
@@ -188,7 +179,6 @@ export class AssayComponent implements OnInit {
   }
   // this.username = this.authManager.getcurrentUser.username;
   loadData() {
-
     this.assayManager.allassay(this.username).subscribe(response => {
 
       console.log("response", response)
@@ -249,16 +239,7 @@ export class AssayComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true
       },
-      // {
-      //   headerName: 'Collection-id',
-      //   field: 'collectionId',
-      //   width: 200,
-      //   flex: 1,
-      //   sortable: true,
-      //   filter: true,
-      //   resizable: true,
-      //   suppressSizeToFit: true
-      // },
+
       {
         headerName: 'Assay-type',
         field: 'assayTypeSlno',
@@ -360,17 +341,6 @@ export class AssayComponent implements OnInit {
       {
         headerName: 'Procedure',
         field: 'procedure',
-        width: 200,
-        // flex: 1,
-        sortable: true,
-        filter: true,
-        resizable: true,
-
-        suppressSizeToFit: true
-      },
-      {
-        headerName: 'Target-uri',
-        field: 'target',
         width: 200,
         // flex: 1,
         sortable: true,
@@ -547,7 +517,6 @@ export class AssayComponent implements OnInit {
       'unitedSlno': params.data.unitedSlno,
       'administration': params.data.administration,
       'procedure': params.data.procedure,
-      'target': params.data.target,
       'conditionType': params.data.conditionType,
       'conditionMaterial': params.data.conditionMaterial,
       'conditionMaterialid': params.data.conditionMaterialid,
@@ -556,9 +525,7 @@ export class AssayComponent implements OnInit {
       'highCondition': params.data.highCondition,
       'lowCondition': params.data.lowCondition,
       'highLowUnit': params.data.highLowUnit,
-
-
-    });
+});
   }
 
 
@@ -626,7 +593,7 @@ export class AssayComponent implements OnInit {
     assay001wb.unitedSlno = this.f.unitedSlno.value ? this.f.unitedSlno.value : "";
     assay001wb.administration = this.f.administration.value ? this.f.administration.value : "";
     assay001wb.procedure = this.f.procedure.value ? this.f.procedure.value : "";
-    assay001wb.target = this.f.target.value ? this.f.target.value : "";
+    assay001wb.target = "bioactivity-target/SaturoGlobal/47497201S/1/1>bioactivity-target/0c5c0727-a4fb-4150-9b92-61625914189b";
     assay001wb.conditionType = this.f.conditionType.value ? this.f.conditionType.value : "";
     assay001wb.conditionMaterial = this.f.conditionMaterial.value ? this.f.conditionMaterial.value : "";
     assay001wb.conditionMaterialid = this.f.conditionMaterialid.value ? this.f.conditionMaterialid.value : "";
