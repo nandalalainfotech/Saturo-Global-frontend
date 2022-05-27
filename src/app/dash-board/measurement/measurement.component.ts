@@ -649,7 +649,6 @@ export class MeasurementComponent implements OnInit {
     else {
       measurement001wb.insertUser = this.authManager.getcurrentUser.username;
       measurement001wb.insertDatetime = new Date();
-      console.log("measurement001wb-->", measurement001wb);
       this.measurementManager.measurementsave(measurement001wb).subscribe((response) => {
 
         this.calloutService.showSuccess("Measurement Details Saved Successfully");
@@ -665,6 +664,72 @@ export class MeasurementComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.MeasurementForm.reset();
+  }
+
+  onRepeat() {
+    let i = this.measurement.length - 1;
+    for (i; i < this.measurement.length; i++) {
+      this.MeasurementForm.patchValue({
+        'dataLocator': this.measurement[i].dataLocator,
+        'assaySlno': this.measurement[i].assaySlno,
+        'categorySlno': this.measurement[i].categorySlno,
+        'functionSlno': this.measurement[i].functionSlno,
+        'parameter': this.measurement[i].parameter,
+        'parameterDetail': this.measurement[i].parameterDetail,
+        'originalPrefixSlno': this.measurement[i].originalPrefixSlno,
+        'unit':this.measurement[i].unit,
+        'singleValue': this.measurement[i].singleValue,
+        'highEndValue': this.measurement[i].highEndValue,
+        'lowEndValue': this.measurement[i].lowEndValue,
+        'units': this.measurement[i].units,
+        'nonNumeric': this.measurement[i].nonNumeric,
+        'remark': this.measurement[i].remark,
+        'typeSlno': this.measurement[i].typeSlno,
+        'cell': this.measurement[i].cell,
+        'cellDetail': this.measurement[i].cellDetail,
+        'organ': this.measurement[i].organ,
+        'organDetail': this.measurement[i].organDetail,
+        'species': this.measurement[i].species,
+        'speciesDetail': this.measurement[i].speciesDetail,
+        'gender': this.measurement[i].gender,
+        'ageGroup': this.measurement[i].ageGroup,
+  
+      });
+    }
+  }
+
+  onEdit() {
+    let i = this.measurement.length - 1;
+    for (i; i < this.measurement.length; i++) {
+      this.insertDatetime = new Date();
+      this.measurementId = this.measurement[i].measurementId;
+      this.MeasurementForm.patchValue({
+        'dataLocator': this.measurement[i].dataLocator,
+        'assaySlno': this.measurement[i].assaySlno,
+        'categorySlno': this.measurement[i].categorySlno,
+        'functionSlno': this.measurement[i].functionSlno,
+        'parameter': this.measurement[i].parameter,
+        'parameterDetail': this.measurement[i].parameterDetail,
+        'originalPrefixSlno': this.measurement[i].originalPrefixSlno,
+        'unit':this.measurement[i].unit,
+        'singleValue': this.measurement[i].singleValue,
+        'highEndValue': this.measurement[i].highEndValue,
+        'lowEndValue': this.measurement[i].lowEndValue,
+        'units': this.measurement[i].units,
+        'nonNumeric': this.measurement[i].nonNumeric,
+        'remark': this.measurement[i].remark,
+        'typeSlno': this.measurement[i].typeSlno,
+        'cell': this.measurement[i].cell,
+        'cellDetail': this.measurement[i].cellDetail,
+        'organ': this.measurement[i].organ,
+        'organDetail': this.measurement[i].organDetail,
+        'species': this.measurement[i].species,
+        'speciesDetail': this.measurement[i].speciesDetail,
+        'gender': this.measurement[i].gender,
+        'ageGroup': this.measurement[i].ageGroup,
+  
+      });
+    }
   }
 
 }

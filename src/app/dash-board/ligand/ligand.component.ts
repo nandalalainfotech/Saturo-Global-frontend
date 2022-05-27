@@ -18,6 +18,7 @@ import { Ligandtype001mb } from 'src/app/shared/services/restcontroller/entities
 import { Ligandversion001mb } from 'src/app/shared/services/restcontroller/entities/Ligandversion001mb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
 import { Utils } from 'src/app/shared/utils/utils';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-ligand',
@@ -62,7 +63,6 @@ export class LigandComponent implements OnInit {
   insertDatetime: Date | any;
   updatedUser: string = "";
   updatedDatetime: Date | any;
-
   ligand: Ligand001wb[] = [];
   ligandVersions: Ligandversion001mb[] = [];
   ligandtypes: Ligandtype001mb[] = [];
@@ -545,7 +545,7 @@ export class LigandComponent implements OnInit {
     }
     let ligand001wb = new Ligand001wb();
     ligand001wb.tanNumber = this.f.tanNumber.value ? this.f.tanNumber.value : "";
-    ligand001wb.ligandUri = "bioactivity-ligand/SaturoGlobal/47495573K/1>bioactivity-ligand/3273cc11-7fac-4199-80f1-b1547d19de3e";
+    ligand001wb.ligandUri = "bioactivity-ligand" + "/" + "SaturoGlobal" + "/" + this.f.tanNumber.value + "/" + this.f.ligandVersionSlno.value + ">" + "bioactivity-ligand" + "/" + uuid();
     ligand001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
     ligand001wb.ligandStatus = "embargoed";
     ligand001wb.collection = "CAS";
@@ -563,7 +563,7 @@ export class LigandComponent implements OnInit {
     ligand001wb.diseaseName1 = this.f.diseaseName1.value ? this.f.diseaseName1.value : "";
     ligand001wb.diseaseName2 = this.f.diseaseName2.value ? this.f.diseaseName2.value : "";
     ligand001wb.diseaseName3 = this.f.diseaseName3.value ? this.f.diseaseName3.value : "";
-    ligand001wb.target = "bioactivity-target/SaturoGlobal/47497201S/1/1>bioactivity-target/0c5c0727-a4fb-4150-9b92-61625914189b";
+    ligand001wb.target = "bioactivity-target" + "/" + "SaturoGlobal" + "/" + this.f.tanNumber.value + "/" + this.f.ligandVersionSlno.value + ">" + "bioactivity-target" + "/" + uuid();
     ligand001wb.targetStatus = "embargoed";
     ligand001wb.targetVersion = this.f.targetVersion.value ? this.f.targetVersion.value : "";
     ligand001wb.collectionId1 = this.f.collectionId1.value ? this.f.collectionId1.value : "";
@@ -571,7 +571,6 @@ export class LigandComponent implements OnInit {
     ligand001wb.acronym = this.f.acronym.value ? this.f.acronym.value : "";
     ligand001wb.organism = this.f.organism.value ? this.f.organism.value : "";
     ligand001wb.variant = this.f.variant.value ? this.f.variant.value : "";
-
     if (this.ligandId) {
       ligand001wb.ligandId = this.ligandId;
       ligand001wb.insertUser = this.insertUser;
@@ -589,7 +588,6 @@ export class LigandComponent implements OnInit {
     else {
       ligand001wb.insertUser = this.authManager.getcurrentUser.username;
       ligand001wb.insertDatetime = new Date();
-      console.log("LigandForm--ligand001wb-------->2", ligand001wb);
       this.ligandManager.ligandsave(ligand001wb).subscribe((response) => {
 
         this.calloutService.showSuccess("Ligand Details Saved Successfully");
@@ -598,8 +596,6 @@ export class LigandComponent implements OnInit {
         this.submitted = false;
       });
     }
-
-
   }
 
   // onTanNumberClick(){
@@ -628,8 +624,6 @@ export class LigandComponent implements OnInit {
 
     })
   }
-
-
 
   onLigandVersionClick() {
     this.LigandForm.get('ligandVersionSlno').valueChanges.subscribe((value: any) => {
@@ -677,14 +671,12 @@ export class LigandComponent implements OnInit {
   }
 
   onEdit() {
-console.log("new edit----->");
-
     let i = this.ligand.length - 1;
     for (i; i < this.ligand.length; i++) {
       this.insertDatetime = new Date();
       this.ligandId = this.ligand[i].ligandId;
      this.LigandForm.patchValue({
-        'ligandId': this.ligand[i].ligandId,
+        // 'ligandId': this.ligand[i].ligandId,
         'tanNumber': this.ligand[i].tanNumber,
         'ligandVersionSlno': this.ligand[i].ligandVersionSlno,
         'ligandTypeSlno': this.ligand[i].ligandTypeSlno,
@@ -706,7 +698,5 @@ console.log("new edit----->");
       });
     }
   }
-
-
 
 }

@@ -27,6 +27,7 @@ import { Unitlowendvalue001mb } from 'src/app/shared/services/restcontroller/ent
 import { Unitsinglevalue001mb } from 'src/app/shared/services/restcontroller/entities/Unitsinglevalue001mb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
 import { Utils } from 'src/app/shared/utils/utils';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-assay',
@@ -74,7 +75,7 @@ export class AssayComponent implements OnInit {
   unitsinglevalues: Unitsinglevalue001mb[] = [];
   unitlowendvalues: Unitlowendvalue001mb[] = [];
   ligandVersions: Ligandversion001mb[] = [];
-
+  ligand001mb?: Ligand001wb;
   hexToRgb: any;
   rgbToHex: any;
   public gridOptions: GridOptions | any;
@@ -180,8 +181,6 @@ export class AssayComponent implements OnInit {
   // this.username = this.authManager.getcurrentUser.username;
   loadData() {
     this.assayManager.allassay(this.username).subscribe(response => {
-
-      console.log("response", response)
       this.assay = deserialize<Assay001wb[]>(Assay001wb, response);
       if (this.assay.length > 0) {
         this.gridOptions?.api?.setRowData(this.assay);
@@ -567,18 +566,12 @@ export class AssayComponent implements OnInit {
 
   }
 
-
-
   onAssayClick(event: any, AssayForm: any) {
-    // console.log("itemsForm", itemsForm);
-    console.log("assay001wb3");
     this.markFormGroupTouched(this.AssayForm);
     this.submitted = true;
     if (this.AssayForm.invalid) {
-      console.log("invalid", this.AssayForm.invalid);
       return;
     }
-    console.log("assay001wb1");
     let assay001wb = new Assay001wb();
     assay001wb.ordinal = this.f.ordinal.value ? this.f.ordinal.value : "";
     assay001wb.collectionId = "47498009Q-1";
@@ -593,7 +586,7 @@ export class AssayComponent implements OnInit {
     assay001wb.unitedSlno = this.f.unitedSlno.value ? this.f.unitedSlno.value : "";
     assay001wb.administration = this.f.administration.value ? this.f.administration.value : "";
     assay001wb.procedure = this.f.procedure.value ? this.f.procedure.value : "";
-    assay001wb.target = "bioactivity-target/SaturoGlobal/47497201S/1/1>bioactivity-target/0c5c0727-a4fb-4150-9b92-61625914189b";
+    assay001wb.target = "bioactivity-target" + "/" + "SaturoGlobal" + "/" + this.ligand001mb?.tanNumber + "/" + this.f.ordinal.value + ">" + "bioactivity-target" + "/" + uuid();
     assay001wb.conditionType = this.f.conditionType.value ? this.f.conditionType.value : "";
     assay001wb.conditionMaterial = this.f.conditionMaterial.value ? this.f.conditionMaterial.value : "";
     assay001wb.conditionMaterialid = this.f.conditionMaterialid.value ? this.f.conditionMaterialid.value : "";
@@ -602,8 +595,6 @@ export class AssayComponent implements OnInit {
     assay001wb.highCondition = this.f.highCondition.value ? this.f.highCondition.value : "";
     assay001wb.lowCondition = this.f.lowCondition.value ? this.f.lowCondition.value : "";
     assay001wb.highLowUnit = this.f.highLowUnit.value ? this.f.highLowUnit.value : "";
-
-
 
     if (this.assayId) {
       assay001wb.assayId = this.assayId;
@@ -622,7 +613,6 @@ export class AssayComponent implements OnInit {
     else {
       assay001wb.insertUser = this.authManager.getcurrentUser.username;
       assay001wb.insertDatetime = new Date();
-      console.log("assay001wb", assay001wb);
       this.assayManager.assaysave(assay001wb).subscribe((response) => {
         this.calloutService.showSuccess("Assay Details Saved Successfully");
         this.loadData();
@@ -633,10 +623,76 @@ export class AssayComponent implements OnInit {
 
   }
 
-
-
   onReset() {
     this.submitted = false;
     this.AssayForm.reset();
   }
+
+  onBlurEvent(event: any) {
+    this.ligandManager.findOne(event.target.value).subscribe(response => {
+      this.ligand001mb = deserialize<Ligand001wb>(Ligand001wb, response);
+  });
+  }
+
+
+  onRepeat() {
+    let i = this.assay.length - 1;
+    for (i; i < this.assay.length; i++) {
+      this.AssayForm.patchValue({
+        'ordinal': this.assay[i].ordinal,
+        'ligandSlno': this.assay[i].ligandSlno,
+        'assayTypeSlno': this.assay[i].assayTypeSlno,
+        'toxiCitySlno': this.assay[i].toxiCitySlno,
+        'routeSlno': this.assay[i].routeSlno,
+        'ligandSvalue': this.assay[i].ligandSvalue,
+        'unitSlno': this.assay[i].unitSlno,
+        'ligandHvalue': this.assay[i].ligandHvalue,
+        'ligandLvalue': this.assay[i].ligandLvalue,
+        'unitedSlno': this.assay[i].unitedSlno,
+        'administration': this.assay[i].administration,
+        'procedure': this.assay[i].procedure,
+        'conditionType': this.assay[i].conditionType,
+        'conditionMaterial': this.assay[i].conditionMaterial,
+        'conditionMaterialid': this.assay[i].conditionMaterialid,
+        'singleCondition': this.assay[i].singleCondition,
+        'singleUnit': this.assay[i].singleUnit,
+        'highCondition': this.assay[i].highCondition,
+        'lowCondition':this.assay[i].lowCondition,
+        'highLowUnit': this.assay[i].highLowUnit
+  });
+    }
+  }
+
+  onEdit() {
+    let i = this.assay.length - 1;
+    for (i; i < this.assay.length; i++) {
+      
+      this.assayId =this.assay[i].assayId;
+      this.insertDatetime = new Date();
+    // this.insertUser = this.assay[i].insertUser;
+
+    this.AssayForm.patchValue({
+      'ordinal': this.assay[i].ordinal,
+      'ligandSlno': this.assay[i].ligandSlno,
+      'assayTypeSlno': this.assay[i].assayTypeSlno,
+      'toxiCitySlno': this.assay[i].toxiCitySlno,
+      'routeSlno': this.assay[i].routeSlno,
+      'ligandSvalue': this.assay[i].ligandSvalue,
+      'unitSlno': this.assay[i].unitSlno,
+      'ligandHvalue': this.assay[i].ligandHvalue,
+      'ligandLvalue': this.assay[i].ligandLvalue,
+      'unitedSlno': this.assay[i].unitedSlno,
+      'administration': this.assay[i].administration,
+      'procedure': this.assay[i].procedure,
+      'conditionType': this.assay[i].conditionType,
+      'conditionMaterial': this.assay[i].conditionMaterial,
+      'conditionMaterialid': this.assay[i].conditionMaterialid,
+      'singleCondition': this.assay[i].singleCondition,
+      'singleUnit': this.assay[i].singleUnit,
+      'highCondition': this.assay[i].highCondition,
+      'lowCondition':this.assay[i].lowCondition,
+      'highLowUnit': this.assay[i].highLowUnit
+});
+}
+}
 }
