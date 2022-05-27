@@ -111,7 +111,6 @@ export class ReportComponent implements OnInit {
 
     this.measurementManager.allmeasurement(this.username).subscribe(response => {
       this.measurement = deserialize<Measurement001wb[]>(Measurement001wb, response);
-      console.log("this.measurement",this.measurement);
       
       if (this.measurement.length > 0) {
         this.gridOptions2?.api?.setRowData(this.measurement);
