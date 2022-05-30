@@ -138,7 +138,7 @@ export class AssayComponent implements OnInit {
     });
 
     this.AssayForm = this.formBuilder.group({
-      ligandSlno: ['', Validators.required],
+      ligandSlno: [''],
       ordinal: [''],
       assayTypeSlno: [''],
       toxiCitySlno: [''],

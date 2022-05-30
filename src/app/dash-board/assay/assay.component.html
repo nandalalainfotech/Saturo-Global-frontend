@@ -6,16 +6,14 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="ligandSlno" for="ligandSlno" cssClass="required">Ligand-Version</label>
-                        <select class="form-control" name="ligandSlno" formControlName="ligandSlno" (blur)="onBlurEvent($event)" [ngClass]="{ 'is-invalid': submitted && f.ligandSlno.errors }">
+                        <select class="form-control" name="ligandSlno" formControlName="ligandSlno" (blur)="onBlurEvent($event)">
                             <option value="" hidden> - Select Ligand-Version - </option>
                             <option> - Select Ligand-Version - </option>
                             <option *ngFor="let ligandObject of ligands" [value]="ligandObject.ligandId">
                                 {{ligandObject.ligandVersionSlno2?.ligandVersion}}
                             </option>
                         </select>
-                        <div *ngIf="submitted && f.ligandSlno.errors" class="invalid-feedback">
-                            <div *ngIf="f.ligandSlno.errors.required">Ligand Version is Required</div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -205,14 +203,14 @@
                         <!-- <button class="btn btn-primary previous" cdkStepperPrevious>Previous</button>
                         <button type="submit" class="btn btn-primary submit" cdkStepperNext>Submit</button>
                         <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button> -->
-                     <div class="row">
-                        <div class="col-sm-7"></div>
-                        <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onRepeat()">Repeat</button></div>
-                        <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button></div>
-                        <div class="col-sm-1"><button type="submit" class="btn btn-primary" cdkStepperNext>Submit</button></div>
-                        <div class="col-sm-1"> <button type="button" class="btn btn-primary" (click)="onReset()">Clear</button></div>
-                        <div class="col-sm-1"></div>
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-7"></div>
+                            <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onRepeat()">Repeat</button></div>
+                            <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button></div>
+                            <div class="col-sm-1"><button type="submit" class="btn btn-primary" cdkStepperNext>Submit</button></div>
+                            <div class="col-sm-1"> <button type="button" class="btn btn-primary" (click)="onReset()">Clear</button></div>
+                            <div class="col-sm-1"></div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,12 @@
-<app-checked-popup class="checked" title="Ligand Checking Area" acceptLabel="Accept" cancelLabel="Reject" acceptIcon="fa fa-check" [widthArg]="400" [heightArg]="400" (cancelClick)="onCancelClick()">
-    <fieldset class="scheduler-border">
-        <legend class="scheduler-border">Link</legend>
-        <div class="formData">
-            <form [formGroup]="CheckedForm">
+<app-checked-popup class="checked " title="Ligand Checking Area" acceptLabel="Accept" cancelLabel="Reject" acceptIcon="fa fa-check" [widthArg]="400" [heightArg]="400" (cancelClick)="onCancelClick()">
+    <!-- <fieldset class="scheduler-border">
+
+        <legend class="scheduler-border">Link</legend> -->
+    <div class="formData">
+
+        <form [formGroup]="CheckedForm">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Ligand</legend>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -15,20 +19,10 @@
                         </div>
                     </div>
                 </div>
+
                 <br>
 
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <div class="col-sm-5">
-                                <label path="ligandUri" for="ligandUri" cssClass="required">Ligand-Uri :</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <input class="ligandUri" name="ligandUri" formControlName="ligandUri">
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
@@ -40,9 +34,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
+
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
@@ -55,7 +47,9 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <br>
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
@@ -66,10 +60,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
-
 
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -82,6 +72,9 @@
                         </div>
                     </div>
 
+                </div>
+                <br>
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
@@ -93,9 +86,6 @@
                         </div>
                     </div>
 
-                </div>
-                <br>
-                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
@@ -106,7 +96,9 @@
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <br>
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
@@ -117,9 +109,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
+
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
@@ -127,46 +117,6 @@
                             </div>
                             <div class="col-sm-7">
                                 <input class="locator" name="locator" formControlName="locator">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <div class="col-sm-5">
-                                <label path="citation" for="series" cssClass="required">Citation :</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <input class="citation" path="citation" name="citation" formControlName="citation" readonly />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <div class="col-sm-5">
-                                <label path="relatedDocument" for="series" cssClass="required">RelatedDocument
-                                        :</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <input class="relatedDocument" path="relatedDocument" name="relatedDocument" formControlName="relatedDocument" readonly />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <div class="col-sm-5">
-                                <label path="registryNumber" for="series" cssClass="required"> Registry Number :</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <input class="registryNumber" path="registryNumber" name="registryNumber" formControlName="registryNumber" readonly />
                             </div>
                         </div>
                     </div>
@@ -220,8 +170,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="ligandVersions" for="ligandVersions" cssClass="required">Ligand Version
-                                        :</label>
+                                <label path="ligandVersions" for="ligandVersions" cssClass="required">Ligand
+                                    Version:</label>
                             </div>
                             <div class="col-sm-7">
                                 <input class="ligandVersions" path="ligandVersions" name="ligandVersions" formControlName="ligandVersions" readonly />
@@ -232,22 +182,8 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="target" for="series" cssClass="required">Target uri :</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <input class="target" name="target" formControlName="target">
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <div class="col-sm-5">
-                                <label path="targetVersion" for="targetVersion" cssClass="required">Target
-                                            version :</label>
+                                <label path="targetVersion" for="targetVersion" cssClass="required">Target version
+                                    :</label>
                             </div>
                             <div class="col-sm-7">
                                 <input class="targetVersion" name="targetVersion" formControlName="targetVersion">
@@ -255,10 +191,13 @@
                         </div>
                     </div>
 
+                </div>
+                <br>
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="collectionId1" for="collectionId1" cssClass="required">Collection-id :</label>
+                                <label path="collectionId1" for="collectionId1" cssClass="required">Collection-id:</label>
                             </div>
                             <div class="col-sm-7">
                                 <input class="collectionId1" name="collectionId1" formControlName="collectionId1">
@@ -266,21 +205,20 @@
                         </div>
                     </div>
 
-                </div>
-                <br>
-                <div class="row">
-
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="original" for="original" cssClass="required">Original target name
-                                            :</label>
+                                <label path="original" for="original" cssClass="required">Original target name:</label>
                             </div>
                             <div class="col-sm-7">
                                 <input class="original" name="original" formControlName="original">
                             </div>
                         </div>
                     </div>
+
+                </div>
+                <br>
+                <div class="row">
 
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -292,21 +230,20 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="row">
+
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="organism" for="series" cssClass="required">Organism source
-                                            :</label>
+                                <label path="organism" for="series" cssClass="required">Organism source:</label>
                             </div>
                             <div class="col-sm-7">
                                 <input class="organism" name="organism" formControlName="organism">
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <br>
+                <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
@@ -318,7 +255,259 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-    </fieldset>
+
+            </fieldset>
+            <br>
+            <br>
+
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Assay</legend>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="ligandSlno" for="ligandSlno" cssClass="required">Ligand-Version :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="ligandSlno" name="ligandSlno" formControlName="ligandSlno">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="ordinal" for="series" cssClass="required">Ordinal :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="ordinal" name="ordinal" formControlName="ordinal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="assayTypeSlno" for="assayTypeSlno" cssClass="required">Assay-type :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="assayTypeSlno" name="assayTypeSlno" formControlName="assayTypeSlno">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="toxiCitySlno" for="toxiCitySlno" cssClass="required">Toxicity-type
+                                    :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="toxiCitySlno" name="toxiCitySlno" formControlName="toxiCitySlno">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="routeSlno" for="routeSlno" cssClass="required">Route-of-administration
+                                    :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="routeSlno" name="routeSlno" formControlName="routeSlno">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="ligandSvalue" for="series" cssClass="required">Ligand-Dose(Single-value)
+                                    :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="ligandSvalue" formControlName="ligandSvalue">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="unitSlno" for="unitSlno" cssClass="required">Unit(Single-value) :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="unitSlno" name="unitSlno" formControlName="unitSlno">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="ligandHvalue" for="series" cssClass="required">Ligand-Dose(High-end-value)
+                                    :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="ligandHvalue" formControlName="ligandHvalue">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="ligandLvalue" for="series" cssClass="required">Ligand-Dose(Low-end-value)</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="ligandLvalue" formControlName="ligandLvalue">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="unitedSlno" for="unitedSlno" cssClass="required">Unit</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="unitedSlno" formControlName="unitedSlno">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="administration" for="series" cssClass="required">Administration-regimen</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="administration" formControlName="administration">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="procedure" for="series" cssClass="required">Procedure</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="procedure" formControlName="procedure">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="conditionMaterial" for="series" cssClass="required">Condition
+                                    material</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="conditionMaterial" formControlName="conditionMaterial">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="conditionMaterialid" for="series" cssClass="required">Condition
+                                    material-id</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="conditionMaterialid" formControlName="conditionMaterialid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="singleCondition" for="series" cssClass="required">Condition(Single-value)</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="singleCondition" formControlName="singleCondition">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="singleUnit" for="series" cssClass="required">Unit(Single-value)</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="singleUnit" formControlName="singleUnit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="highCondition" for="series" cssClass="required">Condition(High-end-value)</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="highCondition" formControlName="highCondition">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="lowCondition" for="series" cssClass="required">Condition(Low-end-value)</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="lowCondition" formControlName="lowCondition">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="col-sm-5">
+                                <label path="highLowUnit" for="series" cssClass="required">Unit</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input class="form-control" name="highLowUnit" formControlName="highLowUnit">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <br>
+
+            </fieldset>
+
+
+        </form>
+    </div>
+    <!-- </fieldset> -->
 </app-checked-popup>

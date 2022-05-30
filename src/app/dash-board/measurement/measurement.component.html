@@ -6,16 +6,14 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="assaySlno" for="assaySlno" cssClass="required">Ligand-Version</label>
-                        <select class="form-control" name="assaySlno" formControlName="assaySlno" [ngClass]="{ 'is-invalid': submitted && f.assaySlno.errors }">
+                        <select class="form-control" name="assaySlno" formControlName="assaySlno">
                             <option value="" hidden> - Select Ligand-Version - </option>
                             <option> - Select Ligand-Version - </option>
                             <option *ngFor="let assayObject of assays" [value]="assayObject.assayId">
                                 {{assayObject.ligandSlno2?.ligandVersionSlno2?.ligandVersion}}
                             </option>
                         </select>
-                        <div *ngIf="submitted && f.assaySlno.errors" class="invalid-feedback">
-                            <div *ngIf="f.assaySlno.errors.required">Ligand Version is Required</div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -230,7 +228,7 @@
                         <!-- <button class="btn btn-primary previous" cdkStepperPrevious>Previous</button>
                         <button type="submit" class="btn btn-primary submit">Submit</button>
                         <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button> -->
-                    
+
                         <div class="row">
                             <div class="col-sm-7"></div>
                             <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onRepeat()">Repeat</button></div>

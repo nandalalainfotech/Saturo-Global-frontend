@@ -110,7 +110,7 @@ export class LigandComponent implements OnInit {
     this.LigandForm = this.formBuilder.group({
 
       tanNumber: ['', Validators.required],
-      ligandUri: [''],
+      // ligandUri: [''],
       ligandVersionSlno: [''],
       ligandVersions: [''],
       ligandTypeSlno: [''],
@@ -123,7 +123,7 @@ export class LigandComponent implements OnInit {
       diseaseName1: [''],
       diseaseName2: [''],
       diseaseName3: [''],
-      target: [''],
+      // target: [''],
       targetVersion: [''],
       collectionId1: [''],
       original: [''],
