@@ -20,6 +20,7 @@ import { UnitSingleValueManager } from 'src/app/shared/services/restcontroller/b
 import { Assay001wb } from 'src/app/shared/services/restcontroller/entities/Assay001wb ';
 import { Assaytype001mb } from 'src/app/shared/services/restcontroller/entities/Assaytype001mb';
 import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Ligand001wb';
+import { Ligandtype001mb } from 'src/app/shared/services/restcontroller/entities/Ligandtype001mb';
 import { Ligandversion001mb } from 'src/app/shared/services/restcontroller/entities/Ligandversion001mb';
 import { Routeofadministration001mb } from 'src/app/shared/services/restcontroller/entities/Routeofadministration001mb';
 import { Toxicity001mb } from 'src/app/shared/services/restcontroller/entities/Toxicity001mb';
@@ -75,6 +76,7 @@ export class AssayComponent implements OnInit {
   unitsinglevalues: Unitsinglevalue001mb[] = [];
   unitlowendvalues: Unitlowendvalue001mb[] = [];
   ligandVersions: Ligandversion001mb[] = [];
+  ligandtypes: Ligandtype001mb[] = [];
   ligand001mb?: Ligand001wb;
   hexToRgb: any;
   rgbToHex: any;

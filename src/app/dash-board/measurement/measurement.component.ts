@@ -15,6 +15,8 @@ import { CategoryfunctionManager } from 'src/app/shared/services/restcontroller/
 import { MeasurementManager } from 'src/app/shared/services/restcontroller/bizservice/Measurement.service';
 import { OriginalprefixManager } from 'src/app/shared/services/restcontroller/bizservice/originalPrefix.service';
 import { BioTypeManager } from 'src/app/shared/services/restcontroller/bizservice/type.service';
+import { UnitlowendvalueManager } from 'src/app/shared/services/restcontroller/bizservice/Unitlowendvalue.service';
+import { UnitSingleValueManager } from 'src/app/shared/services/restcontroller/bizservice/unitSingleValue.service';
 import { Assay001wb } from 'src/app/shared/services/restcontroller/entities/Assay001wb ';
 import { Category001mb } from 'src/app/shared/services/restcontroller/entities/Category001mb';
 import { Categoryfunction001mb } from 'src/app/shared/services/restcontroller/entities/Categoryfunction001mb';
@@ -22,6 +24,8 @@ import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Lig
 import { Measurement001wb } from 'src/app/shared/services/restcontroller/entities/Measurement001wb';
 import { Originalprefix001mb } from 'src/app/shared/services/restcontroller/entities/Originalprefix001mb';
 import { Type001mb } from 'src/app/shared/services/restcontroller/entities/Type001mb';
+import { Unitlowendvalue001mb } from 'src/app/shared/services/restcontroller/entities/Unitlowendvalue001mb';
+import { Unitsinglevalue001mb } from 'src/app/shared/services/restcontroller/entities/Unitsinglevalue001mb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
 import { Utils } from 'src/app/shared/utils/utils';
 
@@ -67,6 +71,8 @@ export class MeasurementComponent implements OnInit {
   
   ligands: Ligand001wb[] = [];
   assays: Assay001wb[] = [];
+  unitsinglevalues: Unitsinglevalue001mb[] = [];
+  unitlowendvalues: Unitlowendvalue001mb[] = [];
   measurement: Measurement001wb[] = [];
   categorys: Category001mb [] = [];
   categoryfunctions: Categoryfunction001mb [] = [];
@@ -91,6 +97,8 @@ export class MeasurementComponent implements OnInit {
     private calloutService: CalloutService,
     private modalService: NgbModal,
     private assayManager: AssayManager,
+    private unitSingleValueManager: UnitSingleValueManager,
+    private unitlowendvalueManager: UnitlowendvalueManager,
     private measurementManager: MeasurementManager,
     private categoryManager: CategoryManager,
     private categoryfunctionManager: CategoryfunctionManager,
@@ -105,9 +113,17 @@ export class MeasurementComponent implements OnInit {
     this.username = this.authManager.getcurrentUser.username;
     this.assayManager.allassay(this.username).subscribe(response => {
       this.assays = deserialize<Assay001wb[]>(Assay001wb, response);
-      // console.log("this.assays ",this.assays );
+      console.log("this.assays&measurement ",this.assays );
       
       
+    });
+
+    this.unitSingleValueManager.allunitSingleValue().subscribe(response => {
+      this.unitsinglevalues = deserialize<Unitsinglevalue001mb[]>(Unitsinglevalue001mb, response);
+    });
+
+    this.unitlowendvalueManager.allunitlowendvalue().subscribe(response => {
+      this.unitlowendvalues = deserialize<Unitlowendvalue001mb[]>(Unitlowendvalue001mb, response);
     });
 
     this.categoryManager.allcategoryType().subscribe(response => {

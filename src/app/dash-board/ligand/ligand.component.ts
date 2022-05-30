@@ -548,7 +548,7 @@ export class LigandComponent implements OnInit {
     ligand001wb.ligandUri = "bioactivity-ligand" + "/" + "SaturoGlobal" + "/" + this.f.tanNumber.value + "/" + this.f.ligandVersionSlno.value + ">" + "bioactivity-ligand" + "/" + uuid();
     ligand001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
     ligand001wb.ligandStatus = "embargoed";
-    ligand001wb.collection = "CAS";
+    ligand001wb.collection = "cas";
     ligand001wb.ligandTypeSlno = this.f.ligandTypeSlno.value ? this.f.ligandTypeSlno.value : "";
     ligand001wb.ligandDetail = this.f.ligandDetail.value ? this.f.ligandDetail.value : "";
     ligand001wb.identifier1 = this.f.identifier1.value ? this.f.identifier1.value : "";

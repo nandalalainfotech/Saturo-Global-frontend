@@ -93,8 +93,13 @@
 
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
-                        <label path="unit" for="unit" cssClass="required">Unit</label>
-                        <input class="form-control" name="unit" formControlName="unit">
+                        <label path="unit" for="unit" cssClass="required">Unit(SingleValue)</label>
+                        <select class="form-control" name="unit" formControlName="unit">
+                            <option value="" hidden> - Select unit(SingleValue) - </option>
+                            <option *ngFor="let unitsinglevalueObject of unitsinglevalues" [value]="unitsinglevalueObject.id">
+                                {{unitsinglevalueObject.unit}}
+                            </option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -117,7 +122,12 @@
                 <div class="col-xs-3 col-sm-3">
                     <div class="form-group">
                         <label path="units" for="units" cssClass="required">Unit</label>
-                        <input class="form-control" name="units" formControlName="units">
+                        <select class="form-control" name="units" formControlName="units">
+                            <option value="" hidden> - Select Unit - </option>
+                            <option *ngFor="let unitlowendvalueObject of unitlowendvalues" [value]="unitlowendvalueObject.id">
+                                {{unitlowendvalueObject.united}}
+                            </option>
+                        </select>
                     </div>
                 </div>
             </div>
