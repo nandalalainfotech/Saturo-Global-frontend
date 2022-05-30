@@ -1,3 +1,5 @@
+import { Assay001wb } from "./Assay001wb ";
+import { Ligandtype001mb } from "./Ligandtype001mb";
 import { Ligandversion001mb } from "./Ligandversion001mb";
 
 
@@ -37,5 +39,6 @@ export class Ligand001wb {
 
 
     ligandVersionSlno2?: Ligandversion001mb
+    ligandTypeSlno2?: Ligandtype001mb;
 
 }

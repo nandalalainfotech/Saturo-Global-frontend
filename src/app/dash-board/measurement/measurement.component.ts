@@ -135,7 +135,7 @@ export class MeasurementComponent implements OnInit {
     this.MeasurementForm = this.formBuilder.group({
 
       dataLocator: [''],
-      assaySlno: ['', Validators.required],
+      assaySlno: [''],
       categorySlno: ['',],
       functionSlno: [''],
       parameter: [''],
