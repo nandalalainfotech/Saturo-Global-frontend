@@ -937,7 +937,7 @@ valueGetter: this.setConditionMaterialValue.bind(this)
   }
 
   setUnitLowValue(params: any) {
-    return params.data.assaySlno2 ? params.data.assaySlno2.unitedSlno : null;
+    return params.data.assaySlno2 ? params.data.assaySlno2.unitedSlno2.united : null;
   }
 
   setLigandLowValue(params: any) {
@@ -949,7 +949,7 @@ valueGetter: this.setConditionMaterialValue.bind(this)
   }
 
   setUnitSingleValue(params: any) {
-    return params.data.assaySlno2 ? params.data.assaySlno2.unitSlno : null;
+    return params.data.assaySlno2 ? params.data.assaySlno2.unitSlno2.unit : null;
   }
 
   setLigandSingleValue(params: any) {
@@ -957,15 +957,15 @@ valueGetter: this.setConditionMaterialValue.bind(this)
   }
 
   setAssayRouteAdmin(params: any) {
-    return params.data.assaySlno2 ? params.data.assaySlno2.routeSlno : null;
+    return params.data.assaySlno2 ? params.data.assaySlno2.routeSlno2.route : null;
   }
 
   setAssayToxicityType(params: any) {
-    return params.data.assaySlno2 ? params.data.assaySlno2.toxiCitySlno : null;
+    return params.data.assaySlno2 ? params.data.assaySlno2.toxiCitySlno2.toxiCity : null;
   }
 
   setAssayType(params: any) {
-    return params.data.assaySlno2 ? params.data.assaySlno2.assayTypeSlno : null;
+    return params.data.assaySlno2 ? params.data.assaySlno2.assayTypeSlno2.assayType : null;
   }
 
   setAssayOrdinal(params: any) {
@@ -1034,7 +1034,7 @@ valueGetter: this.setConditionMaterialValue.bind(this)
   }
 
   setLigandType(params: any) {
-    return params.data.assaySlno2 ? params.data.assaySlno2.ligandSlno2.ligandTypeSlno : null;
+    return params.data.assaySlno2 ? params.data.assaySlno2.ligandSlno2.ligandTypeSlno2.ligandtype : null;
   }
 
   setLigandVersion(params: any) {
