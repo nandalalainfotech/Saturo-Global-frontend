@@ -31,6 +31,7 @@ import { CheckedPopupComponent } from './shared/checked-popup/checked-popup.comp
 import { CheckedComponent } from './shared/checked/checked.component';
 import { AssayCheckedComponent } from './shared/assay-checked/assay-checked.component';
 import { MeasurementCheckedComponent } from './shared/measurement-checked/measurement-checked.component';
+import { InlineEditingModule } from './shared/inline-editing/inline-editing.module';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { MeasurementCheckedComponent } from './shared/measurement-checked/measur
 		UserRegistrationModule,
 		GojsAngularModule,
 		CdkStepperModule,
-        NgStepperModule
+        NgStepperModule,
+		InlineEditingModule
 	],
 	exports: [PopupComponent, NgbCollapseModule],
 	providers: [AuthManager, CalloutService, DataSharedService,BaseService, UserManager,
