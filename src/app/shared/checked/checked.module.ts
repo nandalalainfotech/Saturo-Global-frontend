@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CheckedRoutingModule } from './checked-routing.module';
@@ -9,6 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { CheckedPopupComponent } from '../checked-popup/checked-popup.component';
+import { InlineEditingModule } from '../inline-editing/inline-editing.module';
 
 
 @NgModule({
@@ -25,6 +26,8 @@ import { CheckedPopupComponent } from '../checked-popup/checked-popup.component'
     MatSidenavModule,
     MatTabsModule,
     ColorPickerModule,
-  ]
+    InlineEditingModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class CheckedModule { }
