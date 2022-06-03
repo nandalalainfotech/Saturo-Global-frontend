@@ -1051,18 +1051,11 @@ valueGetter: this.setConditionMaterialValue.bind(this)
   
 
   onEditButtonClick(params: any) {
-    console.log("params", params);
+    // console.log("params", params);
     const modalRef = this.modalService.open(CheckedComponent, { size: 'lg' });
     modalRef.componentInstance.data = params.data;
-    console.log("dataa", params.data)
-
     modalRef.result.then((data) => {
-
-      console.log("Notaccepted");
       if (data == "Yes") {
-        // setAccepted(params) {
-        //   return params.data.ligandVersionSlno2 ? params.data.ligandVersionSlno2.ligandVersion : null;
-        // }
         this.calloutService.showSuccess("Ligand Data Accepted Successfully");
       }
 

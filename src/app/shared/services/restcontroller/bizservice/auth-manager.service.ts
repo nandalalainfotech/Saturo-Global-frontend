@@ -11,10 +11,12 @@ import { User001mb } from "../entities/User001mb";
 export class AuthManager extends BaseService {
     
     private authManagerUrl: string = `${environment.apiUrl}/auth`
-    login(uName: string, pWord: string) {
+	user001mb: any;
+    login(uName: string, pWord: string,) {
         let params: any = {};
         params['username'] = uName;
         params['password'] = pWord;
+        // params['roleid'] = roleid;
         // params['domain'] = domain;
         return this.getCallService(`${this.authManagerUrl}`+`/getUserAuthentication`, params)
             .pipe(map(res => {
@@ -22,6 +24,7 @@ export class AuthManager extends BaseService {
                     sessionStorage.setItem('currentUser', JSON.stringify(res));
                     this.currentUserSubject.next(res.userDTO);
                 }
+                console.log("res====================>", res )
                 return res;
             }))
     }

@@ -16,6 +16,7 @@ import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/a
 import { DataSharedService } from 'src/app/shared/services/services/datashared.service';
 import { SidebarCloseAnimation, SidebarOpenAnimation } from './animations';
 import { Utils } from 'src/app/shared/utils/utils';
+import { User001mb } from 'src/app/shared/services/restcontroller/entities/User001mb';
 const animationParams = {
     menuWidth: '70px',
     animationStyle: '1500ms linear',
@@ -57,6 +58,8 @@ export class SideMenuComponent implements OnChanges, OnInit {
     childMenuString: string = '';
     temporaryDisabled: boolean = true;
     isShow: boolean = true;
+    rolename?: string = "";
+    user?: User001mb;
     hexToRgb: any;
     rgbToHex: any;
     @HostBinding('style.--color_l1') colorthemes_1: any;
@@ -76,7 +79,7 @@ export class SideMenuComponent implements OnChanges, OnInit {
         private calloutService: CalloutService,
         private router: Router,
         private authManger: AuthManager
-    ) {}
+    ) { }
     @HostListener('window:resize', ['$event'])
     onResize(_event: any) {
         this.configureSideNav();
@@ -110,6 +113,9 @@ export class SideMenuComponent implements OnChanges, OnInit {
             this.childMenuString = object.childMenuString;
         });
         this.authManager.currentUserSubject.subscribe((object: any) => {
+            // console.log("object", object);
+            this.user = object;
+
             let rgb = Utils.hexToRgb(object.theme);
 
             this.colorthemes_1 = Utils.rgbToHex(rgb, -0.3);

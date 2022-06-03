@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GridOptions } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { deserialize } from 'serializer.ts/Serializer';
+import { Role } from 'src/app/role';
 import { AuditComponent } from 'src/app/shared/audit/audit.component';
 import { ConformationComponent } from 'src/app/shared/conformation/conformation.component';
 import { IconRendererComponent } from 'src/app/shared/services/renderercomponent/icon-renderer-component';
@@ -16,6 +17,8 @@ import { LigandVersionManager } from 'src/app/shared/services/restcontroller/biz
 import { Ligand001wb } from 'src/app/shared/services/restcontroller/entities/Ligand001wb';
 import { Ligandtype001mb } from 'src/app/shared/services/restcontroller/entities/Ligandtype001mb';
 import { Ligandversion001mb } from 'src/app/shared/services/restcontroller/entities/Ligandversion001mb';
+import { Role001mb } from 'src/app/shared/services/restcontroller/entities/Role001mb';
+import { User001mb } from 'src/app/shared/services/restcontroller/entities/User001mb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
 import { Utils } from 'src/app/shared/utils/utils';
 import { v4 as uuid } from 'uuid';
@@ -70,6 +73,9 @@ export class LigandComponent implements OnInit {
   hexToRgb: any;
   rgbToHex: any;
 
+  user001mb?: User001mb;
+  roles: Role001mb[] = [];
+
   public gridOptions: GridOptions | any;
   rowData: Observable<any[]> | any;
 
@@ -91,6 +97,10 @@ export class LigandComponent implements OnInit {
       iconRenderer: IconRendererComponent
     }
   }
+
+//   get isAdmin() {
+//     return  this.user001mb?.roleid === Role.Admin;
+// }
 
   ngOnInit(): void {
 

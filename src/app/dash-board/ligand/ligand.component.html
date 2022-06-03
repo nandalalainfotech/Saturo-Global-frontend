@@ -27,7 +27,7 @@
                         <label path="ligandVersionSlno" for="ligandVersionSlno" cssClass="required">Ligand-Version</label>
                         <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno" (click)="onLigandVersionClick()">
                             <option value="" hidden> - Select Ligand Version - </option>
-                            <option> - Select Ligand Version - </option>
+                            <option > - Select Ligand Version - </option>
                             <option *ngFor="let ligandVersion of ligandVersions" [value]="ligandVersion.id">
                                 {{ligandVersion.ligandVersion}}
                             </option>

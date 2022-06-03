@@ -1,0 +1,178 @@
+<div class="manu-breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+
+
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Task Allocation</legend>
+        <div class="formData">
+            <form [formGroup]="TaskAllocationForm" (ngSubmit)="onTaskAllocationClick($event, TaskAllocationForm)">
+
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="curatorId" path="curatorName">CURATOR NAME</label>
+                            <!-- <input class="form-control" path="tablename" id="tableselected" type="hidden" /> -->
+                            <select class="form-control" name="curatorName" id="curatorName" formControlName="curatorName" (change)="onCreatorChange($event)">
+                                <option value="" hidden> - Select the Name - </option>
+                                <option value="null"> - Select the Name - </option>
+                                <!-- <option > Moorthy </option>
+                                <option >Aravinh</option> -->
+                                <option *ngFor="let curator of curators" [value]="curator.username"> {{curator.username}} </option>
+                              
+                            </select>
+                            <input type="hidden" formControlName="curatorSlno" />
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="curatorTanNo" path="curatorTanNo">CURATOR TAN NUMBER</label>
+                            <input class="form-control" path="curatorTanNo" id="curatorTanNo" formControlName="curatorTanNo" />
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="curatorAllocateDate" path="curatorAllocateDate">CURATOR DATE ALLOCATED</label>
+                            <input class="form-control" path="curatorAllocateDate" id="curatorAllocateDate" type="date" formControlName="curatorAllocateDate" />
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="curatorCompleteDate" path="curatorCompleteDate">CURATOR COMPLETED ON</label>
+                            <input class="form-control" path="curatorCompleteDate" id="curatorCompleteDate" type="date" formControlName="curatorCompleteDate" />
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-3 col-sm-3">
+                            <label for="curatorStatus" path="curatorStatus">CURATOR STATUS</label>
+                            <select class="form-control" name="curatorStatus" id="curatorStatus" formControlName="curatorStatus">
+                                <option value="" hidden> - Select Curator Status - </option>
+                                <option value="null"> - Select Curator Status - </option>
+                                <option > In Progress </option>
+                                <option > Pending </option>
+                                <option > Submitted to QC </option>
+                            </select>
+                        </div>
+                        <div class="col-xs-9 col-sm-9"></div>
+                    </div>
+                </div> -->
+
+                <br><br>
+
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="reviewerName" path="reviewerName">REVIEWER NAME</label>
+                            <!-- <input class="form-control" path="tablename" id="tableselected" type="hidden" /> -->
+                            <select class="form-control" name="reviewerName" id="reviewerName" formControlName="reviewerName" (change)="onReviewerChange($event)">
+                                <option value="" hidden> - Select the Reviewer Name - </option>
+                                <option value="null"> - Select the Reviewer Name - </option>
+                                <!-- <option > Sekar </option> -->
+                                <option *ngFor="let reviewer of reviewers" [value]="reviewer.username"> {{reviewer.username}} </option>
+                            </select>
+
+                            <input type="hidden" formControlName="reviewerSlno" />
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="reviewerTanNo" path="reviewerTanNo">REVIEWER TAN NUMBER</label>
+                            <input class="form-control" path="reviewerTanNo" id="reviewerTanNo" formControlName="reviewerTanNo" />
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="reviewerAllocateDate" path="reviewerAllocateDate">REVIEWER DATE ALLOCATED</label>
+                            <input class="form-control" path="reviewerAllocateDate" id="reviewerAllocateDate" type="date" formControlName="reviewerAllocateDate" />
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label for="reviewerCompleteDate" path="reviewerCompleteDate">REVIEWER COMPLETED ON</label>
+                            <input class="form-control" path="reviewerCompleteDate" id="reviewerCompleteDate" type="date" formControlName="reviewerCompleteDate" />
+                        </div>
+                    </div>
+
+                </div>
+                <!-- <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-3 col-sm-3">
+                            <label for="reviewerStatus" path="reviewerStatus">REVIEWER Status</label>
+                            <select class="form-control" name="reviewerStatus" id="reviewerStatus" formControlName="reviewerStatus">
+                                <option value="" hidden> - Select Reviewer Status - </option>
+                                <option value="null"> - Select Reviewer Status - </option>
+                                <option > In Progress </option>
+                                <option > Pending </option>
+                                <option > Completed to QC </option>
+                                
+                            </select>
+                        </div>
+                        <div class="col-xs-9 col-sm-9"></div>
+                    </div>
+                </div> -->
+
+
+
+                <!-- </form>
+            <form> -->
+                <!-- <div class="formData"> -->
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-3 col-sm-3">
+                            <div class="form-group">
+                                <label for="tablename" path="tablename">Choose a File</label>
+                                <input class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-sm-3">
+                            <div class="form-group" style="margin-top: 25px;font-weight: bold ;width: 10px;">
+                                <button type="submit" class="btn btn-primary">Upload your File..!</button>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3">
+
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="col-xs-3 col-sm-3">
+                            <input type="file" id="BSbtninfo" name="file" style="margin-top:20px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary submit">Submit</button>
+                            <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- </div> -->
+            </form>
+        </div>
+    </fieldset>
+
+
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Task Status</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [pagination]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+
+        <div class="row">
+            <button class="btn btn-primary" style="margin-top: 20px;margin-left: 10px;">EXPORT EXCEL</button>
+        </div>
+
+    </fieldset>
+</div>
