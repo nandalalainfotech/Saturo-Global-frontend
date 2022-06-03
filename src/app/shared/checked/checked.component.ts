@@ -51,6 +51,7 @@ export class CheckedComponent implements OnInit {
   frameworkComponents: any;
   submitted = false;
   isEditable: boolean = false;
+  
   @Input() data: number | any;
 
   ligandId: number | any;
@@ -380,7 +381,7 @@ export class CheckedComponent implements OnInit {
     });
     this.title = this.title + 'SearchMenu';
 
-    console.log("data", this.data);
+    // console.log("data", this.data);
 
 
   }
@@ -389,21 +390,7 @@ export class CheckedComponent implements OnInit {
 
 
 
-  onEdit() {
-
-    alert("Welcome");
-
-    // this.CheckedForm.patchValue({
-
-
-    // 'tanNumber': this.data.tanNumber,
-
-    // })
-
-
-    console.log("Hi");
-
-  }
+ 
 
   onCancelClick() {
     this.activeModal.close('No');
@@ -548,7 +535,6 @@ export class CheckedComponent implements OnInit {
     //   this.calloutService.showSuccess("Measurement Details Saved Successfully");
 
     measurement001wb.measurementId = this.data.measurementId;
-    console.log(" measurement001wb.measurementId", measurement001wb.measurementId);
     
     measurement001wb.insertUser = this.insertUser;
     measurement001wb.insertDatetime = this.insertDatetime;

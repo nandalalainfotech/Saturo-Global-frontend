@@ -48,6 +48,9 @@ import { StepperComponent } from './stepper/stepper.component';
 import { TargetComponent } from './target/target.component';
 import { ReportComponent } from './report/report.component';
 import { LigandReportsManager } from '../shared/services/restcontroller/bizservice/report.service';
+import { AdminComponent } from './admin/admin.component';
+import { BreadcrumbModule } from './breadcrumb/breadcrumb.module';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 // import { GoJsChartComponent } from './body/go-js-chart/go-js-chart.component';
 
 
@@ -67,6 +70,8 @@ import { LigandReportsManager } from '../shared/services/restcontroller/bizservi
         MeasurementComponent,
         StepperComponent,
         ReportComponent,
+        AdminComponent,
+        // BreadcrumbComponent
         // MasterComponent,
         // RadarChartComponent,
         // ModernChartComponent,
@@ -103,7 +108,8 @@ import { LigandReportsManager } from '../shared/services/restcontroller/bizservi
         ColorPickerModule,
         DashboardRoutingModule,
         CdkStepperModule,
-        NgStepperModule
+        NgStepperModule,
+        BreadcrumbModule
     ],
     providers: [DataSharedService,
         appSettingManager,

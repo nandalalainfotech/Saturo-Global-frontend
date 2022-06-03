@@ -34,6 +34,10 @@ const routes: Routes = [
         loadChildren: () => import("./stepper/stepper.module").then(m => m.StepperModule)
       },
       {
+        path: 'app-admin',
+        loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule)
+      },
+      {
         path: 'app-master',
         loadChildren: () => import("./master/master.module").then(m => m.MasterModule)
       },

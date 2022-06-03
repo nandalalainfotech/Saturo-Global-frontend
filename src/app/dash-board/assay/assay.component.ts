@@ -26,6 +26,7 @@ import { Routeofadministration001mb } from 'src/app/shared/services/restcontroll
 import { Toxicity001mb } from 'src/app/shared/services/restcontroller/entities/Toxicity001mb';
 import { Unitlowendvalue001mb } from 'src/app/shared/services/restcontroller/entities/Unitlowendvalue001mb';
 import { Unitsinglevalue001mb } from 'src/app/shared/services/restcontroller/entities/Unitsinglevalue001mb';
+import { User001mb } from 'src/app/shared/services/restcontroller/entities/User001mb';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
 import { Utils } from 'src/app/shared/utils/utils';
 import { v4 as uuid } from 'uuid';
@@ -83,6 +84,8 @@ export class AssayComponent implements OnInit {
   public gridOptions: GridOptions | any;
   rowData: Observable<any[]> | any;
   username: any;
+  rolename?: string = "";
+  user?: User001mb;
 
   @HostBinding('style.--color_l1') colorthemes_1: any;
   @HostBinding('style.--color_l2') colorthemes_2: any;
@@ -164,6 +167,7 @@ export class AssayComponent implements OnInit {
     });
 
     this.authManager.currentUserSubject.subscribe((object: any) => {
+      this.user = object;
       let rgb = Utils.hexToRgb(object.theme);
       this.colorthemes_1 = Utils.rgbToHex(rgb, -0.3);
 
@@ -526,7 +530,7 @@ export class AssayComponent implements OnInit {
       'highCondition': params.data.highCondition,
       'lowCondition': params.data.lowCondition,
       'highLowUnit': params.data.highLowUnit,
-});
+    });
   }
 
 
@@ -633,7 +637,7 @@ export class AssayComponent implements OnInit {
   onBlurEvent(event: any) {
     this.ligandManager.findOne(event.target.value).subscribe(response => {
       this.ligand001mb = deserialize<Ligand001wb>(Ligand001wb, response);
-  });
+    });
   }
 
 
@@ -659,42 +663,42 @@ export class AssayComponent implements OnInit {
         'singleCondition': this.assay[i].singleCondition,
         'singleUnit': this.assay[i].singleUnit,
         'highCondition': this.assay[i].highCondition,
-        'lowCondition':this.assay[i].lowCondition,
+        'lowCondition': this.assay[i].lowCondition,
         'highLowUnit': this.assay[i].highLowUnit
-  });
+      });
     }
   }
 
   onEdit() {
     let i = this.assay.length - 1;
     for (i; i < this.assay.length; i++) {
-      
-      this.assayId =this.assay[i].assayId;
-      this.insertDatetime = new Date();
-    // this.insertUser = this.assay[i].insertUser;
 
-    this.AssayForm.patchValue({
-      'ordinal': this.assay[i].ordinal,
-      'ligandSlno': this.assay[i].ligandSlno,
-      'assayTypeSlno': this.assay[i].assayTypeSlno,
-      'toxiCitySlno': this.assay[i].toxiCitySlno,
-      'routeSlno': this.assay[i].routeSlno,
-      'ligandSvalue': this.assay[i].ligandSvalue,
-      'unitSlno': this.assay[i].unitSlno,
-      'ligandHvalue': this.assay[i].ligandHvalue,
-      'ligandLvalue': this.assay[i].ligandLvalue,
-      'unitedSlno': this.assay[i].unitedSlno,
-      'administration': this.assay[i].administration,
-      'procedure': this.assay[i].procedure,
-      'conditionType': this.assay[i].conditionType,
-      'conditionMaterial': this.assay[i].conditionMaterial,
-      'conditionMaterialid': this.assay[i].conditionMaterialid,
-      'singleCondition': this.assay[i].singleCondition,
-      'singleUnit': this.assay[i].singleUnit,
-      'highCondition': this.assay[i].highCondition,
-      'lowCondition':this.assay[i].lowCondition,
-      'highLowUnit': this.assay[i].highLowUnit
-});
-}
-}
+      this.assayId = this.assay[i].assayId;
+      this.insertDatetime = new Date();
+      // this.insertUser = this.assay[i].insertUser;
+
+      this.AssayForm.patchValue({
+        'ordinal': this.assay[i].ordinal,
+        'ligandSlno': this.assay[i].ligandSlno,
+        'assayTypeSlno': this.assay[i].assayTypeSlno,
+        'toxiCitySlno': this.assay[i].toxiCitySlno,
+        'routeSlno': this.assay[i].routeSlno,
+        'ligandSvalue': this.assay[i].ligandSvalue,
+        'unitSlno': this.assay[i].unitSlno,
+        'ligandHvalue': this.assay[i].ligandHvalue,
+        'ligandLvalue': this.assay[i].ligandLvalue,
+        'unitedSlno': this.assay[i].unitedSlno,
+        'administration': this.assay[i].administration,
+        'procedure': this.assay[i].procedure,
+        'conditionType': this.assay[i].conditionType,
+        'conditionMaterial': this.assay[i].conditionMaterial,
+        'conditionMaterialid': this.assay[i].conditionMaterialid,
+        'singleCondition': this.assay[i].singleCondition,
+        'singleUnit': this.assay[i].singleUnit,
+        'highCondition': this.assay[i].highCondition,
+        'lowCondition': this.assay[i].lowCondition,
+        'highLowUnit': this.assay[i].highLowUnit
+      });
+    }
+  }
 }

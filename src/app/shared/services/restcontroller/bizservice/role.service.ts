@@ -12,6 +12,10 @@ export class RoleManager extends BaseService {
     allrole() {
         return this.getCallService(`${this.roleUrl}`+"/findAll");
       }
+
+    //   loginRoleFindAll() {
+    //     return this.getCallService(`${this.roleUrl}` + "/loginRoleFindAll");
+    // }
       
       saverole(roles:Role001mb) {
 

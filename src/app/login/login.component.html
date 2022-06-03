@@ -34,7 +34,7 @@
                                     <input class="form-control" name="password" type="password" placeholder="Password" id="password" #password1 formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                                     <div class="input-icon" (click)="changeType(password1, 1)">
                                         <span class="input-icon">
-                                        <i [ngClass]="toggle1 ? 'far fa-eye-slash' : 'far fa-eye'"></i></span>
+                                            <i [ngClass]="toggle1 ? 'far fa-eye-slash' : 'far fa-eye'"></i></span>
                                     </div>
                                 </div>
                                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
@@ -46,17 +46,16 @@
                         <!-- <div class="pull-left login-data col-lg-12 ">
                             <div class="col-lg-12 col-md-12 col-xs-3 col-sm-3">
                                 <div class="form-group ">
-                                    <select class="select form-control-arrow" formControlName="domain" required [ngClass]="{ 'is-invalid': submitted && f.domain.errors }">
-                                    <option value="null"> Select Domain </option>
-                                    <option value="Manufacturing">Manufacturing</option>
-                                    <option value="Construction">Construction</option>
-                                    <option value="Buying House">Buying House</option>
-                                    <option value="Calibration Labs">Calibration Labs</option>
-                                    <option value="School">School</option>
-                                </select>
+                                    <select class="select form-control-arrow" formControlName="roleid" required [ngClass]="{ 'is-invalid': submitted && f.roleid.errors }">
+                                        <option value="" hidden> - Select Role - </option>
+                                        <option> - Select Role - </option>
+                                        <option *ngFor="let role of roles" [value]="role.id">
+                                            {{role.rolename}}
+                                        </option>
+                                    </select>
                                 </div>
-                                <div *ngIf="submitted && f.domain.errors" class="invalid-feedback">
-                                    <div *ngIf="f.domain.errors.required">Domain is required</div>
+                                <div *ngIf="submitted && f.roleid.errors" class="invalid-feedback">
+                                    <div *ngIf="f.roleid.errors.required">Role is required</div>
                                 </div>
                             </div>
                         </div> -->

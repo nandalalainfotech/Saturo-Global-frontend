@@ -32,6 +32,7 @@ import { CheckedComponent } from './shared/checked/checked.component';
 import { AssayCheckedComponent } from './shared/assay-checked/assay-checked.component';
 import { MeasurementCheckedComponent } from './shared/measurement-checked/measurement-checked.component';
 import { InlineEditingModule } from './shared/inline-editing/inline-editing.module';
+import { RoleManager } from './shared/services/restcontroller/bizservice/role.service';
 
 
 @NgModule({
@@ -68,7 +69,7 @@ import { InlineEditingModule } from './shared/inline-editing/inline-editing.modu
 		InlineEditingModule
 	],
 	exports: [PopupComponent, NgbCollapseModule],
-	providers: [AuthManager, CalloutService, DataSharedService,BaseService, UserManager,
+	providers: [AuthManager, CalloutService, DataSharedService,BaseService, UserManager,RoleManager,
 		{ provide: LocationStrategy, useClass: PathLocationStrategy },
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],

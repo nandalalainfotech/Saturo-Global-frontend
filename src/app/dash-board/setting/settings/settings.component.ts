@@ -64,10 +64,14 @@ export class SettingsComponent implements OnInit {
     loadData() {
         this.roleManager.allrole().subscribe((response) => {
             this.roles = deserialize<Role001mb[]>(Role001mb, response);
+            
+            
         });
 
         this.userManager.alluser().subscribe((response) => {
             this.user001mbs = deserialize<User001mb[]>(User001mb, response);
+            console.log("this.user001mbs---------->>",this.user001mbs);
+            
             if (this.user001mbs.length > 0) {
                 this.gridOptions?.api?.setRowData(this.user001mbs);
             } else {
