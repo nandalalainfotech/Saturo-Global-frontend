@@ -31,6 +31,7 @@ export class Assay001wb {
     lowCondition?: string;
     highLowUnit?: string;
     unitedSlno?: number;
+    status?: string;
     insertUser?: string;
     insertDatetime?: Date;
     updatedUser?: string | null;

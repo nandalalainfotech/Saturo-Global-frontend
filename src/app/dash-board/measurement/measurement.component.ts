@@ -643,7 +643,7 @@ export class MeasurementComponent implements OnInit {
     measurement001wb.speciesDetail = this.f.speciesDetail.value ? this.f.speciesDetail.value : "";
     measurement001wb.gender = this.f.gender.value ? this.f.gender.value : "";
     measurement001wb.ageGroup = this.f.ageGroup.value ? this.f.ageGroup.value : "";
-
+    measurement001wb.status = "SUBMITTED TO QC";
 
 
     if (this.measurementId) {

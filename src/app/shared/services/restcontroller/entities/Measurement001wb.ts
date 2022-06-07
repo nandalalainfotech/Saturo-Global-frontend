@@ -26,6 +26,7 @@ export class Measurement001wb {
     speciesDetail?: string;
     gender?: string;
     ageGroup?: string;
+    status?: string;
     insertUser?: string;
     insertDatetime?: Date;
     updatedUser?: string | null;

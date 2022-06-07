@@ -51,6 +51,7 @@ import { LigandReportsManager } from '../shared/services/restcontroller/bizservi
 import { AdminComponent } from './admin/admin.component';
 import { BreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { StatusComponent } from './status/status.component';
 // import { GoJsChartComponent } from './body/go-js-chart/go-js-chart.component';
 
 
@@ -71,6 +72,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
         StepperComponent,
         ReportComponent,
         AdminComponent,
+        StatusComponent,
         // BreadcrumbComponent
         // MasterComponent,
         // RadarChartComponent,

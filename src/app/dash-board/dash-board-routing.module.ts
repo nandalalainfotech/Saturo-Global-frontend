@@ -41,6 +41,10 @@ const routes: Routes = [
         path: 'app-master',
         loadChildren: () => import("./master/master.module").then(m => m.MasterModule)
       },
+      {
+        path: 'app-status',
+        loadChildren: () => import("./status/status.module").then(m => m.StatusModule)
+      },
      
     ]
   }
