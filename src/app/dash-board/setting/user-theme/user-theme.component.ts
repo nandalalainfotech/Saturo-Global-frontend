@@ -42,8 +42,6 @@ export class UserThemeComponent implements OnInit {
             this.colorthemes_1 = Utils.rgbToHex(rgb, -0.6);
             this.colorthemes_2 = Utils.rgbToHex(rgb, -0.3);
             this.colorthemes_3 = Utils.rgbToHex(rgb, 0.2);
-            console.log('setting area object.theme', object.theme);
-            console.log('setting area colorthemes_1', this.colorthemes_1);
         });
         this.userThemeForm.patchValue({
             username: this.user001mb.username,

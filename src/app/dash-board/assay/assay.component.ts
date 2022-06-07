@@ -119,7 +119,6 @@ export class AssayComponent implements OnInit {
 
     this.ligandManager.allligand(this.username).subscribe(response => {
       this.ligands = deserialize<Ligand001wb[]>(Ligand001wb, response);
-      // console.log("this.ligands--->",this.ligands);
     });
 
     this.assayTypeManager.allassayType().subscribe(response => {
@@ -581,15 +580,15 @@ export class AssayComponent implements OnInit {
     let assay001wb = new Assay001wb();
     assay001wb.ordinal = this.f.ordinal.value ? this.f.ordinal.value : "";
     assay001wb.collectionId = "47498009Q-1";
-    assay001wb.ligandSlno = this.f.ligandSlno.value ? this.f.ligandSlno.value : "";
-    assay001wb.assayTypeSlno = this.f.assayTypeSlno.value ? this.f.assayTypeSlno.value : "";
-    assay001wb.toxiCitySlno = this.f.toxiCitySlno.value ? this.f.toxiCitySlno.value : "";
-    assay001wb.routeSlno = this.f.routeSlno.value ? this.f.routeSlno.value : "";
+    assay001wb.ligandSlno = this.f.ligandSlno.value ? this.f.ligandSlno.value : null;
+    assay001wb.assayTypeSlno = this.f.assayTypeSlno.value ? this.f.assayTypeSlno.value : null;
+    assay001wb.toxiCitySlno = this.f.toxiCitySlno.value ? this.f.toxiCitySlno.value : null;
+    assay001wb.routeSlno = this.f.routeSlno.value ? this.f.routeSlno.value : null;
     assay001wb.ligandSvalue = this.f.ligandSvalue.value ? this.f.ligandSvalue.value : "";
-    assay001wb.unitSlno = this.f.unitSlno.value ? this.f.unitSlno.value : "";
+    assay001wb.unitSlno = this.f.unitSlno.value ? this.f.unitSlno.value : null;
     assay001wb.ligandHvalue = this.f.ligandHvalue.value ? this.f.ligandHvalue.value : "";
     assay001wb.ligandLvalue = this.f.ligandLvalue.value ? this.f.ligandLvalue.value : "";
-    assay001wb.unitedSlno = this.f.unitedSlno.value ? this.f.unitedSlno.value : "";
+    assay001wb.unitedSlno = this.f.unitedSlno.value ? this.f.unitedSlno.value : null;
     assay001wb.administration = this.f.administration.value ? this.f.administration.value : "";
     assay001wb.procedure = this.f.procedure.value ? this.f.procedure.value : "";
     assay001wb.target = "bioactivity-target" + "/" + "SaturoGlobal" + "/" + this.ligand001mb?.tanNumber + "/" + this.f.ordinal.value + ">" + "bioactivity-target" + "/" + uuid();

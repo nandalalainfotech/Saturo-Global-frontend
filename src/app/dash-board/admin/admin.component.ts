@@ -115,6 +115,8 @@ export class AdminComponent implements OnInit {
   loadData() {
     this.taskAllocationManager.alltask().subscribe(response => {
       this.taskallocations = deserialize<Taskallocation001wb[]>(Taskallocation001wb, response);
+      console.log("this.taskallocations",this.taskallocations);
+      
       if (this.taskallocations.length > 0) {
         this.gridOptions?.api?.setRowData(this.taskallocations);
       } else {
@@ -130,7 +132,8 @@ export class AdminComponent implements OnInit {
 
     this.userManager.allreviewer().subscribe((response) => {
       this.reviewers = deserialize<User001mb[]>(User001mb, response);
-      console.log("this.reviewer", this.reviewers);
+      console.log("this.reviewers",this.reviewers);
+      
     })
 
   }
@@ -157,9 +160,21 @@ export class AdminComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true
       },
-    {
-        headerName: 'File NAME',
-        field: 'filename',
+   
+      {
+        headerName: 'CURATOR NAME',
+        field: 'curatorName',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+        // valueGetter: this.setCuratorName.bind(this)
+      },
+      {
+        headerName: 'CURATOR BATCH NUMBER',
+        field: 'cbatchNo',
         width: 200,
         flex: 1,
         sortable: true,
@@ -167,65 +182,44 @@ export class AdminComponent implements OnInit {
         resizable: true,
         suppressSizeToFit: true,
       },
-      // {
-      //   headerName: 'CURATOR NAME',
-      //   field: 'curatorName',
-      //   width: 200,
-      //   flex: 1,
-      //   sortable: true,
-      //   filter: true,
-      //   resizable: true,
-      //   suppressSizeToFit: true,
-      // },
-      // {
-      //   headerName: 'CURATOR TAN NUMBER',
-      //   field: 'curatorTanNo',
-      //   width: 200,
-      //   flex: 1,
-      //   sortable: true,
-      //   filter: true,
-      //   resizable: true,
-      //   suppressSizeToFit: true
-      // },
+      {
+        headerName: 'CURATOR TAN NUMBER',
+        field: 'curatorTanNo',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true
+      },
 
-      // {
-      //   headerName: 'CURATOR DATE ALLOCATED',
-      //   width: 200,
-      //   flex: 1,
-      //   sortable: true,
-      //   filter: true,
-      //   resizable: true,
-      //   suppressSizeToFit: true,
-      //   valueGetter: (params: any) => {
-      //     return params.data.curatorAllocateDate ? this.datepipe.transform(params.data.curatorAllocateDate, 'dd-MM-yyyy') : '';
-      //   }
-      // },
+      {
+        headerName: 'CURATOR DATE ALLOCATED',
+        width: 200,
+        flex: 1,
+        sortable: true,
+        filter: true,
+        resizable: true,
+        suppressSizeToFit: true,
+        valueGetter: (params: any) => {
+          return params.data.curatorAllocateDate ? this.datepipe.transform(params.data.curatorAllocateDate, 'dd-MM-yyyy') : '';
+        }
+      },
 
-      // {
-      //   headerName: 'CURATOR COMPLETED ON',
-      //   width: 200,
-      //   flex: 1,
-      //   sortable: true,
-      //   filter: true,
-      //   resizable: true,
-      //   suppressSizeToFit: true,
-      //   valueGetter: (params: any) => {
-      //     return params.data.curatorCompleteDate ? this.datepipe.transform(params.data.curatorCompleteDate, 'dd-MM-yyyy') : '';
-      //   }
-      // },
-      // {
-      //   headerName: 'CURATOR STATUS',
-      //   field: 'curatorStatus',
-      //   width: 200,
-      //   flex: 1,
-      //   sortable: true,
-      //   filter: true,
-      //   resizable: true,
-      //   suppressSizeToFit: true,
-      // },
+      
       // {
       //   headerName: 'REVIEWER NAME',
       //   field: 'reviewerName',
+      //   width: 200,
+      //   flex: 1,
+      //   sortable: true,
+      //   filter: true,
+      //   resizable: true,
+      //   suppressSizeToFit: true,
+      // },
+      // {
+      //   headerName: 'REVIEWER BATCH NUMBER',
+      //   field: 'rbatchNo',
       //   width: 200,
       //   flex: 1,
       //   sortable: true,
@@ -255,21 +249,10 @@ export class AdminComponent implements OnInit {
       //     return params.data.reviewerAllocateDate ? this.datepipe.transform(params.data.reviewerAllocateDate, 'dd-MM-yyyy') : '';
       //   }
       // },
+     
       // {
-      //   headerName: 'REVIEWER COMPLETED ON',
-      //   width: 200,
-      //   flex: 1,
-      //   sortable: true,
-      //   filter: true,
-      //   resizable: true,
-      //   suppressSizeToFit: true,
-      //   valueGetter: (params: any) => {
-      //     return params.data.reviewerCompleteDate ? this.datepipe.transform(params.data.reviewerCompleteDate, 'dd-MM-yyyy') : '';
-      //   }
-      // },
-      // {
-      //   headerName: 'REVIEWER STATUS',
-      //   field: 'reviewerStatus',
+      //   headerName: 'FILE NAME',
+      //   field: 'filename',
       //   width: 200,
       //   flex: 1,
       //   sortable: true,
@@ -315,12 +298,9 @@ export class AdminComponent implements OnInit {
       },
     ];
   }
-//   setCuratorName(params: any): string {
-//     console.log("this is a sekar",params.data.curatorName);
-    
-//     return  this.curatorName;
-// }
-
+  // setCuratorName(params: any): string {
+  //   return params.data? params.data.curatorName : null;
+  // }
   onCreatorChange(event: any) {
     // console.log("event.target.text",event.target.value);
     // this.TaskAllocationForm.patchValue({
@@ -434,8 +414,8 @@ export class AdminComponent implements OnInit {
     // taskallocation001wb.reviewerTanNo = this.f.reviewerTanNo.value ? this.f.reviewerTanNo.value : "";
     // taskallocation001wb.reviewerAllocateDate = this.f.reviewerAllocateDate.value ? this.f.reviewerAllocateDate.value : "";
     // taskallocation001wb.reviewerCompleteDate = this.f.reviewerCompleteDate.value ? this.f.reviewerCompleteDate.value : "";
-    taskallocation001wb.filename = this.f.filename.value ? this.f.filename.value : "";
-   console.log("taskallocation001wb.filename", taskallocation001wb.filename);
+    // taskallocation001wb.filename = this.f.filename.value ? this.f.filename.value : "";
+  //  console.log("taskallocation001wb.filename", taskallocation001wb.filename);
     if (this.curatorId) {
       taskallocation001wb.curatorId = this.curatorId;
       taskallocation001wb.insertUser = this.insertUser;
@@ -467,5 +447,10 @@ export class AdminComponent implements OnInit {
     this.submitted = false;
     this.TaskAllocationForm.reset();
   }
+//   reset(element:any) {
+//     this.submitted = false;
+//     element.value = "";
+//     this.TaskAllocationForm.reset();
+// }
 
 }

@@ -14,7 +14,6 @@ export class AssayManager extends BaseService {
     }
 
     assaysave(assay001wb: Assay001wb) {
-        // console.log("assay001wb",assay001wb);
         return this.postCallService(`${this.assayUrl}` + "/save", {}, assay001wb);
     }
 

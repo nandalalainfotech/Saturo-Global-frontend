@@ -6,8 +6,7 @@
                 <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="tanNumber" for="tanNumber" cssClass="required">TAN Number</label>
-                        <input class="form-control" name="tanNumber" formControlName="tanNumber"
-                            (blur)="onBlurEvent($event)" [ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }">
+                        <input class="form-control" name="tanNumber" formControlName="tanNumber" (blur)="onBlurEvent($event)" [ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }">
                         <div *ngIf="submitted && f.tanNumber.errors" class="invalid-feedback">
                             <div *ngIf="f.tanNumber.errors.required">Tan number is Required</div>
                         </div>
@@ -25,12 +24,10 @@
             <div class="row">
                 <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
-                        <label path="ligandVersionSlno" for="ligandVersionSlno"
-                            cssClass="required">Ligand-Version</label>
-                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno"
-                            (click)="onLigandVersionClick()">
+                        <label path="ligandVersionSlno" for="ligandVersionSlno" cssClass="required">Ligand-Version</label>
+                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno" (click)="onLigandVersionClick()">
                             <option value="" hidden> - Select Ligand Version - </option>
-                            <option> - Select Ligand Version - </option>
+                            <!-- <option> - Select Ligand Version - </option> -->
                             <option *ngFor="let ligandVersion of ligandVersions" [value]="ligandVersion.id">
                                 {{ligandVersion.ligandVersion}}
                             </option>
@@ -44,7 +41,7 @@
                         <label path="ligandTypeSlno" for="ligandTypeSlno" cssClass="required">Ligand-Type</label>
                         <select class="form-control" name="ligandTypeSlno" formControlName="ligandTypeSlno">
                             <option value="" hidden> - Select Ligand Types - </option>
-                            <option> - Select Ligand Types - </option>
+                            <!-- <option> - Select Ligand Types - </option> -->
                             <option *ngFor="let ligandtype of ligandtypes" [value]="ligandtype.id">
                                 {{ligandtype.ligandtype}}
                             </option>
@@ -85,8 +82,7 @@
                 <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="collectionId" for="series" cssClass="required">Collection-id</label>
-                        <input class="form-control" name="collectionId" formControlName="collectionId"
-                            (blur)="onBlurEvent($event)">
+                        <input class="form-control" name="collectionId" formControlName="collectionId" (blur)="onBlurEvent($event)">
                     </div>
                 </div>
 
@@ -130,8 +126,7 @@
                     <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="ligandVersions" for="ligandVersions" cssClass="required">Ligand-Version</label>
-                            <input class="form-control" path="ligandVersions" name="ligandVersions"
-                                formControlName="ligandVersions" readonly />
+                            <input class="form-control" path="ligandVersions" name="ligandVersions" formControlName="ligandVersions" readonly />
                         </div>
                     </div>
                 </div>
@@ -189,21 +184,14 @@
             </fieldset>
 
             <div class="row">
-
                 <div class="form-group">
                     <div class="col-sm-7"></div>
-                    <div class="col-sm-1"><button type="button" class="btn btn-primary"
-                            (click)="onRepeat()">Repeat</button>
-                    </div>
-                    <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button>
-                    </div>
+                    <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onRepeat()">Repeat</button></div>
+                    <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button></div>
                     <div class="col-sm-1"><button type="submit" class="btn btn-primary">Submit</button></div>
-                    <div class="col-sm-1"> <button type="button" class="btn btn-primary"
-                            (click)="onReset()">Clear</button>
-                    </div>
+                    <div class="col-sm-1"> <button type="button" class="btn btn-primary" (click)="onReset()">Clear</button></div>
                     <div class="col-sm-1"></div>
                 </div>
-
             </div>
 
         </form>
@@ -213,8 +201,7 @@
 <div class="scrollbar">
     <fieldset class="scheduler-border">
         <legend class="scheduler-border">Ligand</legend>
-        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
-            [frameworkComponents]="frameworkComponents">
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [frameworkComponents]="frameworkComponents">
         </ag-grid-angular>
     </fieldset>
 </div>

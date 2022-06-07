@@ -1,5 +1,3 @@
-.buttons {
-    display: inline;
-    margin: 0;
-    padding: 20px !important;
+.btn-primary {
+    width: 80px;
 }

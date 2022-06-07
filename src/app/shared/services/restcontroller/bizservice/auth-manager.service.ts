@@ -24,7 +24,6 @@ export class AuthManager extends BaseService {
                     sessionStorage.setItem('currentUser', JSON.stringify(res));
                     this.currentUserSubject.next(res.userDTO);
                 }
-                console.log("res====================>", res )
                 return res;
             }))
     }

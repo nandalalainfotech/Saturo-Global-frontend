@@ -70,7 +70,6 @@ export class SettingsComponent implements OnInit {
 
         this.userManager.alluser().subscribe((response) => {
             this.user001mbs = deserialize<User001mb[]>(User001mb, response);
-            console.log("this.user001mbs---------->>",this.user001mbs);
             
             if (this.user001mbs.length > 0) {
                 this.gridOptions?.api?.setRowData(this.user001mbs);
@@ -154,7 +153,6 @@ export class SettingsComponent implements OnInit {
     }
 
     setRoleName(params: any): string {
-        console.log("params",params);
         return params.data.role? params.data.role.rolename : null;
     }
 

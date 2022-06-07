@@ -79,7 +79,6 @@ export class UserRegistrationComponent implements OnInit {
             this.systemproperties = deserialize<Systemproperties001mb[]>(Systemproperties001mb, response);
         });
         this.systemPropertiesService.system(this.dname, this.dtype).subscribe(response => {
-            console.log('rs',response)
             this.dsystemproperties = deserialize<Systemproperties001mb[]>(Systemproperties001mb, response);
         });
         this.systemPropertiesService.system(this.cname, this.ctype).subscribe(response => {
