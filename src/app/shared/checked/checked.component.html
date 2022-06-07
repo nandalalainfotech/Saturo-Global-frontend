@@ -1,5 +1,4 @@
-<app-checked-popup class="checked "  acceptLabel="Accept" cancelLabel="Reject"
-    acceptIcon="fa fa-check" [widthArg]="400" [heightArg]="400" (cancelClick)="onCancelClick()">
+<app-checked-popup class="checked " acceptLabel="Accept" cancelLabel="Reject" acceptIcon="fa fa-check" [widthArg]="400" [heightArg]="400" (cancelClick)="onCancelClick()">
     <!-- <fieldset class="scheduler-border">
 
         <legend class="scheduler-border">Link</legend> -->
@@ -30,13 +29,12 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="ligandVersionSlno" for="ligandVersionSlno"
-                                    cssClass="required">Ligand-Version :</label>
+                                <label path="ligandVersionSlno" for="ligandVersionSlno" cssClass="required">Ligand-Version :</label>
                             </div>
                             <div class="col-sm-7 ligandVersionSlno" *ngIf="isEditable">
                                 <!-- <input class="ligandVersionSlno" name="ligandVersionSlno"
                                     formControlName="ligandVersionSlno"> -->
-                                    <select    name="ligandVersionSlno" formControlName="ligandVersionSlno" >
+                                <select name="ligandVersionSlno" formControlName="ligandVersionSlno">
                                         <option  value="" hidden> - Select Ligand Version - </option>
                                         <option  *ngFor="let ligVersions of ligandVersions1" [value]="ligVersions.id">
                                             {{ligVersions.ligandVersion}}
@@ -57,7 +55,7 @@
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <!-- <input class="ligandTypeSlno" name="ligandTypeSlno" formControlName="ligandTypeSlno"> -->
-                                <select  name="ligandTypeSlno" formControlName="ligandTypeSlno">
+                                <select name="ligandTypeSlno" formControlName="ligandTypeSlno">
                                     <option value="" hidden> - Select Ligand Types - </option>
                                     <!-- <option> - Select Ligand Types - </option> -->
                                     <option *ngFor="let ligandtype of ligandtypes" [value]="ligandtype.id">
@@ -172,8 +170,7 @@
                                     :</label>
                             </div>
                             <div class="col-xs-7 col-sm-7" *ngIf="isEditable">
-                                <input class="diseaseName1" path="diseaseName1" name="diseaseName1"
-                                    formControlName="diseaseName1" />
+                                <input class="diseaseName1" path="diseaseName1" name="diseaseName1" formControlName="diseaseName1" />
                             </div>
                             <div class="col-sm-7" *ngIf="!isEditable">
                                 <span>{{data.assaySlno2.ligandSlno2.diseaseName1}}</span>
@@ -188,8 +185,7 @@
                                     :</label>
                             </div>
                             <div class="col-xs-7 col-sm-7" *ngIf="isEditable">
-                                <input class="diseaseName2" path="diseaseName2" name="diseaseName2"
-                                    formControlName="diseaseName2" />
+                                <input class="diseaseName2" path="diseaseName2" name="diseaseName2" formControlName="diseaseName2" />
                             </div>
                             <div class="col-sm-7" *ngIf="!isEditable">
                                 <span>{{data.assaySlno2.ligandSlno2.diseaseName2}}</span>
@@ -206,8 +202,7 @@
                                     :</label>
                             </div>
                             <div class="col-xs-7 col-sm-7" *ngIf="isEditable">
-                                <input class="diseaseName3" path="diseaseName3" name="diseaseName3"
-                                    formControlName="diseaseName3" />
+                                <input class="diseaseName3" path="diseaseName3" name="diseaseName3" formControlName="diseaseName3" />
                             </div>
                             <div class="col-sm-7" *ngIf="!isEditable">
                                 <span>{{data.assaySlno2.ligandSlno2.diseaseName3}}</span>
@@ -225,8 +220,7 @@
                                     Version:</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
-                                <input class="ligandVersions" path="ligandVersions" name="ligandVersions"
-                                    formControlName="ligandVersions" readonly />
+                                <input class="ligandVersions" path="ligandVersions" name="ligandVersions" formControlName="ligandVersions" readonly />
                             </div>
                             <div class="col-sm-7" *ngIf="!isEditable">
                                 <span>{{data.assaySlno2.ligandSlno2.ligandVersionSlno2.ligandVersion}}</span>
@@ -254,8 +248,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="collectionId1" for="collectionId1"
-                                    cssClass="required">Collection-id:</label>
+                                <label path="collectionId1" for="collectionId1" cssClass="required">Collection-id:</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <input class="collectionId1" name="collectionId1" formControlName="collectionId1">
@@ -344,7 +337,7 @@
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <!-- <input class="ligandSlno" name="ligandSlno" formControlName="ligandSlno"> -->
-                                <select name="ligandSlno" formControlName="ligandSlno" >
+                                <select name="ligandSlno" formControlName="ligandSlno">
                                     <option value="" hidden> - Select Ligand-Version - </option>
                                     <option> - Select Ligand-Version - </option>
                                     <option *ngFor="let ligandObject of ligand" [value]="ligandObject.ligandId">
@@ -501,8 +494,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="ligandLvalue" for="series"
-                                    cssClass="required">Ligand-Dose(Low-end-value)</label>
+                                <label path="ligandLvalue" for="series" cssClass="required">Ligand-Dose(Low-end-value)</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <input class="" name="ligandLvalue" formControlName="ligandLvalue">
@@ -539,8 +531,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="administration" for="series"
-                                    cssClass="required">Administration-regimen</label>
+                                <label path="administration" for="series" cssClass="required">Administration-regimen</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <input class="" name="administration" formControlName="administration">
@@ -594,8 +585,7 @@
                                     material</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
-                                <input class="" name="conditionMaterial"
-                                    formControlName="conditionMaterial">
+                                <input class="" name="conditionMaterial" formControlName="conditionMaterial">
                             </div>
                             <div class="col-sm-7" *ngIf="!isEditable">
                                 <span>{{data.assaySlno2.conditionMaterial}}</span>
@@ -612,9 +602,8 @@
                                 <label path="conditionMaterialid" for="series" cssClass="required">Condition
                                     material-id</label>
                             </div>
-                            <div class="col-sm-7"*ngIf="isEditable">
-                                <input class="" name="conditionMaterialid"
-                                    formControlName="conditionMaterialid">
+                            <div class="col-sm-7" *ngIf="isEditable">
+                                <input class="" name="conditionMaterialid" formControlName="conditionMaterialid">
                             </div>
                             <div class="col-sm-7" *ngIf="!isEditable">
                                 <span>{{data.assaySlno2.conditionMaterialid}}</span>
@@ -624,8 +613,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="singleCondition" for="series"
-                                    cssClass="required">Condition(Single-value)</label>
+                                <label path="singleCondition" for="series" cssClass="required">Condition(Single-value)</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <input class="" name="singleCondition" formControlName="singleCondition">
@@ -654,8 +642,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="highCondition" for="series"
-                                    cssClass="required">Condition(High-end-value)</label>
+                                <label path="highCondition" for="series" cssClass="required">Condition(High-end-value)</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <input class="" name="highCondition" formControlName="highCondition">
@@ -668,11 +655,10 @@
                 </div>
                 <br>
                 <div class="row">
-                   <div class="col-sm-6">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="lowCondition" for="series"
-                                    cssClass="required">Condition(Low-end-value)</label>
+                                <label path="lowCondition" for="series" cssClass="required">Condition(Low-end-value)</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <input class="" name="lowCondition" formControlName="lowCondition">
@@ -696,10 +682,10 @@
                         </div>
                     </div>
                 </div>
-                
-                </fieldset>
-                <br>
-                <br>
+
+            </fieldset>
+            <br>
+            <br>
             <!-- -------------------------------Measurement start------------------------------------>
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Measurement</legend>
@@ -768,7 +754,7 @@
                             <div class="col-sm-5">
                                 <label path="functionSlno" for="series" cssClass="required">Category(functions) :</label>
                             </div>
-                            <div class="col-sm-7"*ngIf="isEditable">
+                            <div class="col-sm-7" *ngIf="isEditable">
                                 <!-- <input class="functionSlno" name="functionSlno" formControlName="functionSlno"> -->
                                 <!-- <select class="" name="functionSlno" formControlName="functionSlno">
                                     <option value="" hidden> - Select Category Function - </option>
@@ -831,7 +817,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <div class="col-sm-5" >
+                            <div class="col-sm-5">
                                 <label path="originalPrefixSlno" for="originalPrefixSlno" cssClass="required">Original-prefix :</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
@@ -903,8 +889,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="lowEndValue" for="lowEndValue"
-                                    cssClass="required">Original-value(Low-end-value) :</label>
+                                <label path="lowEndValue" for="lowEndValue" cssClass="required">Original-value(Low-end-value) :</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <input class="lowEndValue" name="lowEndValue" formControlName="lowEndValue">
@@ -935,8 +920,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <div class="col-sm-5">
-                                <label path="nonNumeric" for="nonNumeric"
-                                    cssClass="required">Original-value(Non-numeric-value) :</label>
+                                <label path="nonNumeric" for="nonNumeric" cssClass="required">Original-value(Non-numeric-value) :</label>
                             </div>
                             <div class="col-sm-7" *ngIf="isEditable">
                                 <input class="nonNumeric" name="nonNumeric" formControlName="nonNumeric">
@@ -1116,14 +1100,13 @@
                     </div>
                 </div>
 
-<br>
-<br>
+                <br>
+                <br>
                 <div class="row">
-                <div class="col-sm-9"></div>
-
-                <div class="col-sm-1"><button type="button"  (click)="onEditReviewerClick($event)" class="btn btn-primary">Edit</button></div>
-                <div class="col-sm-1"><button type="submit" class="btn btn-primary">Submit</button></div>
-                <div class="col-sm-1"></div>
+                    <div class="col-sm-8"></div>
+                    <div class="col-sm-1"><button type="button" (click)="onEditReviewerClick($event)" class="btn btn-primary">Edit</button></div>
+                    <div class="col-sm-1"><button type="submit" class="btn btn-primary" style="margin-left:20px">Submit</button></div>
+                    <div class="col-sm-2"></div>
                 </div>
             </fieldset>
         </form>

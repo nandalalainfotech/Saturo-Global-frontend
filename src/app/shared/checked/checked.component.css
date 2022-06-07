@@ -5,13 +5,15 @@
 input {
     width: 100% !important;
 }
-select{
+
+select {
     width: 100% !important;
     height: 25px;
     /* border: 1px solid red !important; */
     border-radius: 2px;
-
 }
+
+
 /* .form-control {
     display: block;
     width: 100%;
@@ -62,3 +64,6 @@ span {
     font-family: "Raleway", sans-serif !important;
 }
 
+.btn-primary {
+    width: 80px;
+}

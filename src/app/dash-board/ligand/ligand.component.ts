@@ -554,12 +554,13 @@ export class LigandComponent implements OnInit {
       return;
     }
     let ligand001wb = new Ligand001wb();
+
     ligand001wb.tanNumber = this.f.tanNumber.value ? this.f.tanNumber.value : "";
     ligand001wb.ligandUri = "bioactivity-ligand" + "/" + "SaturoGlobal" + "/" + this.f.tanNumber.value + "/" + this.f.ligandVersionSlno.value + ">" + "bioactivity-ligand" + "/" + uuid();
-    ligand001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : "";
+    ligand001wb.ligandVersionSlno = this.f.ligandVersionSlno.value ? this.f.ligandVersionSlno.value : null;
     ligand001wb.ligandStatus = "embargoed";
     ligand001wb.collection = "cas";
-    ligand001wb.ligandTypeSlno = this.f.ligandTypeSlno.value ? this.f.ligandTypeSlno.value : "";
+    ligand001wb.ligandTypeSlno = this.f.ligandTypeSlno.value ? this.f.ligandTypeSlno.value : null;
     ligand001wb.ligandDetail = this.f.ligandDetail.value ? this.f.ligandDetail.value : "";
     ligand001wb.identifier1 = this.f.identifier1.value ? this.f.identifier1.value : "";
     ligand001wb.identifier2 = this.f.identifier2.value ? this.f.identifier2.value : "";
@@ -598,6 +599,7 @@ export class LigandComponent implements OnInit {
     else {
       ligand001wb.insertUser = this.authManager.getcurrentUser.username;
       ligand001wb.insertDatetime = new Date();
+      
       this.ligandManager.ligandsave(ligand001wb).subscribe((response) => {
 
         this.calloutService.showSuccess("Ligand Details Saved Successfully");

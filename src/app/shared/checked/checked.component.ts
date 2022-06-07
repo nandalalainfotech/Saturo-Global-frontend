@@ -306,9 +306,7 @@ export class CheckedComponent implements OnInit {
 
     this.ligandVersionManager.allligandVersion().subscribe(response => {
       this.ligandVersions1 = deserialize<Ligandversion001mb[]>(Ligandversion001mb, response);
-      // console.log("this.ligandVersions1", this.ligandVersions1);
       //   for(let ligVersions of this.ligandVersions1) {
-      //     console.log("ligVersions--------------->>",ligVersions.id, ligVersions.ligandVersion);
       //   }
     });
 
@@ -319,7 +317,6 @@ export class CheckedComponent implements OnInit {
     // ----------------------------Assay-------------------------
     // this.ligandManager.allligand(this.username).subscribe(response => {
     //       this.ligands = deserialize<Ligand001wb[]>(Ligand001wb, response);
-    //       // console.log("this.ligands--->",this.ligands);
     //     });
 
     this.assayTypeManager.allassayType().subscribe(response => {
@@ -381,7 +378,6 @@ export class CheckedComponent implements OnInit {
     });
     this.title = this.title + 'SearchMenu';
 
-    // console.log("data", this.data);
 
 
   }
@@ -440,7 +436,6 @@ export class CheckedComponent implements OnInit {
     //   this.submitted = false;
     // });
     ligand001wb.ligandId = this.data.assaySlno2.ligandSlno2.ligandId;
-    console.log(" ligand001wb.ligandId ", ligand001wb.ligandId);
     ligand001wb.insertUser = this.insertUser;
     ligand001wb.insertDatetime = this.insertDatetime;
     ligand001wb.updatedUser = this.authManager.getcurrentUser.username;

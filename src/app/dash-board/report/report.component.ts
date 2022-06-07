@@ -92,7 +92,6 @@ export class ReportComponent implements OnInit {
 
     // this.ligandManager.allligand(this.username).subscribe(response => {
     //   this.ligand = deserialize<Ligand001wb[]>(Ligand001wb, response);
-    //   console.log("this.ligand", this.ligand);
     //   if (this.ligand.length > 0) {
     //     this.gridOptions?.api?.setRowData(this.ligand);
     //   } else {
@@ -112,7 +111,7 @@ export class ReportComponent implements OnInit {
 
     this.measurementManager.allmeasurement(this.username).subscribe(response => {
       this.measurement = deserialize<Measurement001wb[]>(Measurement001wb, response);
-      console.log("this.measurement", this.measurement);
+      console.log("report .measurement", this.measurement);
       if (this.measurement.length > 0) {
         this.gridOptions?.api?.setRowData(this.measurement);
       } else {
@@ -1051,7 +1050,6 @@ valueGetter: this.setConditionMaterialValue.bind(this)
   
 
   onEditButtonClick(params: any) {
-    // console.log("params", params);
     const modalRef = this.modalService.open(CheckedComponent, { size: 'lg' });
     modalRef.componentInstance.data = params.data;
     modalRef.result.then((data) => {
@@ -1066,7 +1064,6 @@ valueGetter: this.setConditionMaterialValue.bind(this)
   }
 
   setStatusName(params: any): string {
-    console.log("paramsss", params)
     return params.data.acc = "ok";
   }
 

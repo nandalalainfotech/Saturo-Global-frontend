@@ -7,7 +7,9 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthManager } from 'src/app/shared/services/restcontroller/bizservice/auth-manager.service';
+import { RoleManager } from 'src/app/shared/services/restcontroller/bizservice/role.service';
 import { UserManager } from 'src/app/shared/services/restcontroller/bizservice/user.service';
+import { Role001mb } from 'src/app/shared/services/restcontroller/entities/Role001mb';
 import { User001mb } from 'src/app/shared/services/restcontroller/entities/User001mb';
 import { BaseService } from 'src/app/shared/services/services/base.service';
 import { CalloutService } from 'src/app/shared/services/services/callout.service';
@@ -30,6 +32,7 @@ export class FooterComponent implements OnInit {
     // rgbToHex: any;
     // hexToRgb: any;
     user001mb: User001mb = new User001mb();
+    roles: Role001mb[] = [];
     color: any;
     clr = 'black';
     defaultTheme: string = '#286090';
@@ -44,7 +47,8 @@ export class FooterComponent implements OnInit {
         private authManager: AuthManager,
         private dataSharedService: DataSharedService,
         private authManger: AuthManager,
-        private baseService: BaseService
+        private baseService: BaseService,
+        private roleManager: RoleManager,
     ) {}
 
     ngOnInit() {
@@ -55,6 +59,9 @@ export class FooterComponent implements OnInit {
             this.childMenuString = object.childMenuString;
         });
         this.authManager.currentUserSubject.subscribe((object: any) => {
+            this.user = object;
+            console.log("this.user---------------------->>>",this.user?.rolename);
+            
             let rgb = Utils.hexToRgb(object.theme);
 
             this.colorthemes_1 = Utils.rgbToHex(rgb, -0.3);

@@ -20,7 +20,7 @@ export class UserManager extends BaseService {
   }
 
   allreviewer() {
-    return this.getCallService(`${this.userUrl}` + "/findReviewerAll");
+    return this.getCallService(`${this.userUrl}` + "/findAllReviewer");
   }
 
   saveuser(user001mb: User001mb) {
@@ -56,12 +56,10 @@ export class UserManager extends BaseService {
 // -----------------------------------------USER REGISTRATION---------------------------------------
 
   registerUser(user001mb: User001mb) {
-    console.log("user",this.userUrl);
     return this.postCallService(`${this.userUrl}` + "/regSave", {}, user001mb);
   }
 
   alluserRegister() {
-    console.log("user service");
     return this.getCallService(`${this.userUrl}` + "/registerfindAll");
   }
 

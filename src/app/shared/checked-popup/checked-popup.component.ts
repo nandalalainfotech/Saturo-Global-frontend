@@ -100,15 +100,12 @@ export class CheckedPopupComponent implements OnInit {
 
     onAcceptClick(event: any) {
 
-        // console.log("called--->okkkk",this.CheckedForm);
 
         // if (event.isTrusted) {
-        //     // console.log("call", true)
 
         // }
         // this.router.navigate(['/app-report'])'
         this.activeModal.close('Yes');
-        // console.log("call");
         // this.cancelClick.emit(true);
         // this.calloutService.showSuccess("Ligand Accepted Successfully");
 

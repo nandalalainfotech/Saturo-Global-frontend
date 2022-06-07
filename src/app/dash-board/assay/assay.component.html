@@ -8,7 +8,7 @@
                         <label path="ligandSlno" for="ligandSlno" cssClass="required">Ligand-Version</label>
                         <select class="form-control" name="ligandSlno" formControlName="ligandSlno" (blur)="onBlurEvent($event)">
                             <option value="" hidden> - Select Ligand-Version - </option>
-                            <option> - Select Ligand-Version - </option>
+                            <!-- <option> - Select Ligand-Version - </option> -->
                             <option *ngFor="let ligandObject of ligands" [value]="ligandObject.ligandId">
                                 {{ligandObject.ligandVersionSlno2?.ligandVersion}}
                             </option>
@@ -30,7 +30,7 @@
                         <label path="assayTypeSlno" for="assayTypeSlno" cssClass="required">Assay-type</label>
                         <select class="form-control" name="assayTypeSlno" formControlName="assayTypeSlno">
                             <option value="" hidden> - Select Assay-Types - </option>
-                            <option> - Select Assay-Types - </option>
+                            <!-- <option> - Select Assay-Types - </option> -->
                             <option *ngFor="let assayType of assayTypes" [value]="assayType.id">
                                 {{assayType.assayType}}
                             </option>
@@ -42,7 +42,7 @@
                         <label path="toxiCitySlno" for="toxiCitySlno" cssClass="required">Toxicity-type</label>
                         <select class="form-control" name="toxiCitySlno" formControlName="toxiCitySlno">
                             <option value="" hidden> - Select Toxicity-Types - </option>
-                            <option> - Select Toxicity-Types - </option>
+                            <!-- <option> - Select Toxicity-Types - </option> -->
                             <option *ngFor="let toxiCity of toxiCities" [value]="toxiCity.id">
                                 {{toxiCity.toxiCity}}
                             </option>
@@ -55,7 +55,7 @@
                         <label path="routeSlno" for="routeSlno" cssClass="required">Route-of-administration</label>
                         <select class="form-control" name="routeSlno" formControlName="routeSlno">
                             <option value="" hidden> - Select Route-Types - </option>
-                            <option> - Select Route-Types - </option>
+                            <!-- <option> - Select Route-Types - </option> -->
                             <option *ngFor="let routeAdmin of routeAdmins" [value]="routeAdmin.id">
                                 {{routeAdmin.route}}
                             </option>
@@ -75,7 +75,7 @@
                         <label path="unitSlno" for="unitSlno" cssClass="required">Unit(Single-value)</label>
                         <select class="form-control" name="unitSlno" formControlName="unitSlno">
                             <option value="" hidden> - Select Unit-Types - </option>
-                            <option> - Select Unit-Types - </option>
+                            <!-- <option> - Select Unit-Types - </option> -->
                             <option *ngFor="let unitsinglevalue of unitsinglevalues" [value]="unitsinglevalue.id">
                                 {{unitsinglevalue.unit}}
                             </option>
@@ -105,7 +105,7 @@
                         <!-- <input class="form-control" path="twhrs" name="twhrs" formControlName="twhrs" /> -->
                         <select class="form-control" name="unitedSlno" formControlName="unitedSlno">
                             <option value="" hidden> - Select Units-Types - </option>
-                            <option> - Select Units-Types- </option>
+                            <!-- <option> - Select Units-Types- </option> -->
                             <option *ngFor="let unitlowendvalue of unitlowendvalues" [value]="unitlowendvalue.id">
                                 {{unitlowendvalue.united}}
                             </option>
@@ -137,7 +137,7 @@
                             <label path="conditionType" for="series" cssClass="required">Condition type</label>
                             <select class="form-control" name="conditionType" formControlName="conditionType">
                                 <option value="" hidden> - Select Condition type - </option>
-                                <option>- Select Condition type -</option>
+                                <!-- <option>- Select Condition type -</option> -->
                                 <option>Combination Chemotherapy</option>
                                 <option>Drug Interactions</option>
                             </select>
@@ -198,20 +198,13 @@
             </fieldset>
 
             <div class="row">
-                <div class="col-sm-12 ">
-                    <div class="form-group buttons">
-                        <!-- <button class="btn btn-primary previous" cdkStepperPrevious>Previous</button>
-                        <button type="submit" class="btn btn-primary submit" cdkStepperNext>Submit</button>
-                        <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button> -->
-                        <div class="row">
-                            <div class="col-sm-7"></div>
-                            <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onRepeat()">Repeat</button></div>
-                            <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button></div>
-                            <div class="col-sm-1"><button type="submit" class="btn btn-primary">Submit</button></div>
-                            <div class="col-sm-1"> <button type="button" class="btn btn-primary" (click)="onReset()">Clear</button></div>
-                            <div class="col-sm-1"></div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <div class="col-sm-7"></div>
+                    <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onRepeat()">Repeat</button></div>
+                    <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button></div>
+                    <div class="col-sm-1"><button type="submit" class="btn btn-primary">Submit</button></div>
+                    <div class="col-sm-1"> <button type="button" class="btn btn-primary" (click)="onReset()">Clear</button></div>
+                    <div class="col-sm-1"></div>
                 </div>
             </div>
         </form>

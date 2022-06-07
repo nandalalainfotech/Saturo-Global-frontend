@@ -15,8 +15,6 @@ export class PersonManager extends BaseService {
     }
 
     allpersonRegister() {
-        // console.log("cl--->reg", this.personUrl);
-        console.log("cl--->regperson");
         return this.getCallService(`${this.personUrl}` + "/regFindAll");
     }
 }

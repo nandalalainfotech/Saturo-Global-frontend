@@ -113,7 +113,6 @@ export class MeasurementComponent implements OnInit {
     this.username = this.authManager.getcurrentUser.username;
     this.assayManager.allassay(this.username).subscribe(response => {
       this.assays = deserialize<Assay001wb[]>(Assay001wb, response);
-      console.log("this.assays&measurement ",this.assays );
       
       
     });
@@ -622,12 +621,12 @@ export class MeasurementComponent implements OnInit {
 
     let measurement001wb = new Measurement001wb();
     measurement001wb.dataLocator = this.f.dataLocator.value ? this.f.dataLocator.value : "";
-    measurement001wb.assaySlno = this.f.assaySlno.value ? this.f.assaySlno.value : "";
-    measurement001wb.categorySlno = this.f.categorySlno.value ? this.f.categorySlno.value : "";
-    measurement001wb.functionSlno = this.f.functionSlno.value ? this.f.functionSlno.value : "";
+    measurement001wb.assaySlno = this.f.assaySlno.value ? this.f.assaySlno.value : null;
+    measurement001wb.categorySlno = this.f.categorySlno.value ? this.f.categorySlno.value : null;
+    measurement001wb.functionSlno = this.f.functionSlno.value ? this.f.functionSlno.value : null;
     measurement001wb.parameter = this.f.parameter.value ? this.f.parameter.value : "";
     measurement001wb.parameterDetail = this.f.parameterDetail.value ? this.f.parameterDetail.value : "";
-    measurement001wb.originalPrefixSlno = this.f.originalPrefixSlno.value ? this.f.originalPrefixSlno.value : "";
+    measurement001wb.originalPrefixSlno = this.f.originalPrefixSlno.value ? this.f.originalPrefixSlno.value : null;
     measurement001wb.unit = this.f.unit.value ? this.f.unit.value : "";
     measurement001wb.singleValue = this.f.singleValue.value ? this.f.singleValue.value : "";
     measurement001wb.highEndValue = this.f.highEndValue.value ? this.f.highEndValue.value : "";
@@ -635,7 +634,7 @@ export class MeasurementComponent implements OnInit {
     measurement001wb.units = this.f.units.value ? this.f.units.value : "";
     measurement001wb.nonNumeric = this.f.nonNumeric.value ? this.f.nonNumeric.value : "";
     measurement001wb.remark = this.f.remark.value ? this.f.remark.value : "";
-    measurement001wb.typeSlno = this.f.typeSlno.value ? this.f.typeSlno.value : "";
+    measurement001wb.typeSlno = this.f.typeSlno.value ? this.f.typeSlno.value : null;
     measurement001wb.cell = this.f.cell.value ? this.f.cell.value : "";
     measurement001wb.cellDetail = this.f.cellDetail.value ? this.f.cellDetail.value : "";
     measurement001wb.organ = this.f.organ.value ? this.f.organ.value : "";
