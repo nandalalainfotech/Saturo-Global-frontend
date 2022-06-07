@@ -3,10 +3,11 @@
     <div class="formData">
         <form [formGroup]="LigandForm" (ngSubmit)="onLigandClick($event, LigandForm)">
             <div class="row">
-                <div class="col-xs-3 col-sm-3">
+                <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="tanNumber" for="tanNumber" cssClass="required">TAN Number</label>
-                        <input class="form-control" name="tanNumber" formControlName="tanNumber" (blur)="onBlurEvent($event)" [ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }">
+                        <input class="form-control" name="tanNumber" formControlName="tanNumber"
+                            (blur)="onBlurEvent($event)" [ngClass]="{ 'is-invalid': submitted && f.tanNumber.errors }">
                         <div *ngIf="submitted && f.tanNumber.errors" class="invalid-feedback">
                             <div *ngIf="f.tanNumber.errors.required">Tan number is Required</div>
                         </div>
@@ -22,12 +23,14 @@
     <div class="formData">
         <form [formGroup]="LigandForm" (ngSubmit)="onLigandClick($event, LigandForm)">
             <div class="row">
-                <div class="col-xs-3 col-sm-3">
+                <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
-                        <label path="ligandVersionSlno" for="ligandVersionSlno" cssClass="required">Ligand-Version</label>
-                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno" (click)="onLigandVersionClick()">
+                        <label path="ligandVersionSlno" for="ligandVersionSlno"
+                            cssClass="required">Ligand-Version</label>
+                        <select class="form-control" name="ligandVersionSlno" formControlName="ligandVersionSlno"
+                            (click)="onLigandVersionClick()">
                             <option value="" hidden> - Select Ligand Version - </option>
-                            <option > - Select Ligand Version - </option>
+                            <option> - Select Ligand Version - </option>
                             <option *ngFor="let ligandVersion of ligandVersions" [value]="ligandVersion.id">
                                 {{ligandVersion.ligandVersion}}
                             </option>
@@ -36,7 +39,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-3 col-sm-3">
+                <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="ligandTypeSlno" for="ligandTypeSlno" cssClass="required">Ligand-Type</label>
                         <select class="form-control" name="ligandTypeSlno" formControlName="ligandTypeSlno">
@@ -50,43 +53,44 @@
                     </div>
                 </div>
 
-                <div class="col-xs-3 col-sm-3">
+                <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="ligandDetail" for="series" cssClass="required">Ligand-detail</label>
                         <input class="form-control" name="ligandDetail" formControlName="ligandDetail">
                     </div>
                 </div>
-
-                <div class="col-xs-3 col-sm-3">
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="identifier1" for="series" cssClass="required">Identifier1</label>
                         <input class="form-control" name="identifier1" formControlName="identifier1">
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-xs-3 col-sm-3">
+                <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="identifier2" for="series" cssClass="required">Identifier2</label>
                         <input class="form-control" name="identifier2" formControlName="identifier2">
                     </div>
                 </div>
-                <div class="col-xs-3 col-sm-3">
+                <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="identifier3" for="series" cssClass="required">Identifier3</label>
                         <input class="form-control" name="identifier3" formControlName="identifier3">
                     </div>
                 </div>
-
-                <div class="col-xs-3 col-sm-3">
+            </div>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="collectionId" for="series" cssClass="required">Collection-id</label>
-                        <input class="form-control" name="collectionId" formControlName="collectionId" (blur)="onBlurEvent($event)">
+                        <input class="form-control" name="collectionId" formControlName="collectionId"
+                            (blur)="onBlurEvent($event)">
                     </div>
                 </div>
 
-                <div class="col-xs-3 col-sm-3">
+                <div class="col-xs-4 col-sm-4">
                     <div class="form-group">
                         <label path="locator" for="series" cssClass="required">Locator</label>
                         <input class="form-control" name="locator" formControlName="locator">
@@ -97,21 +101,21 @@
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Disease</legend>
                 <div class="row">
-                    <div class="col-xs-3 col-sm-3">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="diseaseName1" for="series" cssClass="required">Original-disease-name1</label>
                             <input class="form-control" name="diseaseName1" formControlName="diseaseName1">
                         </div>
                     </div>
 
-                    <div class="col-xs-3 col-sm-3">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="diseaseName2" for="series" cssClass="required">Original-disease-name2</label>
                             <input class="form-control" name="diseaseName2" formControlName="diseaseName2">
                         </div>
                     </div>
 
-                    <div class="col-xs-3 col-sm-3">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="diseaseName3" for="series" cssClass="required">Original-disease-name3</label>
                             <input class="form-control" name="diseaseName3" formControlName="diseaseName3">
@@ -123,10 +127,11 @@
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Target</legend>
                 <div class="row">
-                    <div class="col-xs-3 col-sm-3">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="ligandVersions" for="ligandVersions" cssClass="required">Ligand-Version</label>
-                            <input class="form-control" path="ligandVersions" name="ligandVersions" formControlName="ligandVersions" readonly />
+                            <input class="form-control" path="ligandVersions" name="ligandVersions"
+                                formControlName="ligandVersions" readonly />
                         </div>
                     </div>
                 </div>
@@ -138,44 +143,43 @@
                             <input class="form-control" name="target" formControlName="target">
                         </div>
                     </div> -->
-                    <div class="col-xs-3 col-sm-3">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="targetVersion" for="targetVersion" cssClass="required">Target-version</label>
                             <input class="form-control" name="targetVersion" formControlName="targetVersion">
                         </div>
                     </div>
 
-                    <div class="col-xs-3 col-sm-3">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="collectionId1" for="collectionId1" cssClass="required">Collection-id</label>
                             <input class="form-control" name="collectionId1" formControlName="collectionId1">
                         </div>
                     </div>
 
-                    <div class="col-xs-3 col-sm-3">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="original" for="original" cssClass="required">Original-target-name</label>
                             <input class="form-control" name="original" formControlName="original">
                         </div>
                     </div>
 
-                    <div class="col-xs-3 col-sm-3">
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="acronym" for="series" cssClass="required">Acronym</label>
                             <input class="form-control" name="acronym" formControlName="acronym">
                         </div>
                     </div>
-                </div>
-                <div class="row">
 
-
-                    <div class="col-xs-3 col-sm-3">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="organism" for="series" cssClass="required">Organism-source</label>
                             <input class="form-control" name="organism" formControlName="organism">
                         </div>
                     </div>
-                    <div class="col-xs-3 col-sm-3">
+                    <div class="col-xs-4 col-sm-4">
                         <div class="form-group">
                             <label path="variant" for="variant" cssClass="required">Variant</label>
                             <input class="form-control" name="variant" formControlName="variant">
@@ -188,10 +192,15 @@
 
                 <div class="form-group">
                     <div class="col-sm-7"></div>
-                    <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onRepeat()">Repeat</button></div>
-                    <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button></div>
+                    <div class="col-sm-1"><button type="button" class="btn btn-primary"
+                            (click)="onRepeat()">Repeat</button>
+                    </div>
+                    <div class="col-sm-1"><button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button>
+                    </div>
                     <div class="col-sm-1"><button type="submit" class="btn btn-primary">Submit</button></div>
-                    <div class="col-sm-1"> <button type="button" class="btn btn-primary" (click)="onReset()">Clear</button></div>
+                    <div class="col-sm-1"> <button type="button" class="btn btn-primary"
+                            (click)="onReset()">Clear</button>
+                    </div>
                     <div class="col-sm-1"></div>
                 </div>
 
@@ -204,7 +213,8 @@
 <div class="scrollbar">
     <fieldset class="scheduler-border">
         <legend class="scheduler-border">Ligand</legend>
-        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;" [frameworkComponents]="frameworkComponents">
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [frameworkComponents]="frameworkComponents">
         </ag-grid-angular>
     </fieldset>
 </div>
