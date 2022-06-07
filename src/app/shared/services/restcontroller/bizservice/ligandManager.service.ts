@@ -16,6 +16,7 @@ export class LigandManager extends BaseService {
     }
 
     ligandsave(ligand001wb: Ligand001wb) {
+        console.log("ligand001wb--->", ligand001wb);     
         return this.postCallService(`${this.ligandUrl}` + "/save", {}, ligand001wb);
     }
 

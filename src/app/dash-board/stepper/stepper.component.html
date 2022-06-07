@@ -20,9 +20,16 @@
         </ng-template>
         <app-measurement></app-measurement>
     </cdk-step>
-    <cdk-step *ngIf="user?.rolename== 'Reviewer'">
+    <cdk-step *ngIf="user?.rolename== 'User'">
         <ng-template cdkStepLabel>
             <div class="step-bullet">4</div>
+            <div class="step-title">Status </div>
+        </ng-template>
+        <app-status></app-status>
+    </cdk-step>
+    <cdk-step *ngIf="user?.rolename== 'Reviewer'">
+        <ng-template cdkStepLabel>
+            <div class="step-bullet">5</div>
             <div class="step-title">Reviewer </div>
         </ng-template>
         <app-report></app-report>

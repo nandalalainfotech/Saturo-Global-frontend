@@ -32,6 +32,7 @@ export class Ligand001wb {
     acronym?: string;
     organism?: string;
     variant?: string;
+    status?: string;
     insertUser?: string;
     insertDatetime?: Date;
     updatedUser?: string | null;

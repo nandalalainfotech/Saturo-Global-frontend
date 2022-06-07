@@ -600,6 +600,7 @@ export class AssayComponent implements OnInit {
     assay001wb.highCondition = this.f.highCondition.value ? this.f.highCondition.value : "";
     assay001wb.lowCondition = this.f.lowCondition.value ? this.f.lowCondition.value : "";
     assay001wb.highLowUnit = this.f.highLowUnit.value ? this.f.highLowUnit.value : "";
+    assay001wb.status =  "SUBMITTED TO QC";
 
     if (this.assayId) {
       assay001wb.assayId = this.assayId;

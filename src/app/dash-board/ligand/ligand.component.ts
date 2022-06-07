@@ -582,6 +582,7 @@ export class LigandComponent implements OnInit {
     ligand001wb.acronym = this.f.acronym.value ? this.f.acronym.value : "";
     ligand001wb.organism = this.f.organism.value ? this.f.organism.value : "";
     ligand001wb.variant = this.f.variant.value ? this.f.variant.value : "";
+    ligand001wb.status =  "SUBMITTED TO QC";
     if (this.ligandId) {
       ligand001wb.ligandId = this.ligandId;
       ligand001wb.insertUser = this.insertUser;
