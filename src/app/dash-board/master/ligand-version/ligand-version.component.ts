@@ -233,7 +233,7 @@ export class LigandVersionComponent implements OnInit {
       ligandversion001mb.insertUser = this.authManager.getcurrentUser.username;
       ligandversion001mb.insertDatetime = new Date();
       this.ligandVersionManager.ligandVersionsave(ligandversion001mb).subscribe((response) => {
-        this.calloutService.showSuccess("Breakdown Details Saved Successfully");
+        this.calloutService.showSuccess("Ligand Version Details Saved Successfully");
         this.LigandversionForm.reset();
         this.loadData();
         this.submitted = false;
